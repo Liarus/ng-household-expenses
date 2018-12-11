@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { RootComponent, LayoutComponent } from './containers';
+import { RootComponent, LayoutComponent, PageNotFoundComponent } from './containers';
 import { CoreRoutingModule } from './core-routing.module';
+import { MaterialModule } from '../material/material.module';
 
 const COMPONENTS = [
     RootComponent,
-    LayoutComponent
+    LayoutComponent,
+    PageNotFoundComponent
 ];
 
 const PROVIDERS = [
@@ -19,6 +21,7 @@ const PROVIDERS = [
         CommonModule,
         RouterModule,
         CoreRoutingModule,
+        MaterialModule
     ],
     declarations: [
         COMPONENTS
@@ -27,11 +30,4 @@ const PROVIDERS = [
         COMPONENTS
     ]
 })
-export class CoreModule {
-    static forRoot(): ModuleWithProviders {
-        return <ModuleWithProviders> {
-            ngModule: CoreModule,
-            providers: [PROVIDERS]
-        };
-    }
-}
+export class CoreModule { }
