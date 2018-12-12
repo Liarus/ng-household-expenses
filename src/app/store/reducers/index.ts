@@ -3,7 +3,7 @@ import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 
 import { environment } from '../../../environments/environment';
-import { RouterStateUrl } from '../../shared/classes/routerState';
+import { RouterStateUrl } from '../../shared/helpers/routerState';
 
 export interface State {
     router: fromRouter.RouterReducerState<RouterStateUrl>;
