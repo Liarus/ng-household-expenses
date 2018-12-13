@@ -9,6 +9,7 @@ import { reducers } from './store/reducers';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './containers';
 import { LoginFormComponent } from './components';
+import { MaterialModule } from '../material/material.module';
 
 export const COMPONENTS = [
     LoginPageComponent,
@@ -20,6 +21,7 @@ export const COMPONENTS = [
     CommonModule,
     ReactiveFormsModule,
     AuthRoutingModule,
+    MaterialModule,
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([AuthEffects]),
   ],
