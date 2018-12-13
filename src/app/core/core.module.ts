@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule} from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent, PageNotFoundComponent } from './containers';
 import { MaterialModule } from '../material/material.module';
+import { reducers } from './store/reducers';
 
 const COMPONENTS = [
     AppComponent,
@@ -18,7 +20,8 @@ const PROVIDERS = [
     imports: [
         CommonModule,
         RouterModule,
-        MaterialModule
+        MaterialModule,
+        StoreModule.forFeature('core', reducers)
     ],
     declarations: [
         COMPONENTS
