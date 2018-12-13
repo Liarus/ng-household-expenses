@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { SignInRequest } from '../../models/requests/signInRequest.model';
+import { LoginRequest } from '../../models/requests/loginRequest.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 const fg = new FormGroup({
@@ -15,16 +15,23 @@ const fg = new FormGroup({
 })
 export class LoginFormComponent implements OnInit {
 
+  @Input()
+  set pending(isPending: boolean) {
+    if (isPending) {
+      this.form.disable();
+    } else {
+      this.form.enable();
+    }
+  }
   @Input() isLoading: boolean;
 
-  @Output() submitted = new EventEmitter<SignInRequest>();
+  @Output() submitted = new EventEmitter<LoginRequest>();
 
-  form: FormGroup;
+  form: FormGroup = fg;
 
   constructor() { }
 
   ngOnInit() {
-    this.form = fg;
   }
 
   submit() {

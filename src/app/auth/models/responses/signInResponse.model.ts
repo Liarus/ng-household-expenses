@@ -1,4 +1,4 @@
-export interface LogInResponse {
+export interface SignInResponse {
     userName: string;
     accessToken: string;
 }

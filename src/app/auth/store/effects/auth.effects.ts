@@ -10,20 +10,29 @@ import {
   LoginFailure,
   LoginSuccess,
 } from '../actions/auth.actions';
+import { AuthService } from '../../services/auth.service';
+import { LoginRequest } from '../../models/requests/loginRequest.model';
+import { HttpError } from '../../../shared/helpers/httpError';
 
 @Injectable()
 export class AuthEffects {
-//   @Effect()
-//   login$ = this.actions$.pipe(
-//     ofType<Login>(AuthActionTypes.Login),
-//     map(action => action.payload),
-//     exhaustMap((auth: Authenticate) =>
-//       this.authService.login(auth).pipe(
-//         map(user => new LoginSuccess({ user })),
-//         catchError(error => of(new LoginFailure(error)))
-//       )
-//     )
-//   );
+
+  @Effect()
+  login$ = this.actions$.pipe(
+    ofType<Login>(AuthActionTypes.Login),
+    map(action => action.payload),
+    exhaustMap((login: LoginRequest) =>
+      this.authService.login(login).pipe(
+        map(response => new LoginSuccess({
+          user: {
+            name: response.userName
+          },
+          accessToken: response.accessToken
+        })),
+        catchError(error => of(new LoginFailure(HttpError.parse(error))))
+      )
+    )
+  );
 
   @Effect({ dispatch: false })
   loginSuccess$ = this.actions$.pipe(
@@ -34,13 +43,12 @@ export class AuthEffects {
   @Effect({ dispatch: false })
   loginRedirect$ = this.actions$.pipe(
     ofType(AuthActionTypes.LoginRedirect, AuthActionTypes.Logout),
-    tap(authed => {
-      this.router.navigate(['/login']);
-    })
+    tap(() => this.router.navigate(['/login']))
   );
 
   constructor(
     private actions$: Actions,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 }
