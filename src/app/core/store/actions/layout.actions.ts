@@ -5,6 +5,7 @@ import { WindowSize } from '../../models/windowSize.model';
 export enum LayoutActionTypes {
     OpenSidebar = '[Layout] Open Sidebar',
     CloseSidebar = '[Layout] Close Sidebar',
+    ToggleSidebar = '[Layout] Toggle Sidebar',
     ResizeWindow = '[Layout API] Resize window'
 }
 
@@ -16,6 +17,10 @@ export class CloseSidebar implements Action {
     readonly type = LayoutActionTypes.CloseSidebar;
 }
 
+export class ToggleSidebar implements Action {
+    readonly type = LayoutActionTypes.ToggleSidebar;
+}
+
 export class ResizeWindow implements Action {
     readonly type = LayoutActionTypes.ResizeWindow;
 
@@ -25,4 +30,5 @@ export class ResizeWindow implements Action {
 export type LayoutActionsUnion =
     | OpenSidebar
     | CloseSidebar
+    | ToggleSidebar
     | ResizeWindow;

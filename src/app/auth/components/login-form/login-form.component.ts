@@ -14,7 +14,6 @@ const fg = new FormGroup({
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-
   @Input()
   set pending(isPending: boolean) {
     if (isPending) {

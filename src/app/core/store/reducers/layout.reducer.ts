@@ -30,6 +30,13 @@ export function reducer(
             };
         }
 
+        case LayoutActionTypes.ToggleSidebar: {
+            return {
+                ...state,
+                isSidebarExpanded: !state.isSidebarExpanded
+            };
+        }
+
         case LayoutActionTypes.ResizeWindow: {
             const isMobile: boolean = action.payload.width < 768 ? true : false;
             const expanded: boolean = isMobile ? false : state.isSidebarExpanded;

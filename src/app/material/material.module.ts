@@ -3,34 +3,40 @@ import { CommonModule } from '@angular/common';
 
 import {
   MatInputModule,
+  MatCardModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatListModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatProgressSpinnerModule,
   MatFormFieldModule,
   MatCheckboxModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatIconModule,
   MatSelectModule,
   MatSliderModule,
-  MatCardModule,
   MatDividerModule,
-  MatListModule,
-  MatTableModule,
-  MatButtonModule
+  MatTableModule
 } from '@angular/material';
 
 const MaterialModules = [
-    MatInputModule,
-    MatFormFieldModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatSelectModule,
-    MatSliderModule,
-    MatCardModule,
-    MatDividerModule,
-    MatListModule,
-    MatTableModule,
-    MatButtonModule
+  MatInputModule,
+  MatCardModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatListModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatDividerModule,
+  MatTableModule
 ];
 
 @NgModule({

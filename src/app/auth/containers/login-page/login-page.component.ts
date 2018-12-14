@@ -16,7 +16,6 @@ import { LoginRequest } from '../../models/requests/loginRequest.model';
   `
 })
 export class LoginPageComponent implements OnInit {
-
   isLoading$ = this.store.pipe(select(fromAuth.getLoading));
 
   constructor(private store: Store<fromAuth.State>) { }
