@@ -16,6 +16,7 @@ import * as AuthActions from '../../../auth/store/actions/auth.actions';
       (logout)="onLogout()"
     ></app-toolbar>
     <app-sidebar [isExpanded]="isSidebarExpanded$ | async"
+      [menuItems]="menuItems$ | async"
     >
       <router-outlet></router-outlet>
     </app-sidebar>
@@ -24,6 +25,7 @@ import * as AuthActions from '../../../auth/store/actions/auth.actions';
 export class AppComponent {
   user$ = this.store.pipe(select(fromAuth.getLoggedUser));
   isSidebarExpanded$ = this.store.pipe(select(fromCore.getIsSidebarExpanded));
+  menuItems$ = this.store.pipe(select(fromCore.getMenuItems));
   title = 'ng-household-expenses';
 
   constructor(private store: Store<fromRoot.State>) { }

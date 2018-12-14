@@ -1,5 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
+import { MenuItem } from '../../models/menuItem.model';
+
 @Component({
   selector: 'app-sidebar',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,4 +10,5 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class SidebarComponent {
   @Input() isExpanded: boolean;
+  @Input() menuItems: MenuItem[];
 }

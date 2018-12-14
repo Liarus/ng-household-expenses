@@ -13,10 +13,10 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/requests/loginRequest.model';
 import { HttpError } from '../../../shared/helpers/httpError';
+import { RefreshMenuItems } from 'src/app/core/store/actions/layout.actions';
 
 @Injectable()
 export class AuthEffects {
-
   @Effect()
   login$ = this.actions$.pipe(
     ofType<Login>(AuthActionTypes.Login),
@@ -34,9 +34,10 @@ export class AuthEffects {
     )
   );
 
-  @Effect({ dispatch: false })
+  @Effect()
   loginSuccess$ = this.actions$.pipe(
     ofType(AuthActionTypes.LoginSuccess),
+    map(() => new RefreshMenuItems()),
     tap(() => this.router.navigate(['/']))
   );
 

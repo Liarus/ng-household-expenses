@@ -36,3 +36,8 @@ export const getWindowHeight = createSelector(
     getLayoutState,
     fromLayout.getWindowHeight
 );
+
+export const getMenuItems = createSelector(
+    getLayoutState,
+    fromLayout.getMenuItems
+);

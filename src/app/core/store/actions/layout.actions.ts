@@ -1,12 +1,15 @@
 import { Action } from '@ngrx/store';
 
 import { WindowSize } from '../../models/windowSize.model';
+import { MenuItem } from '../../models/menuItem.model';
 
 export enum LayoutActionTypes {
     OpenSidebar = '[Layout] Open Sidebar',
     CloseSidebar = '[Layout] Close Sidebar',
     ToggleSidebar = '[Layout] Toggle Sidebar',
-    ResizeWindow = '[Layout API] Resize window'
+    ResizeWindow = '[Layout API] Resize window',
+    ApplyMenuItems = '[Layout API] Set Menu Items',
+    RefreshMenuItems = '[Layout API] Refresh Menu Items'
 }
 
 export class OpenSidebar implements Action {
@@ -27,8 +30,20 @@ export class ResizeWindow implements Action {
     constructor(public payload: WindowSize) {}
 }
 
+export class ApplyMenuItems implements Action {
+    readonly type = LayoutActionTypes.ApplyMenuItems;
+
+    constructor(public payload: MenuItem[]) {}
+}
+
+export class RefreshMenuItems implements Action {
+    readonly type = LayoutActionTypes.RefreshMenuItems;
+}
+
 export type LayoutActionsUnion =
     | OpenSidebar
     | CloseSidebar
     | ToggleSidebar
-    | ResizeWindow;
+    | ResizeWindow
+    | ApplyMenuItems
+    | RefreshMenuItems;

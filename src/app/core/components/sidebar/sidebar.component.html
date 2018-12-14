@@ -3,19 +3,20 @@
       mode="side"
       [opened]="true"
     >
-      <mat-nav-list fxLayout="column">
-        <a mat-list-item (click)="toggleActive($event)">
-          <mat-icon mat-list-icon>inbox</mat-icon>
-          <p matLine *ngIf="isExpanded">Households</p>
+      <mat-nav-list>
+        <a mat-list-item (click)="toggleActive($event)"
+        *ngFor="let item of menuItems">
+          <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+          <p matLine *ngIf="isExpanded">{{item.title}}</p>
         </a>
-        <a mat-list-item (click)="toggleActive($event)">
+        <!-- <a mat-list-item (click)="toggleActive($event)">
           <mat-icon mat-list-icon>drafts</mat-icon>
           <p matLine *ngIf="isExpanded">Expenses</p>
         </a>
         <a mat-list-item (click)="toggleActive($event)">
           <mat-icon mat-list-icon>star</mat-icon>
           <p matLine *ngIf="isExpanded">Savings</p>
-        </a>       
+        </a>        -->
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content [ngClass]="(isExpanded==true) ? 'app-sidenav-content-expanded' : 'app-sidenav-content-compressed'">
