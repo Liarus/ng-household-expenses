@@ -1,3 +1,24 @@
-<p>
-  sidebar works!
-</p>
+<mat-sidenav-container fxLayout="column" fxFlexFill>
+    <mat-sidenav fxLayout="column"
+      mode="side"
+      [opened]="true"
+    >
+      <mat-nav-list fxLayout="column">
+        <a mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon>inbox</mat-icon>
+          <p matLine *ngIf="isExpanded">Households</p>
+        </a>
+        <a mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon>drafts</mat-icon>
+          <p matLine *ngIf="isExpanded">Expenses</p>
+        </a>
+        <a mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon>star</mat-icon>
+          <p matLine *ngIf="isExpanded">Savings</p>
+        </a>       
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content [ngClass]="(isExpanded==true) ? 'app-sidenav-content-expanded' : 'app-sidenav-content-compressed'">
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

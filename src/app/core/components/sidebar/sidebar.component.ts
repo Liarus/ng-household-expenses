@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,12 +6,6 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   @Input() isExpanded: boolean;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

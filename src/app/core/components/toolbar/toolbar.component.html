@@ -7,12 +7,12 @@
     </button>
     <span fxFlex></span>
     <div *ngIf="user">
-      <span class="toolbar-user-name"
+      <span class="app-toolbar-user-name"
         fxShow.xs="false"
       >{{user.name}}</span>
     </div>
     <button mat-icon-button
-      (click)="toggleSidebar.emit()"
+      (click)="logout.emit()"
     >
       <mat-icon>exit_to_app</mat-icon>
     </button>
