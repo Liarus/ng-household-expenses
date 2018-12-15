@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: './dummy/dummy.module#DummyModule',
     canActivate: [AuthLoggedInGuard],
   },
+  {
+    path: 'households',
+    loadChildren: './household/household.module#HouseholdModule'
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 
