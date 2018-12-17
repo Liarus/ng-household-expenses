@@ -9,9 +9,11 @@ import { reducers } from './store/reducers';
 import { HouseholdRoutingModule } from './household-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { HouseholdPageComponent } from './containers';
+import { HouseholdListComponent } from './components';
 
 export const COMPONENTS = [
-    HouseholdPageComponent
+    HouseholdPageComponent,
+    HouseholdListComponent
 ];
 
 @NgModule({
