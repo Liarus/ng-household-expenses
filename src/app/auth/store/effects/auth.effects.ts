@@ -25,6 +25,7 @@ export class AuthEffects {
       this.authService.login(login).pipe(
         map(response => new LoginSuccess({
           user: {
+            id: response.userId,
             name: response.userName
           },
           accessToken: response.accessToken

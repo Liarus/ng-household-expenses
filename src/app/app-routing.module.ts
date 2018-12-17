@@ -9,13 +9,14 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: './dummy/dummy.module#DummyModule',
-    canActivate: [AuthLoggedInGuard],
+    canActivate: [AuthLoggedInGuard]
   },
   {
     path: 'households',
-    loadChildren: './household/household.module#HouseholdModule'
+    loadChildren: './household/household.module#HouseholdModule',
+    canActivate: [AuthLoggedInGuard]
   },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

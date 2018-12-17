@@ -59,13 +59,13 @@ export class UpdateHouseholdSuccess implements Action {
 export class RemoveHousehold implements Action {
     readonly type = HouseholdActionTypes.RemoveHousehold;
 
-    constructor(public payload: {householdId: number}) {}
+    constructor(public payload: {householdId: string}) {}
 }
 
 export class RemoveHouseholdSuccess implements Action {
     readonly type = HouseholdActionTypes.RemoveHouseholdSuccess;
 
-    constructor(public payload: {householdId: number}) {}
+    constructor(public payload: {householdId: string}) {}
 }
 
 export class RemoveHouseholdFail implements Action {

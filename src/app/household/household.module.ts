@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-// import { HouseholdEffects } from './store/effects/household.effects';
+import { HouseholdEffects } from './store/effects/household.effects';
 import { reducers } from './store/reducers';
 import { HouseholdRoutingModule } from './household-routing.module';
 import { MaterialModule } from '../material/material.module';
@@ -21,7 +21,7 @@ export const COMPONENTS = [
     HouseholdRoutingModule,
     MaterialModule,
     StoreModule.forFeature('households', reducers),
-    // EffectsModule.forFeature([HouseholdEffects]),
+    EffectsModule.forFeature([HouseholdEffects]),
   ],
   declarations: COMPONENTS,
 })

@@ -20,7 +20,7 @@ export class HouseholdService {
                 @Inject('IAppConfig') private appConfig: AppConfig) {
     }
 
-    getAllForUser(userId: number): Observable<Household[]> {
+    getAllForUser(userId: string): Observable<Household[]> {
         return this.httpService.get<Household[]>(
             `${this.appConfig.BASE_URL}${this.userEndpoint}/${userId}/households`
         );
@@ -38,7 +38,7 @@ export class HouseholdService {
         );
     }
 
-    delete(id: number): Observable<any> {
+    delete(id: string): Observable<any> {
         return this.httpService.delete(
             `${this.appConfig.BASE_URL}${this.householdEndpoint}/${id}`
         );
