@@ -18,16 +18,13 @@ export class MenuService {
 
     public getMenuItems(): Observable<MenuItem[]> {
         return this.isUserLoggedIn$.pipe(map((isLoggedIn: boolean) => {
-            return isLoggedIn ? this.convertBaseMenu() : [];
+            return this.convertBaseMenu(isLoggedIn);
         }));
     }
 
-    private convertBaseMenu(): MenuItem[] {
-        let menu = this.baseMenu.map((item: MenuItem) => {
-            return Object.assign({}, item, { hidden: false });
-        });
-
-        if (!menu || menu.length === 0) {
+    private convertBaseMenu(isLoggedId: boolean): MenuItem[] {
+        let menu = [];
+        if (!isLoggedId) {
             menu = [{
                 url: '/',
                 title: 'Log in',
@@ -35,7 +32,12 @@ export class MenuService {
                 permissions: [],
                 hidden: false
             }];
+        } else {
+            menu = this.baseMenu.map((item: MenuItem) => {
+                return Object.assign({}, item, { hidden: false });
+            });
         }
+
         return menu;
     }
 }

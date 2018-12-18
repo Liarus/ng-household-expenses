@@ -10,6 +10,7 @@ export enum AuthActionTypes {
     LoginSuccess = '[Auth API] Login Success',
     LoginFailure = '[Auth API] Login Failure',
     LoginRedirect = '[Auth API] Login Redirect',
+    AuthHttpError = '[Auth API] Authorization Http Error'
 }
 
 export class Login implements Action {
@@ -41,9 +42,16 @@ export class LoginRedirect implements Action {
     readonly type = AuthActionTypes.LoginRedirect;
 }
 
+export class AuthHttpError implements Action {
+    readonly type = AuthActionTypes.AuthHttpError;
+
+    constructor(public payload: ErrorMessage) {}
+}
+
 export type AuthActionsUnion =
     | Login
     | Logout
     | LoginSuccess
     | LoginFailure
-    | LoginRedirect;
+    | LoginRedirect
+    | AuthHttpError;

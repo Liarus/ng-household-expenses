@@ -44,7 +44,8 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   loginRedirect$ = this.actions$.pipe(
-    ofType(AuthActionTypes.LoginRedirect, AuthActionTypes.Logout),
+    ofType(AuthActionTypes.LoginRedirect, AuthActionTypes.Logout, AuthActionTypes.AuthHttpError),
+    map(() => new RefreshMenuItems()),
     tap(() => this.router.navigate(['/login']))
   );
 

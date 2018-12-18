@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './core/containers';
@@ -16,6 +16,8 @@ import { environment } from '../environments/environment';
 import { HttpService } from './shared/services/http.service';
 import { AppConfigDev } from './shared/configs/appConfig.dev';
 import { AuthModule } from './auth/auth.module';
+import { HttpTokenInterceptor } from './auth/services/httpToken.interceptor';
+import { HttpAuthErrorInterceptor } from './auth/services/httpAuthError.interceptor';
 
 const PROVIDERS = [
   HttpService
@@ -41,6 +43,8 @@ const PROVIDERS = [
   providers: [
     PROVIDERS,
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpAuthErrorInterceptor, multi: true },
     { provide: 'IAppConfig', useClass: AppConfigDev }
   ],
   bootstrap: [AppComponent]

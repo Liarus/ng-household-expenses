@@ -5,6 +5,7 @@ export interface State {
     isSidebarExpanded: boolean;
     windowHeight: number;
     windowWidth: number;
+    isMobile: boolean;
     menuItems: MenuItem[];
 }
 
@@ -12,6 +13,7 @@ export const initialState: State = {
     isSidebarExpanded: false,
     windowHeight: window.screen.height,
     windowWidth: window.screen.width,
+    isMobile: window.screen.width < 768,
     menuItems: [{
         url: '/',
         title: 'Log in',
@@ -53,6 +55,7 @@ export function reducer(
                 ...state,
                 windowHeight: action.payload.height,
                 windowWidth: action.payload.width,
+                isMobile: isMobile,
                 isSidebarExpanded: expanded
             };
         }

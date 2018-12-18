@@ -51,6 +51,13 @@ export function reducer(
             return initialState;
         }
 
+        case AuthActionTypes.AuthHttpError: {
+            return {
+                ...initialState,
+                errorMessage: action.payload.message
+            };
+        }
+
         default: {
             return state;
         }
