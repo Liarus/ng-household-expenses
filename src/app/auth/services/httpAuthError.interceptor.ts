@@ -17,12 +17,11 @@ export class HttpAuthErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
             catchError(err => {
-                if (err.status === 401) {
+                if (err.status === 401 && !request.url.includes('/login')) {
                     this.store.dispatch(new AuthActions.AuthHttpError(HttpError.parse(err)));
+                    return;
                 }
-
-                const error = err.error.message || err.statusText;
-                return throwError(error);
+                return throwError(err);
             })
         );
     }

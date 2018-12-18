@@ -11,9 +11,11 @@ export class HttpError {
         }
         if (error.message) {
             errorMessage.message = error.message;
+            return errorMessage;
         }
         if (error.status) {
             errorMessage.message = `error occured with status: ${error.status}`;
+            return errorMessage;
         }
         if (error.name) {
             errorMessage.message = `error occured: ${error.name}`;

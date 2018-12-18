@@ -1,8 +1,9 @@
 
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { HouseholdService } from '../../services/household.service';
@@ -24,6 +25,7 @@ import {
     LoadHouseholdsSuccess,
     LoadHouseholdsFail
 } from '../actions/household.actions';
+import { ErrorMessage } from 'src/app/shared/models/errorMessage.model';
 
 @Injectable()
 export class HouseholdEffects {
@@ -103,7 +105,17 @@ export class HouseholdEffects {
         )
     );
 
+    @Effect({ dispatch: false })
+    errors$ = this.actions$.pipe(
+      ofType(HouseholdActionTypes.AddHouseholdFail,
+        HouseholdActionTypes.LoadHouseholdsFail,
+        HouseholdActionTypes.RemoveHouseholdFail,
+        HouseholdActionTypes.UpdateHouseholdFail),
+      map((action: any) => action.payload),
+      tap((error: ErrorMessage) => this.toastr.error(error.message, 'Alert!'))
+    );
+
     constructor(private actions$: Actions,
-                private householdService: HouseholdService) {
-    }
+                private householdService: HouseholdService,
+                private toastr: ToastrService) {}
 }

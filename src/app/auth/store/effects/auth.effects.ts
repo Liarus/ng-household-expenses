@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 import {
   AuthActionTypes,
@@ -14,6 +15,7 @@ import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/requests/loginRequest.model';
 import { HttpError } from '../../../shared/helpers/httpError';
 import { RefreshMenuItems } from 'src/app/core/store/actions/layout.actions';
+import { ErrorMessage } from 'src/app/shared/models/errorMessage.model';
 
 @Injectable()
 export class AuthEffects {
@@ -49,9 +51,18 @@ export class AuthEffects {
     tap(() => this.router.navigate(['/login']))
   );
 
+  @Effect({ dispatch: false })
+  errors$ = this.actions$.pipe(
+    ofType(AuthActionTypes.LoginFailure,
+      AuthActionTypes.AuthHttpError),
+    map((action: any) => action.payload),
+    tap((error: ErrorMessage) => this.toastr.error(error.message, 'Alert!'))
+  );
+
   constructor(
     private actions$: Actions,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {}
 }
