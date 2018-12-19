@@ -41,3 +41,8 @@ export const getMenuItems = createSelector(
     getLayoutState,
     fromLayout.getMenuItems
 );
+
+export const getIsMobile = createSelector(
+    getLayoutState,
+    fromLayout.getIsMobile
+);

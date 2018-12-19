@@ -14,6 +14,7 @@ export class HouseholdListComponent implements OnInit {
     this.setDataSource(households);
   }
   @Input() isLoading: boolean;
+  @Input() isMobile: boolean;
 
   displayedColumns: string[] = ['name', 'symbol', 'description'];
   dataSource: MatTableDataSource<Household>;

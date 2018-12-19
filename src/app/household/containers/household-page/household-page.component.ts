@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 
 import * as fromAuth from '../../../auth/store/reducers';
 import * as fromRoot from '../../../store/reducers';
+import * as fromCore from '../../../core/store/reducers';
 import * as fromHousehold from '../../store/reducers';
 import * as HouseholdActions from '../../store/actions/household.actions';
 import { User } from 'src/app/auth/models/user.model';
@@ -14,14 +15,18 @@ import { User } from 'src/app/auth/models/user.model';
   selector: 'app-household-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-  <app-household-list [isLoading]='isLoading$ | async'
-    [households]='household$ | async'
-  ></app-household-list>
+    <div class="app-basic-container">
+      <app-household-list [isLoading]='isLoading$ | async'
+        [isMobile]='isMobile$ | async'
+        [households]='household$ | async'
+      ></app-household-list>
+    </div>
   `
 })
 export class HouseholdPageComponent implements OnInit, OnDestroy {
   loggedUser$ = this.store.pipe(select(fromAuth.getLoggedUser));
   isLoading$ = this.store.pipe(select(fromHousehold.getHouseholdsLoading));
+  isMobile$ = this.store.pipe(select(fromCore.getIsMobile));
   household$ = this.store.pipe(select(fromHousehold.getAllHouseholds));
 
   private unsubscribe: Subject<void> = new Subject();

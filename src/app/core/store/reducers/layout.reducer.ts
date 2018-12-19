@@ -49,13 +49,13 @@ export function reducer(
         }
 
         case LayoutActionTypes.ResizeWindow: {
-            const isMobile: boolean = action.payload.width < 768 ? true : false;
-            const expanded: boolean = isMobile ? false : state.isSidebarExpanded;
+            const isMobileScreen: boolean = action.payload.width < 768 ? true : false;
+            const expanded: boolean = isMobileScreen ? false : state.isSidebarExpanded;
             return {
                 ...state,
                 windowHeight: action.payload.height,
                 windowWidth: action.payload.width,
-                isMobile: isMobile,
+                isMobile: isMobileScreen,
                 isSidebarExpanded: expanded
             };
         }
@@ -77,3 +77,4 @@ export const getIsSidebarExpanded = (state: State) => state.isSidebarExpanded;
 export const getWindowWidth = (state: State) => state.windowWidth;
 export const getWindowHeight = (state: State) => state.windowHeight;
 export const getMenuItems = (state: State) => state.menuItems;
+export const getIsMobile = (state: State) => state.isMobile;
