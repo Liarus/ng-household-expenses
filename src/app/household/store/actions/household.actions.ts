@@ -17,7 +17,8 @@ export enum HouseholdActionTypes {
     RemoveHouseholdFail = '[Household API] Remove Household Fail',
     LoadHouseholds = '[Household] Load Households',
     LoadHouseholdsSuccess = '[Household API] Load Households Success',
-    LoadHouseholdsFail = '[Household API] Load Households Fail'
+    LoadHouseholdsFail = '[Household API] Load Households Fail',
+    OpenCreateHouseholdDialog = '[Household] Open Create Household Dialog',
 }
 
 export class AddHousehold implements Action {
@@ -92,6 +93,12 @@ export class LoadHouseholdsFail implements Action {
     constructor(public payload: ErrorMessage) {}
 }
 
+export class OpenCreateHouseholdDialog implements Action {
+    readonly type = HouseholdActionTypes.OpenCreateHouseholdDialog;
+
+    constructor(public payload: {userId: string}) {}
+}
+
 export type HouseholdActionsUnion =
     | AddHousehold
     | AddHouseholdSuccess
@@ -104,4 +111,5 @@ export type HouseholdActionsUnion =
     | RemoveHouseholdFail
     | LoadHouseholds
     | LoadHouseholdsSuccess
-    | LoadHouseholdsFail;
+    | LoadHouseholdsFail
+    | OpenCreateHouseholdDialog;

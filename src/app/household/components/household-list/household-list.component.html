@@ -41,6 +41,7 @@
     [ngClass]="{'app-table-row-mobile': isMobile}"
   ></mat-row>
 </mat-table>
+<button mat-raised-button (click)="create.emit()">Basic</button>
 
 <mat-card *ngIf="isLoading"
   class="app-table-spinner"

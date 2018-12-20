@@ -1,0 +1,16 @@
+.mat-expansion-panel-header {
+    padding: 0;
+    padding-right: 0.5em;
+}
+
+.mat-expansion-panel {
+    box-shadow: none;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+::ng-deep .cdk-overlay-backdrop {
+    pointer-events: none;
+}

@@ -9,11 +9,13 @@ import { reducers } from './store/reducers';
 import { HouseholdRoutingModule } from './household-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { HouseholdPageComponent } from './containers';
-import { HouseholdListComponent } from './components';
+import { HouseholdListComponent, HouseholdCreateDialogComponent } from './components';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export const COMPONENTS = [
     HouseholdPageComponent,
-    HouseholdListComponent
+    HouseholdListComponent,
+    HouseholdCreateDialogComponent
 ];
 
 @NgModule({
@@ -22,9 +24,13 @@ export const COMPONENTS = [
     ReactiveFormsModule,
     HouseholdRoutingModule,
     MaterialModule,
+    FlexLayoutModule,
     StoreModule.forFeature('households', reducers),
     EffectsModule.forFeature([HouseholdEffects]),
   ],
   declarations: COMPONENTS,
+  entryComponents: [
+    HouseholdCreateDialogComponent
+  ]
 })
 export class HouseholdModule {}

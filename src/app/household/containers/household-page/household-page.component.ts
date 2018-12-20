@@ -19,6 +19,7 @@ import { User } from 'src/app/auth/models/user.model';
       <app-household-list [isLoading]='isLoading$ | async'
         [isMobile]='isMobile$ | async'
         [households]='household$ | async'
+        (create)=onCreate()
       ></app-household-list>
     </div>
   `
@@ -49,5 +50,9 @@ export class HouseholdPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+  }
+
+  onCreate() {
+    this.store.dispatch(new HouseholdActions.OpenCreateHouseholdDialog({userId: this.userId}));
   }
 }

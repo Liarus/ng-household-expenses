@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>Create Household</h1>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <div fxLayout="row"
+      fxLayout.lt-md="column"
+      fxLayoutGap="20px"
+      fxLayoutGap.lt-md="0px"
+    >
+      <mat-form-field color="accent" fxFlex>
+        <input matInput
+          class="form-control"
+          placeholder="*Name"
+          [formControl]="form.get('name')"
+        >
+      </mat-form-field>
+      <mat-form-field color="accent" fxFlex>
+        <input matInput
+          class="form-control"
+          placeholder="Symbol"
+          [formControl]="form.get('symbol')"
+        >
+      </mat-form-field>
+    </div>
+    <mat-error *ngIf="!form.valid">{{getAddressErrorMessage()}}</mat-error>
+      
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Address</mat-panel-title>
+        <mat-panel-description>Fill company main address</mat-panel-description>
+      </mat-expansion-panel-header>
+      <div fxLayout="column">
+        <mat-form-field fxFlex>
+          <input matInput
+            class="form-control"
+            placeholder="*Street"
+            [formControl]="form.get('street')"
+          >
+        </mat-form-field>
+        <div fxLayout="row"
+          fxLayout.lt-md="column"
+          fxLayoutGap="20px"
+          fxLayoutGap.lt-md="0px"
+        >
+          <mat-form-field fxFlex>
+            <input matInput
+              class="form-control"
+              placeholder="*Zip code"
+              [formControl]="form.get('zipCode')"
+            >
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput
+              class="form-control"
+              placeholder="*City"
+              [formControl]="form.get('city')"
+            >
+          </mat-form-field>
+        </div>
+        <mat-form-field fxFlex>
+            <input matInput
+              class="form-control"
+              placeholder="*Country"
+              [formControl]="form.get('country')"
+            >
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+  </mat-dialog-content>
+  <div mat-dialog-actions>
+    <button mat-button
+      (click)="onCancelClick()"
+      cdkFocusInitial
+    >Cancel</button>
+    <button mat-button
+      [type]="submit"
+      [disabled]="!form.valid"
+      [mat-dialog-close]="form.value"
+    >Ok</button>
+  </div>
+</form>

@@ -1,6 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Household } from '../../models/household.model';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { EventEmitter } from '@angular/core';
+
+import { Household } from '../../models/household.model';
+
 
 @Component({
   selector: 'app-household-list',
@@ -15,6 +18,7 @@ export class HouseholdListComponent implements OnInit {
   }
   @Input() isLoading: boolean;
   @Input() isMobile: boolean;
+  @Output() create = new EventEmitter();
 
   displayedColumns: string[] = ['name', 'symbol', 'description'];
   dataSource: MatTableDataSource<Household>;
