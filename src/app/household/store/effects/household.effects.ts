@@ -144,8 +144,8 @@ export class HouseholdEffects {
             });
             return dialogRef.afterClosed();
         }),
-        filter((result: CreateHousehold) => result !== undefined),
-        map((result: CreateHousehold) => new AddHousehold(result))
+        filter((result: ModifyHousehold) => result !== undefined),
+        map((result: ModifyHousehold) => new UpdateHousehold(result))
     );
 
     @Effect({ dispatch: false })
