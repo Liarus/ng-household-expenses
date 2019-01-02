@@ -20,6 +20,7 @@ import { User } from 'src/app/auth/models/user.model';
         [isMobile]='isMobile$ | async'
         [households]='household$ | async'
         (create)=onCreate()
+        (remove)=onRemove($event)
       ></app-household-list>
     </div>
   `
@@ -54,5 +55,10 @@ export class HouseholdPageComponent implements OnInit, OnDestroy {
 
   onCreate() {
     this.store.dispatch(new HouseholdActions.OpenCreateHouseholdDialog({userId: this.userId}));
+  }
+
+  onRemove(id: string) {
+    debugger;
+    this.store.dispatch(new HouseholdActions.RemoveHousehold({ householdId: id}));
   }
 }

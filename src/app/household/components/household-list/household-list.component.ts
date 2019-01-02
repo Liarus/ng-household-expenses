@@ -19,8 +19,10 @@ export class HouseholdListComponent implements OnInit {
   @Input() isLoading: boolean;
   @Input() isMobile: boolean;
   @Output() create = new EventEmitter();
+  @Output() update = new EventEmitter<string>();
+  @Output() remove = new EventEmitter<string>();
 
-  displayedColumns: string[] = ['name', 'symbol', 'description'];
+  displayedColumns: string[] = ['name', 'symbol', 'description', 'actions'];
   dataSource: MatTableDataSource<Household>;
 
   constructor() { }
