@@ -25,6 +25,15 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
     };
 }
 
+export function logout(reducer: ActionReducer<State>): ActionReducer<State> {
+    return (state: State, action: any): any => {
+        if (action.type === '[Auth] Logout') {
+            state = undefined;
+        }
+        return reducer(state, action);
+    };
+}
+
 export const metaReducers: MetaReducer<State>[] = !environment.production
-    ? [logger, storeFreeze]
-    : [];
+    ? [logger, storeFreeze, logout]
+    : [logout];
