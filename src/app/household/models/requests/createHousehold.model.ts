@@ -8,4 +8,5 @@ export interface CreateHousehold {
     city: string;
     country: string;
     zipCode: string;
+    version: number;
 }

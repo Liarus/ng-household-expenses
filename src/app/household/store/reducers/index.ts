@@ -38,3 +38,8 @@ export const getHouseholdErrorMessage = createSelector(
     getHouseholdEntitiesState,
     fromHouseholds.getErrorMessage
 );
+
+export const getHousehold = (id: string) => createSelector(
+    getHouseholdEntities,
+    entities => entities[id]
+);

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HouseholdCreateDialogComponent } from './household-create-dialog.component';
+import { HouseholdDialogComponent } from './household-dialog.component';
 
 describe('HouseholdDialogComponent', () => {
-  let component: HouseholdCreateDialogComponent;
-  let fixture: ComponentFixture<HouseholdCreateDialogComponent>;
+  let component: HouseholdDialogComponent;
+  let fixture: ComponentFixture<HouseholdDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HouseholdCreateDialogComponent ]
+      declarations: [ HouseholdDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HouseholdCreateDialogComponent);
+    fixture = TestBed.createComponent(HouseholdDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -19,7 +19,7 @@ export class HouseholdListComponent implements OnInit {
   @Input() isLoading: boolean;
   @Input() isMobile: boolean;
   @Output() create = new EventEmitter();
-  @Output() update = new EventEmitter<string>();
+  @Output() edit = new EventEmitter<string>();
   @Output() remove = new EventEmitter<string>();
 
   displayedColumns: string[] = ['name', 'symbol', 'description', 'actions'];

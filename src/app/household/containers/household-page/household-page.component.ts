@@ -21,6 +21,7 @@ import { User } from 'src/app/auth/models/user.model';
         [households]='household$ | async'
         (create)=onCreate()
         (remove)=onRemove($event)
+        (edit)=onEdit($event)
       ></app-household-list>
     </div>
   `
@@ -58,7 +59,10 @@ export class HouseholdPageComponent implements OnInit, OnDestroy {
   }
 
   onRemove(id: string) {
-    debugger;
-    this.store.dispatch(new HouseholdActions.RemoveHousehold({ householdId: id}));
+    this.store.dispatch(new HouseholdActions.RemoveHousehold({householdId: id}));
+  }
+
+  onEdit(id: string) {
+    this.store.dispatch(new HouseholdActions.OpenEditHouseholdDialog({userId: this.userId, householdId: id}));
   }
 }

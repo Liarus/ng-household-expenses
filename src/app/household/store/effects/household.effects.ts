@@ -1,10 +1,11 @@
 
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
-import { map, switchMap, catchError, tap, filter } from 'rxjs/operators';
-import { of, empty } from 'rxjs';
+import { map, switchMap, catchError, tap, filter, withLatestFrom, take, mergeMap, first } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material';
+import { Store } from '@ngrx/store';
 
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { HouseholdService } from '../../services/household.service';
@@ -12,6 +13,8 @@ import { HttpError } from '../../../shared/helpers/httpError';
 import { ModifyHousehold } from '../../models/requests/modifyHousehold.model';
 import { Household } from '../../models/household.model';
 import { ErrorMessage } from '../../../shared/models/errorMessage.model';
+import * as fromRoot from '../../../store/reducers';
+import * as fromHousehold from '../reducers';
 import {
     HouseholdActionTypes,
     AddHousehold,
@@ -26,9 +29,11 @@ import {
     LoadHouseholds,
     LoadHouseholdsSuccess,
     LoadHouseholdsFail,
-    OpenCreateHouseholdDialog
+    OpenCreateHouseholdDialog,
+    OpenEditHouseholdDialog
 } from '../actions/household.actions';
-import { HouseholdCreateDialogComponent } from '../../components';
+import { HouseholdDialogComponent } from '../../components';
+import { Guid } from 'src/app/shared/helpers/guid';
 
 @Injectable()
 export class HouseholdEffects {
@@ -49,7 +54,7 @@ export class HouseholdEffects {
                         city: request.city,
                         country: request.country,
                         zipCode: request.zipCode,
-                        version: 1,
+                        version: request.version,
                     })
                 ),
                 catchError(error => of(new AddHouseholdFail(HttpError.parse(error))))
@@ -113,8 +118,29 @@ export class HouseholdEffects {
         ofType(HouseholdActionTypes.OpenCreateHouseholdDialog),
         map((action: OpenCreateHouseholdDialog) => action.payload.userId),
         switchMap((userId: string) => {
-            const dialogRef = this.dialog.open(HouseholdCreateDialogComponent, {
-                data: {userId: userId}
+            const dialogRef = this.dialog.open(HouseholdDialogComponent, {
+                data: {userId: userId, household: {id: Guid.newGuid(), version: 1}}
+            });
+            return dialogRef.afterClosed();
+        }),
+        filter((result: CreateHousehold) => result !== undefined),
+        map((result: CreateHousehold) => new AddHousehold(result))
+    );
+
+    @Effect()
+    openModifyDialog$ = this.actions$.pipe(
+        ofType(HouseholdActionTypes.OpenEditHouseholdDialog),
+        map((action: OpenEditHouseholdDialog) => action.payload),
+        mergeMap((payload: any) =>
+            this.store$.select(fromHousehold.getHousehold(payload.householdId))
+            .pipe(
+                first(),
+                map( household => [payload, household])
+            )
+        ),
+        switchMap(([payload, household]) => {
+            const dialogRef = this.dialog.open(HouseholdDialogComponent, {
+                data: {userId: payload.userId, household: household}
             });
             return dialogRef.afterClosed();
         }),
@@ -133,6 +159,7 @@ export class HouseholdEffects {
     );
 
     constructor(private actions$: Actions,
+                private store$: Store<fromRoot.State>,
                 private householdService: HouseholdService,
                 private toastr: ToastrService,
                 private dialog: MatDialog) {}

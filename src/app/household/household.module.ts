@@ -9,13 +9,13 @@ import { reducers } from './store/reducers';
 import { HouseholdRoutingModule } from './household-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { HouseholdPageComponent } from './containers';
-import { HouseholdListComponent, HouseholdCreateDialogComponent } from './components';
+import { HouseholdListComponent, HouseholdDialogComponent } from './components';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 export const COMPONENTS = [
     HouseholdPageComponent,
     HouseholdListComponent,
-    HouseholdCreateDialogComponent
+    HouseholdDialogComponent
 ];
 
 @NgModule({
@@ -30,7 +30,7 @@ export const COMPONENTS = [
   ],
   declarations: COMPONENTS,
   entryComponents: [
-    HouseholdCreateDialogComponent
+    HouseholdDialogComponent
   ]
 })
 export class HouseholdModule {}
