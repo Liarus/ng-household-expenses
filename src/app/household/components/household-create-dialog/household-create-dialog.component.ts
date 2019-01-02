@@ -6,10 +6,11 @@ import { HouseholdCreateDialog } from '../../models/householdCreateDialog.model'
 import { Guid } from '../../../shared/helpers/guid';
 
 const fg = dataItem => new FormGroup({
+  id: new FormControl(dataItem.id),
   userId: new FormControl(dataItem.userId),
   name: new FormControl(dataItem.name, [Validators.required, Validators.maxLength(255)]),
   symbol: new FormControl(dataItem.symbol, [Validators.maxLength(255)]),
-  description: new FormControl(dataItem.description, [Validators.required, Validators.maxLength(255)]),
+  description: new FormControl(dataItem.description, [Validators.maxLength(255)]),
   street: new FormControl(dataItem.street, [Validators.required, Validators.maxLength(255)]),
   city: new FormControl(dataItem.city, [Validators.required, Validators.maxLength(255)]),
   country: new FormControl(dataItem.country, [Validators.required, Validators.maxLength(255)]),

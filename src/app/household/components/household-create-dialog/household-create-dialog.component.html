@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Create Household</h1>
 <form [formGroup]="form">
-  <mat-dialog-content>
+  <mat-dialog-content fxLayout="column">
     <div fxLayout="row"
       fxLayout.lt-md="column"
       fxLayoutGap="20px"
@@ -21,6 +21,13 @@
         >
       </mat-form-field>
     </div>
+    <mat-form-field color="accent" fxFlex>
+      <textarea matInput
+        class="form-control"
+        placeholder="Description"
+        [formControl]="form.get('description')"
+      ></textarea>
+    </mat-form-field>
     <mat-error *ngIf="!form.valid">{{getAddressErrorMessage()}}</mat-error>
       
     <mat-expansion-panel>
