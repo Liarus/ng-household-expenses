@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatSort } from '@angular/material';
 import { EventEmitter } from '@angular/core';
 
 import { Household } from '../../models/household.model';
@@ -22,6 +22,8 @@ export class HouseholdListComponent implements OnInit {
   @Output() edit = new EventEmitter<string>();
   @Output() remove = new EventEmitter<string>();
 
+  @ViewChild(MatSort) sort: MatSort;
+
   displayedColumns: string[] = ['name', 'symbol', 'description', 'actions'];
   dataSource: MatTableDataSource<Household>;
 
@@ -38,6 +40,7 @@ export class HouseholdListComponent implements OnInit {
 
   private setDataSource(households: Household[]) {
     this.dataSource = new MatTableDataSource(households);
+    this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = function(data, filter: string): boolean {
       return (data.name && data.name.toLowerCase().includes(filter))
         || (data.symbol && data.symbol.toLowerCase().includes(filter))
