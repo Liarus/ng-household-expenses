@@ -30,8 +30,18 @@ export class HouseholdListComponent implements OnInit {
   ngOnInit() {
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+}
+
   private setDataSource(households: Household[]) {
     this.dataSource = new MatTableDataSource(households);
+    this.dataSource.filterPredicate = function(data, filter: string): boolean {
+      return (data.name && data.name.toLowerCase().includes(filter))
+        || (data.symbol && data.symbol.toLowerCase().includes(filter))
+        || (data.description && data.description.toString() === filter);
+    };
   }
-
 }
