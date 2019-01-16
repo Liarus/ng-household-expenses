@@ -21,7 +21,6 @@ export class HouseholdListComponent implements OnInit {
   @Output() create = new EventEmitter();
   @Output() edit = new EventEmitter<string>();
   @Output() remove = new EventEmitter<string>();
-
   @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = ['name', 'symbol', 'description', 'actions'];
@@ -36,7 +35,7 @@ export class HouseholdListComponent implements OnInit {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
-}
+  }
 
   private setDataSource(households: Household[]) {
     this.dataSource = new MatTableDataSource(households);

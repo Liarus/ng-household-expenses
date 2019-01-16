@@ -36,8 +36,8 @@ export class AppComponent {
       {
         width: $event.target.innerWidth,
         height: $event.target.innerHeight
-      })
-    );
+      }
+    ));
   }
 
   onSidebarToggled() {

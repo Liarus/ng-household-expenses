@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 import { HouseholdDialog } from '../../models/householdDialog.model';
 
 const fg = dataItem => new FormGroup({

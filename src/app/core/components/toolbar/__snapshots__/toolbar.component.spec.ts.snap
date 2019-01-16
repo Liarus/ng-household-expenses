@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolbarComponent should match snapshot with user 1`] = `
+<app-toolbar
+  logout={[Function EventEmitter]}
+  toggleSidebar={[Function EventEmitter]}
+  user={[Function Object]}
+>
+  <mat-toolbar
+    class="mat-toolbar mat-primary mat-toolbar-single-row"
+    color="primary"
+    ng-reflect-color="primary"
+  >
+    <div
+      fxflex=""
+      fxlayout="row"
+    >
+      <button
+        class="mat-icon-button"
+        id="toolbar-btn-toggle"
+        mat-icon-button=""
+      >
+        <span
+          class="mat-button-wrapper"
+        >
+          <mat-icon
+            aria-hidden="true"
+            class="mat-icon material-icons"
+            role="img"
+          >
+            menu
+          </mat-icon>
+        </span>
+        <div
+          class="mat-button-ripple mat-ripple mat-button-ripple-round"
+          matripple=""
+          ng-reflect-centered="true"
+          ng-reflect-disabled="false"
+          ng-reflect-trigger="[object HTMLButtonElement]"
+        />
+        <div
+          class="mat-button-focus-overlay"
+        />
+      </button>
+      <span
+        fxflex=""
+      />
+      
+      <div>
+        <span
+          class="app-toolbar-user-name"
+          fxshow.xs="false"
+        >
+          UserName
+        </span>
+      </div>
+      <button
+        class="mat-icon-button"
+        id="toolbar-btn-logout"
+        mat-icon-button=""
+      >
+        <span
+          class="mat-button-wrapper"
+        >
+          <mat-icon
+            aria-hidden="true"
+            class="mat-icon material-icons"
+            role="img"
+          >
+            exit_to_app
+          </mat-icon>
+        </span>
+        <div
+          class="mat-button-ripple mat-ripple mat-button-ripple-round"
+          matripple=""
+          ng-reflect-centered="true"
+          ng-reflect-disabled="false"
+          ng-reflect-trigger="[object HTMLButtonElement]"
+        />
+        <div
+          class="mat-button-focus-overlay"
+        />
+      </button>
+    </div>
+  </mat-toolbar>
+</app-toolbar>
+`;

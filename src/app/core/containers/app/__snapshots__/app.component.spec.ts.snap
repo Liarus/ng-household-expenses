@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RootComponent should match snapshot 1`] = `
+<app-root
+  isSidebarExpanded$={[Function Store]}
+  menuItems$={[Function Store]}
+  store={[Function MockStore]}
+  title={[Function String]}
+  user$={[Function Store]}
+>
+  <app-toolbar
+    ng-reflect-user="[object Object]"
+  >
+    <mat-toolbar
+      class="mat-toolbar mat-primary mat-toolbar-single-row"
+      color="primary"
+      ng-reflect-color="primary"
+    >
+      <div
+        fxflex=""
+        fxlayout="row"
+      >
+        <button
+          class="mat-icon-button _mat-animation-noopable"
+          id="toolbar-btn-toggle"
+          mat-icon-button=""
+        >
+          <span
+            class="mat-button-wrapper"
+          >
+            <mat-icon
+              aria-hidden="true"
+              class="mat-icon material-icons"
+              role="img"
+            >
+              menu
+            </mat-icon>
+          </span>
+          <div
+            class="mat-button-ripple mat-ripple mat-button-ripple-round"
+            matripple=""
+            ng-reflect-centered="true"
+            ng-reflect-disabled="false"
+            ng-reflect-trigger="[object HTMLButtonElement]"
+          />
+          <div
+            class="mat-button-focus-overlay"
+          />
+        </button>
+        <span
+          fxflex=""
+        />
+        
+        <div
+          class="ng-star-inserted"
+        >
+          <span
+            class="app-toolbar-user-name"
+            fxshow.xs="false"
+          >
+            UserName
+          </span>
+        </div>
+        <button
+          class="mat-icon-button _mat-animation-noopable"
+          id="toolbar-btn-logout"
+          mat-icon-button=""
+        >
+          <span
+            class="mat-button-wrapper"
+          >
+            <mat-icon
+              aria-hidden="true"
+              class="mat-icon material-icons"
+              role="img"
+            >
+              exit_to_app
+            </mat-icon>
+          </span>
+          <div
+            class="mat-button-ripple mat-ripple mat-button-ripple-round"
+            matripple=""
+            ng-reflect-centered="true"
+            ng-reflect-disabled="false"
+            ng-reflect-trigger="[object HTMLButtonElement]"
+          />
+          <div
+            class="mat-button-focus-overlay"
+          />
+        </button>
+      </div>
+    </mat-toolbar>
+  </app-toolbar><app-sidebar
+    ng-reflect-is-expanded="true"
+    ng-reflect-menu-items="[object Object],[object Object"
+  >
+    <mat-sidenav-container
+      class="mat-drawer-container mat-sidenav-container"
+      fxflexfill=""
+      fxlayout="column"
+    >
+      
+      <div
+        class="mat-drawer-backdrop ng-star-inserted"
+      />
+      <div
+        class="cdk-visually-hidden cdk-focus-trap-anchor"
+      />
+      <mat-sidenav
+        class="mat-drawer mat-sidenav ng-tns-c16-0 ng-trigger ng-trigger-transform mat-drawer-side ng-star-inserted"
+        fxlayout="column"
+        mode="side"
+        ng-reflect-mode="side"
+        ng-reflect-opened="true"
+        style="transform:none;visibility:visible;0:transform;1:visibility;"
+        tabindex="-1"
+      >
+        <div
+          class="mat-drawer-inner-container"
+        >
+          <mat-nav-list
+            class="mat-nav-list mat-list-base"
+            role="navigation"
+          >
+            
+            <a
+              class="mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"
+              href="/1"
+              mat-list-item=""
+              ng-reflect-router-link="/1"
+              style=""
+            >
+              <div
+                class="mat-list-item-content"
+              >
+                <div
+                  class="mat-list-item-ripple mat-ripple"
+                  mat-ripple=""
+                  ng-reflect-disabled="false"
+                  ng-reflect-trigger="http://localhost/1"
+                />
+                <mat-icon
+                  aria-hidden="true"
+                  class="mat-list-icon mat-icon material-icons"
+                  mat-list-icon=""
+                  role="img"
+                >
+                  home
+                </mat-icon>
+                <div
+                  class="mat-list-text"
+                >
+                  
+                  <p
+                    class="mat-line ng-star-inserted"
+                    matline=""
+                  >
+                    menuTitle1
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a
+              class="mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"
+              href="/2"
+              mat-list-item=""
+              ng-reflect-router-link="/2"
+              style=""
+            >
+              <div
+                class="mat-list-item-content"
+              >
+                <div
+                  class="mat-list-item-ripple mat-ripple"
+                  mat-ripple=""
+                  ng-reflect-disabled="false"
+                  ng-reflect-trigger="http://localhost/2"
+                />
+                <mat-icon
+                  aria-hidden="true"
+                  class="mat-list-icon mat-icon material-icons"
+                  mat-list-icon=""
+                  role="img"
+                >
+                  home
+                </mat-icon>
+                <div
+                  class="mat-list-text"
+                >
+                  
+                  <p
+                    class="mat-line ng-star-inserted"
+                    matline=""
+                  >
+                    menuTitle2
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a
+              class="mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"
+              href="/3"
+              mat-list-item=""
+              ng-reflect-router-link="/3"
+              style=""
+            >
+              <div
+                class="mat-list-item-content"
+              >
+                <div
+                  class="mat-list-item-ripple mat-ripple"
+                  mat-ripple=""
+                  ng-reflect-disabled="false"
+                  ng-reflect-trigger="http://localhost/3"
+                />
+                <mat-icon
+                  aria-hidden="true"
+                  class="mat-list-icon mat-icon material-icons"
+                  mat-list-icon=""
+                  role="img"
+                >
+                  home
+                </mat-icon>
+                <div
+                  class="mat-list-text"
+                >
+                  
+                  <p
+                    class="mat-line ng-star-inserted"
+                    matline=""
+                  >
+                    menuTitle3
+                  </p>
+                </div>
+              </div>
+            </a>
+          </mat-nav-list>
+        </div>
+      </mat-sidenav>
+      <div
+        class="cdk-visually-hidden cdk-focus-trap-anchor"
+      />
+      <mat-sidenav-content
+        class="mat-drawer-content mat-sidenav-content app-sidenav-content-expanded"
+        ng-reflect-ng-class="app-sidenav-content-expanded"
+      >
+        <router-outlet />
+      </mat-sidenav-content>
+      
+    </mat-sidenav-container>
+  </app-sidebar>
+</app-root>
+`;

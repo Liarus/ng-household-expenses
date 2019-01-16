@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <div fxLayout="row" fxFlex>
-    <button mat-icon-button 
+    <button id="toolbar-btn-toggle"
+      mat-icon-button 
       (click)="toggleSidebar.emit()"
     >
       <mat-icon>menu</mat-icon>
@@ -11,7 +12,8 @@
         fxShow.xs="false"
       >{{user.name}}</span>
     </div>
-    <button mat-icon-button
+    <button id="toolbar-btn-logout"
+      mat-icon-button
       (click)="logout.emit()"
     >
       <mat-icon>exit_to_app</mat-icon>

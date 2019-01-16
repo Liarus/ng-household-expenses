@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { LoginRequest } from '../../models/requests/loginRequest.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { LoginRequest } from '../../models/requests/loginRequest.model';
 
 const fg = new FormGroup({
   email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(255)]),
@@ -22,13 +23,11 @@ export class LoginFormComponent implements OnInit {
       this.form.enable();
     }
   }
-  @Input() isLoading: boolean;
-
   @Output() submitted = new EventEmitter<LoginRequest>();
 
   form: FormGroup = fg;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }

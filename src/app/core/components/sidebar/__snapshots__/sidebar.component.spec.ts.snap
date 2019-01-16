@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SidebarComponent should match snapshot with menu items if collapsed 1`] = `
+<app-sidebar
+  isExpanded="false"
+  menuItems={[Function Array]}
+>
+  <mat-sidenav-container
+    class="mat-drawer-container mat-sidenav-container"
+    fxflexfill=""
+    fxlayout="column"
+  >
+    
+    <div
+      class="mat-drawer-backdrop ng-star-inserted"
+    />
+    <div
+      class="cdk-visually-hidden cdk-focus-trap-anchor"
+    />
+    <mat-sidenav
+      class="mat-drawer mat-sidenav ng-tns-c9-0 ng-trigger ng-trigger-transform mat-drawer-side ng-star-inserted"
+      fxlayout="column"
+      mode="side"
+      ng-reflect-mode="side"
+      ng-reflect-opened="true"
+      style="transform:none;visibility:visible;0:transform;1:visibility;"
+      tabindex="-1"
+    >
+      <div
+        class="mat-drawer-inner-container"
+      >
+        <mat-nav-list
+          class="mat-nav-list mat-list-base"
+          role="navigation"
+        >
+          
+          <a
+            class="mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"
+            href="/1"
+            mat-list-item=""
+            ng-reflect-router-link="/1"
+          >
+            <div
+              class="mat-list-item-content"
+            >
+              <div
+                class="mat-list-item-ripple mat-ripple"
+                mat-ripple=""
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="http://localhost/1"
+              />
+              <mat-icon
+                aria-hidden="true"
+                class="mat-list-icon mat-icon material-icons"
+                mat-list-icon=""
+                role="img"
+              >
+                home
+              </mat-icon>
+              <div
+                class="mat-list-text"
+              >
+                
+              </div>
+            </div>
+          </a>
+          <a
+            class="mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"
+            href="/2"
+            mat-list-item=""
+            ng-reflect-router-link="/2"
+          >
+            <div
+              class="mat-list-item-content"
+            >
+              <div
+                class="mat-list-item-ripple mat-ripple"
+                mat-ripple=""
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="http://localhost/2"
+              />
+              <mat-icon
+                aria-hidden="true"
+                class="mat-list-icon mat-icon material-icons"
+                mat-list-icon=""
+                role="img"
+              >
+                home
+              </mat-icon>
+              <div
+                class="mat-list-text"
+              >
+                
+              </div>
+            </div>
+          </a>
+          <a
+            class="mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"
+            href="/3"
+            mat-list-item=""
+            ng-reflect-router-link="/3"
+          >
+            <div
+              class="mat-list-item-content"
+            >
+              <div
+                class="mat-list-item-ripple mat-ripple"
+                mat-ripple=""
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="http://localhost/3"
+              />
+              <mat-icon
+                aria-hidden="true"
+                class="mat-list-icon mat-icon material-icons"
+                mat-list-icon=""
+                role="img"
+              >
+                home
+              </mat-icon>
+              <div
+                class="mat-list-text"
+              >
+                
+              </div>
+            </div>
+          </a>
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <div
+      class="cdk-visually-hidden cdk-focus-trap-anchor"
+    />
+    <mat-sidenav-content
+      class="mat-drawer-content mat-sidenav-content app-sidenav-content-compressed"
+      ng-reflect-ng-class="app-sidenav-content-compressed"
+    />
+    
+  </mat-sidenav-container>
+</app-sidebar>
+`;
+
+exports[`SidebarComponent should match snapshot with menu items if expanded 1`] = `
+<app-sidebar
+  isExpanded={[Function Boolean]}
+  menuItems={[Function Array]}
+>
+  <mat-sidenav-container
+    class="mat-drawer-container mat-sidenav-container"
+    fxflexfill=""
+    fxlayout="column"
+  >
+    
+    <div
+      class="mat-drawer-backdrop ng-star-inserted"
+    />
+    <div
+      class="cdk-visually-hidden cdk-focus-trap-anchor"
+    />
+    <mat-sidenav
+      class="mat-drawer mat-sidenav ng-tns-c5-0 ng-trigger ng-trigger-transform mat-drawer-side ng-star-inserted"
+      fxlayout="column"
+      mode="side"
+      ng-reflect-mode="side"
+      ng-reflect-opened="true"
+      style="transform:none;visibility:visible;0:transform;1:visibility;"
+      tabindex="-1"
+    >
+      <div
+        class="mat-drawer-inner-container"
+      >
+        <mat-nav-list
+          class="mat-nav-list mat-list-base"
+          role="navigation"
+        >
+          
+          <a
+            class="mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"
+            href="/1"
+            mat-list-item=""
+            ng-reflect-router-link="/1"
+          >
+            <div
+              class="mat-list-item-content"
+            >
+              <div
+                class="mat-list-item-ripple mat-ripple"
+                mat-ripple=""
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="http://localhost/1"
+              />
+              <mat-icon
+                aria-hidden="true"
+                class="mat-list-icon mat-icon material-icons"
+                mat-list-icon=""
+                role="img"
+              >
+                home
+              </mat-icon>
+              <div
+                class="mat-list-text"
+              >
+                
+                <p
+                  class="mat-line ng-star-inserted"
+                  matline=""
+                >
+                  menuTitle1
+                </p>
+              </div>
+            </div>
+          </a>
+          <a
+            class="mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"
+            href="/2"
+            mat-list-item=""
+            ng-reflect-router-link="/2"
+          >
+            <div
+              class="mat-list-item-content"
+            >
+              <div
+                class="mat-list-item-ripple mat-ripple"
+                mat-ripple=""
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="http://localhost/2"
+              />
+              <mat-icon
+                aria-hidden="true"
+                class="mat-list-icon mat-icon material-icons"
+                mat-list-icon=""
+                role="img"
+              >
+                home
+              </mat-icon>
+              <div
+                class="mat-list-text"
+              >
+                
+                <p
+                  class="mat-line ng-star-inserted"
+                  matline=""
+                >
+                  menuTitle2
+                </p>
+              </div>
+            </div>
+          </a>
+          <a
+            class="mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"
+            href="/3"
+            mat-list-item=""
+            ng-reflect-router-link="/3"
+          >
+            <div
+              class="mat-list-item-content"
+            >
+              <div
+                class="mat-list-item-ripple mat-ripple"
+                mat-ripple=""
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="http://localhost/3"
+              />
+              <mat-icon
+                aria-hidden="true"
+                class="mat-list-icon mat-icon material-icons"
+                mat-list-icon=""
+                role="img"
+              >
+                home
+              </mat-icon>
+              <div
+                class="mat-list-text"
+              >
+                
+                <p
+                  class="mat-line ng-star-inserted"
+                  matline=""
+                >
+                  menuTitle3
+                </p>
+              </div>
+            </div>
+          </a>
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <div
+      class="cdk-visually-hidden cdk-focus-trap-anchor"
+    />
+    <mat-sidenav-content
+      class="mat-drawer-content mat-sidenav-content app-sidenav-content-expanded"
+      ng-reflect-ng-class="app-sidenav-content-expanded"
+    />
+    
+  </mat-sidenav-container>
+</app-sidebar>
+`;

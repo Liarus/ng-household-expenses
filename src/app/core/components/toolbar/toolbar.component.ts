@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
 
-import { User } from 'src/app/auth/models/user.model';
+import { User } from '../../../auth/models/user.model';
 
 @Component({
   selector: 'app-toolbar',

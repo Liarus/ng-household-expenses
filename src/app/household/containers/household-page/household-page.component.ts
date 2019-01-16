@@ -8,7 +8,7 @@ import * as fromRoot from '../../../store/reducers';
 import * as fromCore from '../../../core/store/reducers';
 import * as fromHousehold from '../../store/reducers';
 import * as HouseholdActions from '../../store/actions/household.actions';
-import { User } from 'src/app/auth/models/user.model';
+import { User } from '../../../auth/models/user.model';
 
 
 @Component({

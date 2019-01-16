@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DummyComponent } from './dummy.component';
@@ -21,5 +22,9 @@ describe('DummyComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should match snapshot', () => {
+    expect(fixture).toMatchSnapshot();
   });
 });

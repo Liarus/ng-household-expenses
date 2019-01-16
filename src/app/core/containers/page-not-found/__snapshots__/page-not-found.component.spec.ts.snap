@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNotFoundComponent should match snapshot 1`] = `
+<app-page-not-found>
+  <mat-card
+    class="mat-card"
+  >
+    <mat-card-title
+      class="mat-card-title"
+    >
+      404: Not Found
+    </mat-card-title>
+    <mat-card-content
+      class="mat-card-content"
+    >
+      <p>
+        Hey! It looks like this page doesn't exist yet.
+      </p>
+    </mat-card-content>
+    <mat-card-actions
+      class="mat-card-actions"
+    >
+      <button
+        class="mat-raised-button mat-primary"
+        color="primary"
+        mat-raised-button=""
+        ng-reflect-color="primary"
+        routerlink="/"
+      >
+        <span
+          class="mat-button-wrapper"
+        >
+          Take Me Home
+        </span>
+        <div
+          class="mat-button-ripple mat-ripple"
+          matripple=""
+          ng-reflect-centered="false"
+          ng-reflect-disabled="false"
+          ng-reflect-trigger="[object HTMLButtonElement]"
+        />
+        <div
+          class="mat-button-focus-overlay"
+        />
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</app-page-not-found>
+`;
