@@ -68,7 +68,7 @@ export function reducer(
 
         case HouseholdActionTypes.LoadHouseholdsSuccess:
             return adapter.addMany(action.payload, {
-                ...state,
+                ...initialState,
                 loading: false
             });
 
