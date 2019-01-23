@@ -59,6 +59,10 @@ describe('LayoutEffects', () => {
     menuService = TestBed.get(MenuService);
   });
 
+  it('should be created', () => {
+    expect(effects).toBeTruthy();
+  });
+
   describe('menuItem$', () => {
     it('should return ApplyMenuItems on RefreshMenuItems', () => {
       const action = new RefreshMenuItems();

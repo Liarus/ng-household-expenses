@@ -63,6 +63,10 @@ describe('AuthEffects', () => {
     spyOn(routerService, 'navigate').and.callThrough();
   });
 
+  it('should be created', () => {
+    expect(effects).toBeTruthy();
+  });
+
   describe('login$', () => {
     it('should return LoginSuccess with user when succesfull', () => {
       const signInresponse = {

@@ -84,6 +84,10 @@ describe('AuthEffects', () => {
     store = TestBed.get(Store);
   });
 
+  it('should be created', () => {
+    expect(effects).toBeTruthy();
+  });
+
   describe('addHousehold$', () => {
     it('should return AddHouseholdSuccess on AddHousehold when success', () => {
       const household = {
