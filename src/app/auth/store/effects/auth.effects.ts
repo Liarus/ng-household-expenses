@@ -52,7 +52,7 @@ export class AuthEffects {
   );
 
   @Effect({ dispatch: false })
-  errors$ = this.actions$.pipe(
+  error$ = this.actions$.pipe(
     ofType(AuthActionTypes.LoginFailure,
       AuthActionTypes.AuthHttpError),
     map((action: any) => action.payload),

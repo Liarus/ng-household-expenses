@@ -135,7 +135,7 @@ export class HouseholdEffects {
             this.store$.select(fromHousehold.getHousehold(payload.householdId))
             .pipe(
                 first(),
-                map( household => [payload, household])
+                map(household => [payload, household])
             )
         ),
         switchMap(([payload, household]) => {
@@ -149,7 +149,7 @@ export class HouseholdEffects {
     );
 
     @Effect({ dispatch: false })
-    errors$ = this.actions$.pipe(
+    error$ = this.actions$.pipe(
       ofType(HouseholdActionTypes.AddHouseholdFail,
         HouseholdActionTypes.LoadHouseholdsFail,
         HouseholdActionTypes.RemoveHouseholdFail,
