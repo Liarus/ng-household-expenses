@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomRouterStateSerializer should match snaphot when has URL only 1`] = `
+Object {
+  "params": Object {},
+  "queryParams": Object {},
+  "url": "this-is-url",
+}
+`;
+
+exports[`CustomRouterStateSerializer should return route and query params 1`] = `
+Object {
+  "params": Object {
+    "param1": "val1",
+    "param2": "val2",
+  },
+  "queryParams": Object {
+    "param1": "val1",
+    "param2": "val2",
+  },
+  "url": "this-is-url",
+}
+`;
