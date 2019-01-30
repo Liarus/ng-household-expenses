@@ -17,7 +17,7 @@ export class HouseholdService {
     private userEndpoint = '/api/user';
 
     constructor(private httpClient: HttpClient,
-                @Inject('IAppConfig') private appConfig: AppConfig) {
+                @Inject('AppConfig') private appConfig: AppConfig) {
     }
 
     getAllForUser(userId: string): Observable<Household[]> {

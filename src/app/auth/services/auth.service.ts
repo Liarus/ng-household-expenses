@@ -14,7 +14,7 @@ export class AuthService {
     private authEndpoint = '/api/authorization/login';
 
     constructor(private httpClient: HttpClient,
-        @Inject('IAppConfig') private appConfig: AppConfig) {
+        @Inject('AppConfig') private appConfig: AppConfig) {
     }
 
     login(request: LoginRequest): Observable<SignInResponse> {

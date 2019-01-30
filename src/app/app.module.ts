@@ -47,7 +47,7 @@ const PROVIDERS = [
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestHeaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpAuthErrorInterceptor, multi: true },
-    { provide: 'IAppConfig', useClass: AppConfigDev }
+    { provide: 'AppConfig', useClass: AppConfigDev }
   ],
   bootstrap: [AppComponent]
 })

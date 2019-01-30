@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HouseholdService should match snaphot when user logged in 1`] = `
+Array [
+  Object {
+    "hidden": false,
+    "icon": "home",
+    "permissions": Array [
+      "CanSeeHouseholds",
+    ],
+    "title": "Households",
+    "url": "/households",
+  },
+  Object {
+    "hidden": false,
+    "icon": "payment",
+    "permissions": Array [
+      "CanSeeExpenses",
+    ],
+    "title": "Expenses",
+    "url": "/expenses",
+  },
+  Object {
+    "hidden": false,
+    "icon": "drafts",
+    "permissions": Array [
+      "CanSeeSavings",
+    ],
+    "title": "Savings",
+    "url": "/savings",
+  },
+  Object {
+    "hidden": false,
+    "icon": "settings",
+    "permissions": Array [
+      "CanSeeSettings",
+    ],
+    "title": "Settings",
+    "url": "/settings",
+  },
+  Object {
+    "hidden": false,
+    "icon": "group",
+    "permissions": Array [
+      "CanSeeUsers",
+    ],
+    "title": "Users",
+    "url": "/users",
+  },
+]
+`;
+
+exports[`HouseholdService should match snaphot when user not logged in 1`] = `
+Array [
+  Object {
+    "hidden": false,
+    "icon": "power_settings_new",
+    "permissions": Array [],
+    "title": "Log in",
+    "url": "/",
+  },
+]
+`;

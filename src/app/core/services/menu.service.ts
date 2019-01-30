@@ -11,8 +11,8 @@ import { map } from 'rxjs/operators';
     providedIn: 'root',
 })
 export class MenuService {
-    baseMenu = Menu;
-    isUserLoggedIn$ = this.store.pipe(select(fromAuth.getLoggedIn));
+    private baseMenu = Menu;
+    private isUserLoggedIn$ = this.store.pipe(select(fromAuth.getLoggedIn));
 
     constructor(private store: Store<fromAuth.State>) {  }
 
