@@ -17,7 +17,7 @@ export class HttpRequestHeaderInterceptor implements HttpInterceptor {
     });
 
     if (request.method === 'GET') {
-      request = req.clone({
+      request = request.clone({
         setHeaders: {
           'Cache-Control': 'no-cache',
           'Pragma': 'no-cache',

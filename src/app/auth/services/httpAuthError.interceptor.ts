@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 
 import * as fromAuth from '../store/reducers';
 import * as AuthActions from '../store/actions/auth.actions';
@@ -19,7 +19,7 @@ export class HttpAuthErrorInterceptor implements HttpInterceptor {
             catchError(err => {
                 if (err.status === 401 && !request.url.includes('/login')) {
                     this.store.dispatch(new AuthActions.AuthHttpError(HttpError.parse(err)));
-                    return;
+                    of({});
                 }
                 return throwError(err);
             })
