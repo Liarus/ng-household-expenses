@@ -3,9 +3,12 @@
 import {
   getHouseholdsLoading,
   getHouseholdErrorMessage,
-  getHousehold
+  getHousehold,
+  getHouseholdsCount,
+  getHouseholdFilter
 } from './';
 import { Household } from '../../models/household.model';
+import { HouseholdFilter } from '../../models/householdFilter.model';
 
 describe('Household Selectors', () => {
   describe('getHouseholdsLoading', () => {
@@ -13,9 +16,7 @@ describe('Household Selectors', () => {
       const expectedLoading = true;
       const state = {
         households: {
-          households: {
-            loading: expectedLoading
-          }
+          loading: expectedLoading
         }
       };
 
@@ -28,9 +29,7 @@ describe('Household Selectors', () => {
       const expectedError = 'test Error';
       const state = {
         households: {
-          households: {
-            errorMessage: expectedError
-          }
+          errorMessage: expectedError
         }
       };
 
@@ -79,6 +78,38 @@ describe('Household Selectors', () => {
 
       expect(getHousehold(expectedHousehold.id)
         .projector(households)).toBe(expectedHousehold);
+    });
+  });
+
+  describe('getCount', () => {
+    it('should return count', () => {
+      const expectedCount = 10;
+      const state = {
+        households: {
+          count: expectedCount
+        }
+      };
+
+      expect(getHouseholdsCount(state)).toBe(expectedCount);
+    });
+  });
+
+  describe('getFilter', () => {
+    it('should return filter', () => {
+      const expectedFilter = {
+        pageNumber: 10,
+        pageSize: 10,
+        searchText: 'test',
+        sortingField: 'symbol',
+        sortDirection: 'desc'
+      } as HouseholdFilter;
+      const state = {
+        households: {
+          filter: expectedFilter
+        }
+      };
+
+      expect(getHouseholdFilter(state)).toBe(expectedFilter);
     });
   });
 });

@@ -1,874 +1,791 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HouseholdListComponent should match snapshot when loading 1`] = `
-<app-household-list
-  create={[Function EventEmitter]}
-  displayedColumns={[Function Array]}
-  edit={[Function EventEmitter]}
-  isLoading={[Function Boolean]}
-  remove={[Function EventEmitter]}
-  sort={[Function MatSort]}
->
-  <div
-    fxlayout="row"
-    fxlayoutalign="start center"
-    fxlayoutgap="10px"
-  >
-    <mat-form-field
-      class="mat-form-field ng-tns-c7-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable"
-      fxflex=""
-    >
-      <div
-        class="mat-form-field-wrapper"
-      >
-        <div
-          class="mat-form-field-flex"
-        >
-          
-          
-          <div
-            class="mat-form-field-infix"
-          >
-            <input
-              aria-invalid="false"
-              aria-required="false"
-              class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored"
-              id="mat-input-1"
-              matinput=""
-              ng-reflect-placeholder="Filter"
-              placeholder="Filter"
-            />
-            <span
-              class="mat-form-field-label-wrapper"
-            >
-              
-              <label
-                aria-owns="mat-input-1"
-                class="mat-form-field-label ng-tns-c7-0 mat-empty mat-form-field-empty ng-star-inserted"
-                for="mat-input-1"
-                id="mat-form-field-label-3"
-                ng-reflect-disabled="true"
-                ng-reflect-ng-switch="false"
-              >
-                
-                
-                Filter
-                
-                
-              </label>
-            </span>
-          </div>
-          
-        </div>
-        
-        <div
-          class="mat-form-field-underline ng-tns-c7-0 ng-star-inserted"
-        >
-          <span
-            class="mat-form-field-ripple"
-          />
-        </div>
-        <div
-          class="mat-form-field-subscript-wrapper"
-          ng-reflect-ng-switch="hint"
-        >
-          
-          
-          <div
-            class="mat-form-field-hint-wrapper ng-tns-c7-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
-            style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
-          >
-            
-            <div
-              class="mat-form-field-hint-spacer"
-            />
-          </div>
-        </div>
-      </div>
-    </mat-form-field>
-    <button
-      class="mat-icon-button _mat-animation-noopable"
-      id="household-btn-add"
-      mat-icon-button=""
-    >
-      <span
-        class="mat-button-wrapper"
-      >
-        <mat-icon
-          aria-hidden="true"
-          class="mat-icon material-icons"
-          role="img"
-        >
-          add
-        </mat-icon>
-      </span>
-      <div
-        class="mat-button-ripple mat-ripple mat-button-ripple-round"
-        matripple=""
-        ng-reflect-centered="true"
-        ng-reflect-disabled="false"
-        ng-reflect-trigger="[object HTMLButtonElement]"
-      />
-      <div
-        class="mat-button-focus-overlay"
-      />
-    </button>
-  </div><mat-table
-    class="mat-elevation-z8 mat-table"
-    matsort=""
-    role="grid"
-  >
-    
-    <mat-header-row
-      class="mat-header-row ng-star-inserted"
-      ng-reflect-ng-class="[object Object]"
-      role="row"
-    >
-      
-      <mat-header-cell
-        class="mat-header-cell ng-tns-c11-1 cdk-column-name mat-column-name ng-star-inserted"
-        mat-sort-header=""
-        ng-reflect-id=""
-        role="columnheader"
-      >
-        <div
-          class="mat-sort-header-container"
-        >
-          <button
-            aria-label="Change sorting for name"
-            class="mat-sort-header-button"
-            type="button"
-          >
-             Name 
-          </button>
-          <div
-            class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
-            style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
-          >
-            <div
-              class="mat-sort-header-stem"
-            />
-            <div
-              class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
-              style="transform:translateY(0px);0:transform;"
-            >
-              <div
-                class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
-                style="transform:rotate(-45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
-                style="transform:rotate(45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-middle"
-              />
-            </div>
-          </div>
-        </div>
-      </mat-header-cell>
-      <mat-header-cell
-        class="mat-header-cell ng-tns-c11-2 cdk-column-symbol mat-column-symbol ng-star-inserted"
-        mat-sort-header=""
-        ng-reflect-id=""
-        role="columnheader"
-      >
-        <div
-          class="mat-sort-header-container"
-        >
-          <button
-            aria-label="Change sorting for symbol"
-            class="mat-sort-header-button"
-            type="button"
-          >
-             Symbol 
-          </button>
-          <div
-            class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
-            style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
-          >
-            <div
-              class="mat-sort-header-stem"
-            />
-            <div
-              class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
-              style="transform:translateY(0px);0:transform;"
-            >
-              <div
-                class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
-                style="transform:rotate(-45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
-                style="transform:rotate(45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-middle"
-              />
-            </div>
-          </div>
-        </div>
-      </mat-header-cell>
-      <mat-header-cell
-        class="mat-header-cell ng-tns-c11-3 cdk-column-description mat-column-description ng-star-inserted"
-        mat-sort-header=""
-        ng-reflect-id=""
-        role="columnheader"
-      >
-        <div
-          class="mat-sort-header-container"
-        >
-          <button
-            aria-label="Change sorting for description"
-            class="mat-sort-header-button"
-            type="button"
-          >
-             Description 
-          </button>
-          <div
-            class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
-            style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
-          >
-            <div
-              class="mat-sort-header-stem"
-            />
-            <div
-              class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
-              style="transform:translateY(0px);0:transform;"
-            >
-              <div
-                class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
-                style="transform:rotate(-45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
-                style="transform:rotate(45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-middle"
-              />
-            </div>
-          </div>
-        </div>
-      </mat-header-cell>
-      <mat-header-cell
-        class="mat-header-cell cdk-column-actions mat-column-actions ng-star-inserted"
-        role="columnheader"
-      >
-         Actions 
-      </mat-header-cell>
-    </mat-header-row>
-    
-    
-  </mat-table><mat-card
-    class="app-table-spinner mat-card ng-star-inserted"
-  >
-    <mat-progress-spinner
-      aria-valuenow="0"
-      class="mat-progress-spinner mat-primary mat-progress-spinner-indeterminate-animation _mat-animation-noopable"
-      color="primary"
-      mode="indeterminate"
-      ng-reflect-color="primary"
-      ng-reflect-mode="indeterminate"
-      role="progressbar"
-      style="width: 100px; height: 100px;"
-    >
-      <svg
-        focusable="false"
-        ng-reflect-ng-switch="true"
-        preserveAspectRatio="xMidYMid meet"
-        style="width: 100px; height: 100px;"
-        viewBox="0 0 100 100"
-      >
-        
-        <circle
-          class="ng-star-inserted"
-          cx="50%"
-          cy="50%"
-          r="45"
-          style="stroke-dasharray: 282.7433388230814px; stroke-width: 10%;"
-        />
-        
-      </svg>
-    </mat-progress-spinner>
-  </mat-card>
-</app-household-list>
-`;
-
-exports[`HouseholdListComponent should match snapshot when with filtered households 1`] = `
-Array [
-  Object {
-    "city": "Household2 city",
-    "country": "Household2 country",
-    "description": "Household2 description",
-    "id": "55798c3b-5551-489b-9dd2-d7e59691a368",
-    "name": "Household2 Name",
-    "street": "Household2 street",
-    "symbol": "Household2 symbol",
-    "version": 1,
-    "zipCode": "Household2 zipCode",
-  },
-]
-`;
-
 exports[`HouseholdListComponent should match snapshot when with households 1`] = `
 <app-household-list
   create={[Function EventEmitter]}
   dataSource={[Function MatTableDataSource]}
   displayedColumns={[Function Array]}
   edit={[Function EventEmitter]}
+  filter={[Function Object]}
+  filterChanged={[Function EventEmitter]}
   isLoading="false"
   isMobile="false"
+  itemCount={[Function Number]}
+  paginator={[Function MatPaginator]}
   remove={[Function EventEmitter]}
+  searchUpdated={[Function Subject]}
   sort={[Function MatSort]}
+  unsubscribe={[Function Subject]}
 >
   <div
-    fxlayout="row"
-    fxlayoutalign="start center"
-    fxlayoutgap="10px"
+    fxlayout="column"
   >
-    <mat-form-field
-      class="mat-form-field ng-tns-c14-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable"
-      fxflex=""
+    
+    <div
+      fxlayout="row"
+      fxlayoutalign="start center"
+      fxlayoutgap="2%"
     >
-      <div
-        class="mat-form-field-wrapper"
+      <mat-form-field
+        class="mat-form-field ng-tns-c11-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable"
+        fxflex=""
       >
         <div
-          class="mat-form-field-flex"
+          class="mat-form-field-wrapper"
         >
-          
-          
           <div
-            class="mat-form-field-infix"
+            class="mat-form-field-flex"
           >
-            <input
-              aria-invalid="false"
-              aria-required="false"
-              class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored"
-              id="mat-input-2"
-              matinput=""
-              ng-reflect-placeholder="Filter"
-              placeholder="Filter"
-            />
-            <span
-              class="mat-form-field-label-wrapper"
+            
+            
+            <div
+              class="mat-form-field-infix"
             >
-              
-              <label
-                aria-owns="mat-input-2"
-                class="mat-form-field-label ng-tns-c14-0 mat-empty mat-form-field-empty ng-star-inserted"
-                for="mat-input-2"
-                id="mat-form-field-label-5"
-                ng-reflect-disabled="true"
-                ng-reflect-ng-switch="false"
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored"
+                id="mat-input-1"
+                matinput=""
+                ng-reflect-placeholder="Filter"
+                placeholder="Filter"
+              />
+              <span
+                class="mat-form-field-label-wrapper"
               >
                 
-                
-                Filter
-                
-                
-              </label>
-            </span>
+                <label
+                  aria-owns="mat-input-1"
+                  class="mat-form-field-label ng-tns-c11-0 mat-empty mat-form-field-empty ng-star-inserted"
+                  for="mat-input-1"
+                  id="mat-form-field-label-5"
+                  ng-reflect-disabled="true"
+                  ng-reflect-ng-switch="false"
+                >
+                  
+                  
+                  Filter
+                  
+                  
+                </label>
+              </span>
+            </div>
+            
           </div>
           
-        </div>
-        
-        <div
-          class="mat-form-field-underline ng-tns-c14-0 ng-star-inserted"
-        >
-          <span
-            class="mat-form-field-ripple"
-          />
-        </div>
-        <div
-          class="mat-form-field-subscript-wrapper"
-          ng-reflect-ng-switch="hint"
-        >
-          
-          
           <div
-            class="mat-form-field-hint-wrapper ng-tns-c14-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
-            style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+            class="mat-form-field-underline ng-tns-c11-0 ng-star-inserted"
+          >
+            <span
+              class="mat-form-field-ripple"
+            />
+          </div>
+          <div
+            class="mat-form-field-subscript-wrapper"
+            ng-reflect-ng-switch="hint"
+          >
+            
+            
+            <div
+              class="mat-form-field-hint-wrapper ng-tns-c11-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+              style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+            >
+              
+              <div
+                class="mat-form-field-hint-spacer"
+              />
+            </div>
+          </div>
+        </div>
+      </mat-form-field>
+      <button
+        class="mat-icon-button _mat-animation-noopable"
+        id="household-btn-add"
+        mat-icon-button=""
+      >
+        <span
+          class="mat-button-wrapper"
+        >
+          <mat-icon
+            aria-hidden="true"
+            class="mat-icon material-icons"
+            role="img"
+          >
+            add
+          </mat-icon>
+        </span>
+        <div
+          class="mat-button-ripple mat-ripple mat-button-ripple-round"
+          matripple=""
+          ng-reflect-centered="true"
+          ng-reflect-disabled="false"
+          ng-reflect-trigger="[object HTMLButtonElement]"
+        />
+        <div
+          class="mat-button-focus-overlay"
+        />
+      </button>
+    </div>
+    <div
+      class="table mat-elevation-z8"
+      fxlayout="column"
+    >
+      <mat-table
+        class="mat-table"
+        matsort=""
+        ng-reflect-active="name"
+        ng-reflect-data-source="[object Object]"
+        ng-reflect-direction="asc"
+        ng-reflect-disable-clear="true"
+        role="grid"
+      >
+        
+        <mat-header-row
+          class="mat-header-row ng-star-inserted"
+          role="row"
+        >
+          
+          <mat-header-cell
+            aria-sort="ascending"
+            class="mat-header-cell ng-tns-c15-1 cdk-column-name mat-column-name ng-star-inserted"
+            mat-sort-header=""
+            ng-reflect-id=""
+            role="columnheader"
+          >
+            <div
+              class="mat-sort-header-container mat-sort-header-sorted"
+            >
+              <button
+                aria-label="Change sorting for name"
+                class="mat-sort-header-button"
+                type="button"
+              >
+                 Name 
+              </button>
+              <div
+                class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition ng-animating"
+                style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
+              >
+                <div
+                  class="mat-sort-header-stem"
+                />
+                <div
+                  class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
+                  style="transform:translateY(0px);0:transform;"
+                >
+                  <div
+                    class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
+                    style="transform:rotate(-45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
+                    style="transform:rotate(45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-middle"
+                  />
+                </div>
+              </div>
+            </div>
+          </mat-header-cell>
+          <mat-header-cell
+            class="mat-header-cell ng-tns-c15-2 cdk-column-symbol mat-column-symbol ng-star-inserted"
+            mat-sort-header=""
+            ng-reflect-id=""
+            role="columnheader"
+          >
+            <div
+              class="mat-sort-header-container"
+            >
+              <button
+                aria-label="Change sorting for symbol"
+                class="mat-sort-header-button"
+                type="button"
+              >
+                 Symbol 
+              </button>
+              <div
+                class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
+                style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
+              >
+                <div
+                  class="mat-sort-header-stem"
+                />
+                <div
+                  class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
+                  style="transform:translateY(0px);0:transform;"
+                >
+                  <div
+                    class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
+                    style="transform:rotate(-45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
+                    style="transform:rotate(45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-middle"
+                  />
+                </div>
+              </div>
+            </div>
+          </mat-header-cell>
+          <mat-header-cell
+            class="mat-header-cell ng-tns-c15-3 cdk-column-description mat-column-description ng-star-inserted"
+            mat-sort-header=""
+            ng-reflect-id=""
+            role="columnheader"
+          >
+            <div
+              class="mat-sort-header-container"
+            >
+              <button
+                aria-label="Change sorting for description"
+                class="mat-sort-header-button"
+                type="button"
+              >
+                 Description 
+              </button>
+              <div
+                class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
+                style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
+              >
+                <div
+                  class="mat-sort-header-stem"
+                />
+                <div
+                  class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
+                  style="transform:translateY(0px);0:transform;"
+                >
+                  <div
+                    class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
+                    style="transform:rotate(-45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
+                    style="transform:rotate(45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-middle"
+                  />
+                </div>
+              </div>
+            </div>
+          </mat-header-cell>
+          <mat-header-cell
+            class="mat-header-cell cdk-column-actions mat-column-actions ng-star-inserted"
+            role="columnheader"
+          >
+             Actions 
+          </mat-header-cell>
+        </mat-header-row>
+        
+        <mat-row
+          class="mat-row ng-star-inserted"
+          role="row"
+        >
+          
+          <mat-cell
+            class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
+            role="gridcell"
+          >
+             Household1 Name 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
+            role="gridcell"
+          >
+             Household1 symbol 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-description mat-column-description ng-star-inserted"
+            role="gridcell"
+          >
+             Household1 description 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
+            fxlayout="row"
+            fxlayoutgap="20px"
+            role="gridcell"
+          >
+            <button
+              class="mat-stroked-button _mat-animation-noopable"
+              mat-stroked-button=""
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Edit
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+            <button
+              class="mat-stroked-button mat-warn _mat-animation-noopable"
+              color="warn"
+              mat-stroked-button=""
+              ng-reflect-color="warn"
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Remove
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+          </mat-cell>
+        </mat-row>
+        <mat-row
+          class="mat-row ng-star-inserted"
+          role="row"
+        >
+          
+          <mat-cell
+            class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
+            role="gridcell"
+          >
+             Household2 Name 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
+            role="gridcell"
+          >
+             Household2 symbol 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-description mat-column-description ng-star-inserted"
+            role="gridcell"
+          >
+             Household2 description 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
+            fxlayout="row"
+            fxlayoutgap="20px"
+            role="gridcell"
+          >
+            <button
+              class="mat-stroked-button _mat-animation-noopable"
+              mat-stroked-button=""
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Edit
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+            <button
+              class="mat-stroked-button mat-warn _mat-animation-noopable"
+              color="warn"
+              mat-stroked-button=""
+              ng-reflect-color="warn"
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Remove
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+          </mat-cell>
+        </mat-row>
+        <mat-row
+          class="mat-row ng-star-inserted"
+          role="row"
+        >
+          
+          <mat-cell
+            class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
+            role="gridcell"
+          >
+             Household3 Name 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
+            role="gridcell"
+          >
+             Household3 symbol 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-description mat-column-description ng-star-inserted"
+            role="gridcell"
+          >
+             Household3 description 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
+            fxlayout="row"
+            fxlayoutgap="20px"
+            role="gridcell"
+          >
+            <button
+              class="mat-stroked-button _mat-animation-noopable"
+              mat-stroked-button=""
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Edit
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+            <button
+              class="mat-stroked-button mat-warn _mat-animation-noopable"
+              color="warn"
+              mat-stroked-button=""
+              ng-reflect-color="warn"
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Remove
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+          </mat-cell>
+        </mat-row>
+        
+      </mat-table>
+      <mat-paginator
+        class="mat-paginator"
+        ng-reflect-length="3"
+        ng-reflect-page-index="0"
+        ng-reflect-page-size="10"
+        ng-reflect-page-size-options="10,20,50"
+        ng-reflect-show-first-last-buttons=""
+        showfirstlastbuttons=""
+      >
+        <div
+          class="mat-paginator-outer-container"
+        >
+          <div
+            class="mat-paginator-container"
           >
             
             <div
-              class="mat-form-field-hint-spacer"
-            />
-          </div>
-        </div>
-      </div>
-    </mat-form-field>
-    <button
-      class="mat-icon-button _mat-animation-noopable"
-      id="household-btn-add"
-      mat-icon-button=""
-    >
-      <span
-        class="mat-button-wrapper"
-      >
-        <mat-icon
-          aria-hidden="true"
-          class="mat-icon material-icons"
-          role="img"
-        >
-          add
-        </mat-icon>
-      </span>
-      <div
-        class="mat-button-ripple mat-ripple mat-button-ripple-round"
-        matripple=""
-        ng-reflect-centered="true"
-        ng-reflect-disabled="false"
-        ng-reflect-trigger="[object HTMLButtonElement]"
-      />
-      <div
-        class="mat-button-focus-overlay"
-      />
-    </button>
-  </div><mat-table
-    class="mat-elevation-z8 mat-table"
-    matsort=""
-    ng-reflect-data-source="[object Object]"
-    role="grid"
-  >
-    
-    <mat-header-row
-      class="mat-header-row ng-star-inserted"
-      ng-reflect-ng-class="[object Object]"
-      role="row"
-    >
-      
-      <mat-header-cell
-        class="mat-header-cell ng-tns-c18-1 cdk-column-name mat-column-name ng-star-inserted"
-        mat-sort-header=""
-        ng-reflect-id=""
-        role="columnheader"
-      >
-        <div
-          class="mat-sort-header-container"
-        >
-          <button
-            aria-label="Change sorting for name"
-            class="mat-sort-header-button"
-            type="button"
-          >
-             Name 
-          </button>
-          <div
-            class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
-            style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
-          >
-            <div
-              class="mat-sort-header-stem"
-            />
-            <div
-              class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
-              style="transform:translateY(0px);0:transform;"
+              class="mat-paginator-page-size ng-star-inserted"
             >
               <div
-                class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
-                style="transform:rotate(-45deg);0:transform;"
-              />
+                class="mat-paginator-page-size-label"
+              >
+                Items per page:
+              </div>
+              
+              <mat-form-field
+                class="mat-paginator-page-size-select mat-form-field ng-tns-c11-4 mat-primary mat-form-field-type-mat-select mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable ng-star-inserted mat-form-field-should-float"
+              >
+                <div
+                  class="mat-form-field-wrapper"
+                >
+                  <div
+                    class="mat-form-field-flex"
+                  >
+                    
+                    
+                    <div
+                      class="mat-form-field-infix"
+                    >
+                      <mat-select
+                        aria-disabled="false"
+                        aria-invalid="false"
+                        aria-label="Items per page:"
+                        aria-multiselectable="false"
+                        aria-required="false"
+                        class="mat-select ng-tns-c17-5 ng-star-inserted"
+                        id="mat-select-1"
+                        ng-reflect-aria-label="Items per page:"
+                        ng-reflect-disabled="false"
+                        ng-reflect-value="10"
+                        role="listbox"
+                        tabindex="0"
+                      >
+                        <div
+                          aria-hidden="true"
+                          cdk-overlay-origin=""
+                          class="mat-select-trigger"
+                        >
+                          <div
+                            class="mat-select-value"
+                            ng-reflect-ng-switch="false"
+                          >
+                            
+                            
+                            <span
+                              class="mat-select-value-text ng-tns-c17-5 ng-star-inserted"
+                              ng-reflect-ng-switch="false"
+                            >
+                              
+                              <span
+                                class="ng-tns-c17-5 ng-star-inserted"
+                              >
+                                10
+                              </span>
+                              
+                            </span>
+                          </div>
+                          <div
+                            class="mat-select-arrow-wrapper"
+                          >
+                            <div
+                              class="mat-select-arrow"
+                            />
+                          </div>
+                        </div>
+                        
+                      </mat-select>
+                      <span
+                        class="mat-form-field-label-wrapper"
+                      >
+                        
+                      </span>
+                    </div>
+                    
+                  </div>
+                  
+                  <div
+                    class="mat-form-field-underline ng-tns-c11-4 ng-star-inserted"
+                  >
+                    <span
+                      class="mat-form-field-ripple"
+                    />
+                  </div>
+                  <div
+                    class="mat-form-field-subscript-wrapper"
+                    ng-reflect-ng-switch="hint"
+                  >
+                    
+                    
+                    <div
+                      class="mat-form-field-hint-wrapper ng-tns-c11-4 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+                      style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+                    >
+                      
+                      <div
+                        class="mat-form-field-hint-spacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </mat-form-field>
+              
+            </div>
+            <div
+              class="mat-paginator-range-actions"
+            >
               <div
-                class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
-                style="transform:rotate(45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-middle"
-              />
+                class="mat-paginator-range-label"
+              >
+                1 - 3 of 3
+              </div>
+              
+              <button
+                aria-describedby="cdk-describedby-message-6"
+                aria-label="First page"
+                cdk-describedby-host=""
+                class="mat-paginator-navigation-first mat-icon-button _mat-animation-noopable ng-star-inserted"
+                disabled=""
+                mat-icon-button=""
+                ng-reflect-disabled="true"
+                ng-reflect-message="First page"
+                ng-reflect-position="above"
+                type="button"
+              >
+                <span
+                  class="mat-button-wrapper"
+                >
+                  <svg
+                    class="mat-paginator-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"
+                    />
+                  </svg>
+                </span>
+                <div
+                  class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                  matripple=""
+                  ng-reflect-centered="true"
+                  ng-reflect-disabled="true"
+                  ng-reflect-trigger="[object HTMLButtonElement]"
+                />
+                <div
+                  class="mat-button-focus-overlay"
+                />
+              </button>
+              
+              <button
+                aria-describedby="cdk-describedby-message-4"
+                aria-label="Previous page"
+                cdk-describedby-host=""
+                class="mat-paginator-navigation-previous mat-icon-button _mat-animation-noopable"
+                disabled=""
+                mat-icon-button=""
+                ng-reflect-disabled="true"
+                ng-reflect-message="Previous page"
+                ng-reflect-position="above"
+                type="button"
+              >
+                <span
+                  class="mat-button-wrapper"
+                >
+                  <svg
+                    class="mat-paginator-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+                    />
+                  </svg>
+                </span>
+                <div
+                  class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                  matripple=""
+                  ng-reflect-centered="true"
+                  ng-reflect-disabled="true"
+                  ng-reflect-trigger="[object HTMLButtonElement]"
+                />
+                <div
+                  class="mat-button-focus-overlay"
+                />
+              </button>
+              <button
+                aria-describedby="cdk-describedby-message-5"
+                aria-label="Next page"
+                cdk-describedby-host=""
+                class="mat-paginator-navigation-next mat-icon-button _mat-animation-noopable"
+                disabled=""
+                mat-icon-button=""
+                ng-reflect-disabled="true"
+                ng-reflect-message="Next page"
+                ng-reflect-position="above"
+                type="button"
+              >
+                <span
+                  class="mat-button-wrapper"
+                >
+                  <svg
+                    class="mat-paginator-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                    />
+                  </svg>
+                </span>
+                <div
+                  class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                  matripple=""
+                  ng-reflect-centered="true"
+                  ng-reflect-disabled="true"
+                  ng-reflect-trigger="[object HTMLButtonElement]"
+                />
+                <div
+                  class="mat-button-focus-overlay"
+                />
+              </button>
+              
+              <button
+                aria-describedby="cdk-describedby-message-7"
+                aria-label="Last page"
+                cdk-describedby-host=""
+                class="mat-paginator-navigation-last mat-icon-button _mat-animation-noopable ng-star-inserted"
+                disabled=""
+                mat-icon-button=""
+                ng-reflect-disabled="true"
+                ng-reflect-message="Last page"
+                ng-reflect-position="above"
+                type="button"
+              >
+                <span
+                  class="mat-button-wrapper"
+                >
+                  <svg
+                    class="mat-paginator-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"
+                    />
+                  </svg>
+                </span>
+                <div
+                  class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                  matripple=""
+                  ng-reflect-centered="true"
+                  ng-reflect-disabled="true"
+                  ng-reflect-trigger="[object HTMLButtonElement]"
+                />
+                <div
+                  class="mat-button-focus-overlay"
+                />
+              </button>
+              
             </div>
           </div>
         </div>
-      </mat-header-cell>
-      <mat-header-cell
-        class="mat-header-cell ng-tns-c18-2 cdk-column-symbol mat-column-symbol ng-star-inserted"
-        mat-sort-header=""
-        ng-reflect-id=""
-        role="columnheader"
-      >
-        <div
-          class="mat-sort-header-container"
-        >
-          <button
-            aria-label="Change sorting for symbol"
-            class="mat-sort-header-button"
-            type="button"
-          >
-             Symbol 
-          </button>
-          <div
-            class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
-            style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
-          >
-            <div
-              class="mat-sort-header-stem"
-            />
-            <div
-              class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
-              style="transform:translateY(0px);0:transform;"
-            >
-              <div
-                class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
-                style="transform:rotate(-45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
-                style="transform:rotate(45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-middle"
-              />
-            </div>
-          </div>
-        </div>
-      </mat-header-cell>
-      <mat-header-cell
-        class="mat-header-cell ng-tns-c18-3 cdk-column-description mat-column-description ng-star-inserted"
-        mat-sort-header=""
-        ng-reflect-id=""
-        role="columnheader"
-      >
-        <div
-          class="mat-sort-header-container"
-        >
-          <button
-            aria-label="Change sorting for description"
-            class="mat-sort-header-button"
-            type="button"
-          >
-             Description 
-          </button>
-          <div
-            class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
-            style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
-          >
-            <div
-              class="mat-sort-header-stem"
-            />
-            <div
-              class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
-              style="transform:translateY(0px);0:transform;"
-            >
-              <div
-                class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
-                style="transform:rotate(-45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
-                style="transform:rotate(45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-middle"
-              />
-            </div>
-          </div>
-        </div>
-      </mat-header-cell>
-      <mat-header-cell
-        class="mat-header-cell cdk-column-actions mat-column-actions ng-star-inserted"
-        role="columnheader"
-      >
-         Actions 
-      </mat-header-cell>
-    </mat-header-row>
-    
-    <mat-row
-      class="mat-row ng-star-inserted"
-      ng-reflect-ng-class="[object Object]"
-      role="row"
-    >
-      
-      <mat-cell
-        class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label app-none"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Name:
-        </span>
-         Household1 Name 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label app-none"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Symbol:
-        </span>
-         Household1 symbol 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-description mat-column-description ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label app-none"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Description:
-        </span>
-         Household1 description 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
-        fxlayout="row"
-        fxlayoutgap="20px"
-        role="gridcell"
-      >
-        <button
-          class="mat-raised-button _mat-animation-noopable"
-          mat-raised-button=""
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Edit
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-        <button
-          class="mat-raised-button mat-warn _mat-animation-noopable"
-          color="warn"
-          mat-raised-button=""
-          ng-reflect-color="warn"
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Remove
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-      </mat-cell>
-    </mat-row>
-    <mat-row
-      class="mat-row ng-star-inserted"
-      ng-reflect-ng-class="[object Object]"
-      role="row"
-    >
-      
-      <mat-cell
-        class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label app-none"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Name:
-        </span>
-         Household2 Name 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label app-none"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Symbol:
-        </span>
-         Household2 symbol 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-description mat-column-description ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label app-none"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Description:
-        </span>
-         Household2 description 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
-        fxlayout="row"
-        fxlayoutgap="20px"
-        role="gridcell"
-      >
-        <button
-          class="mat-raised-button _mat-animation-noopable"
-          mat-raised-button=""
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Edit
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-        <button
-          class="mat-raised-button mat-warn _mat-animation-noopable"
-          color="warn"
-          mat-raised-button=""
-          ng-reflect-color="warn"
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Remove
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-      </mat-cell>
-    </mat-row>
-    <mat-row
-      class="mat-row ng-star-inserted"
-      ng-reflect-ng-class="[object Object]"
-      role="row"
-    >
-      
-      <mat-cell
-        class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label app-none"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Name:
-        </span>
-         Household3 Name 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label app-none"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Symbol:
-        </span>
-         Household3 symbol 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-description mat-column-description ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label app-none"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Description:
-        </span>
-         Household3 description 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
-        fxlayout="row"
-        fxlayoutgap="20px"
-        role="gridcell"
-      >
-        <button
-          class="mat-raised-button _mat-animation-noopable"
-          mat-raised-button=""
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Edit
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-        <button
-          class="mat-raised-button mat-warn _mat-animation-noopable"
-          color="warn"
-          mat-raised-button=""
-          ng-reflect-color="warn"
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Remove
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-      </mat-cell>
-    </mat-row>
-    
-  </mat-table>
+      </mat-paginator>
+    </div>
+  </div>
 </app-household-list>
 `;
 
@@ -878,557 +795,779 @@ exports[`HouseholdListComponent should match snapshot when with households and m
   dataSource={[Function MatTableDataSource]}
   displayedColumns={[Function Array]}
   edit={[Function EventEmitter]}
+  filterChanged={[Function EventEmitter]}
   isLoading="false"
   isMobile={[Function Boolean]}
+  paginator={[Function MatPaginator]}
   remove={[Function EventEmitter]}
+  searchUpdated={[Function Subject]}
   sort={[Function MatSort]}
+  unsubscribe={[Function Subject]}
 >
   <div
-    fxlayout="row"
-    fxlayoutalign="start center"
-    fxlayoutgap="10px"
+    fxlayout="column"
   >
-    <mat-form-field
-      class="mat-form-field ng-tns-c21-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable"
-      fxflex=""
+    
+    <div
+      fxlayout="row"
+      fxlayoutalign="start center"
+      fxlayoutgap="2%"
     >
-      <div
-        class="mat-form-field-wrapper"
+      <mat-form-field
+        class="mat-form-field ng-tns-c21-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable"
+        fxflex=""
       >
         <div
-          class="mat-form-field-flex"
+          class="mat-form-field-wrapper"
         >
-          
-          
           <div
-            class="mat-form-field-infix"
+            class="mat-form-field-flex"
           >
-            <input
-              aria-invalid="false"
-              aria-required="false"
-              class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored"
-              id="mat-input-3"
-              matinput=""
-              ng-reflect-placeholder="Filter"
-              placeholder="Filter"
-            />
-            <span
-              class="mat-form-field-label-wrapper"
+            
+            
+            <div
+              class="mat-form-field-infix"
             >
-              
-              <label
-                aria-owns="mat-input-3"
-                class="mat-form-field-label ng-tns-c21-0 mat-empty mat-form-field-empty ng-star-inserted"
-                for="mat-input-3"
-                id="mat-form-field-label-7"
-                ng-reflect-disabled="true"
-                ng-reflect-ng-switch="false"
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored"
+                id="mat-input-2"
+                matinput=""
+                ng-reflect-placeholder="Filter"
+                placeholder="Filter"
+              />
+              <span
+                class="mat-form-field-label-wrapper"
               >
                 
-                
-                Filter
-                
-                
-              </label>
-            </span>
+                <label
+                  aria-owns="mat-input-2"
+                  class="mat-form-field-label ng-tns-c21-0 mat-empty mat-form-field-empty ng-star-inserted"
+                  for="mat-input-2"
+                  id="mat-form-field-label-9"
+                  ng-reflect-disabled="true"
+                  ng-reflect-ng-switch="false"
+                >
+                  
+                  
+                  Filter
+                  
+                  
+                </label>
+              </span>
+            </div>
+            
           </div>
           
-        </div>
-        
-        <div
-          class="mat-form-field-underline ng-tns-c21-0 ng-star-inserted"
-        >
-          <span
-            class="mat-form-field-ripple"
-          />
-        </div>
-        <div
-          class="mat-form-field-subscript-wrapper"
-          ng-reflect-ng-switch="hint"
-        >
-          
-          
           <div
-            class="mat-form-field-hint-wrapper ng-tns-c21-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
-            style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+            class="mat-form-field-underline ng-tns-c21-0 ng-star-inserted"
+          >
+            <span
+              class="mat-form-field-ripple"
+            />
+          </div>
+          <div
+            class="mat-form-field-subscript-wrapper"
+            ng-reflect-ng-switch="hint"
+          >
+            
+            
+            <div
+              class="mat-form-field-hint-wrapper ng-tns-c21-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+              style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+            >
+              
+              <div
+                class="mat-form-field-hint-spacer"
+              />
+            </div>
+          </div>
+        </div>
+      </mat-form-field>
+      <button
+        class="mat-icon-button _mat-animation-noopable"
+        id="household-btn-add"
+        mat-icon-button=""
+      >
+        <span
+          class="mat-button-wrapper"
+        >
+          <mat-icon
+            aria-hidden="true"
+            class="mat-icon material-icons"
+            role="img"
+          >
+            add
+          </mat-icon>
+        </span>
+        <div
+          class="mat-button-ripple mat-ripple mat-button-ripple-round"
+          matripple=""
+          ng-reflect-centered="true"
+          ng-reflect-disabled="false"
+          ng-reflect-trigger="[object HTMLButtonElement]"
+        />
+        <div
+          class="mat-button-focus-overlay"
+        />
+      </button>
+    </div>
+    <div
+      class="table mat-elevation-z8"
+      fxlayout="column"
+    >
+      <mat-table
+        class="mat-table"
+        matsort=""
+        ng-reflect-data-source="[object Object]"
+        ng-reflect-disable-clear="true"
+        role="grid"
+      >
+        
+        <mat-header-row
+          class="mat-header-row ng-star-inserted"
+          role="row"
+        >
+          
+          <mat-header-cell
+            class="mat-header-cell ng-tns-c25-1 cdk-column-name mat-column-name ng-star-inserted"
+            mat-sort-header=""
+            ng-reflect-id=""
+            role="columnheader"
+          >
+            <div
+              class="mat-sort-header-container"
+            >
+              <button
+                aria-label="Change sorting for name"
+                class="mat-sort-header-button"
+                type="button"
+              >
+                 Name 
+              </button>
+              <div
+                class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
+                style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
+              >
+                <div
+                  class="mat-sort-header-stem"
+                />
+                <div
+                  class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
+                  style="transform:translateY(0px);0:transform;"
+                >
+                  <div
+                    class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
+                    style="transform:rotate(-45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
+                    style="transform:rotate(45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-middle"
+                  />
+                </div>
+              </div>
+            </div>
+          </mat-header-cell>
+          <mat-header-cell
+            class="mat-header-cell ng-tns-c25-2 cdk-column-symbol mat-column-symbol ng-star-inserted"
+            mat-sort-header=""
+            ng-reflect-id=""
+            role="columnheader"
+          >
+            <div
+              class="mat-sort-header-container"
+            >
+              <button
+                aria-label="Change sorting for symbol"
+                class="mat-sort-header-button"
+                type="button"
+              >
+                 Symbol 
+              </button>
+              <div
+                class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
+                style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
+              >
+                <div
+                  class="mat-sort-header-stem"
+                />
+                <div
+                  class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
+                  style="transform:translateY(0px);0:transform;"
+                >
+                  <div
+                    class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
+                    style="transform:rotate(-45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
+                    style="transform:rotate(45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-middle"
+                  />
+                </div>
+              </div>
+            </div>
+          </mat-header-cell>
+          <mat-header-cell
+            class="mat-header-cell ng-tns-c25-3 cdk-column-description mat-column-description ng-star-inserted"
+            mat-sort-header=""
+            ng-reflect-id=""
+            role="columnheader"
+          >
+            <div
+              class="mat-sort-header-container"
+            >
+              <button
+                aria-label="Change sorting for description"
+                class="mat-sort-header-button"
+                type="button"
+              >
+                 Description 
+              </button>
+              <div
+                class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
+                style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
+              >
+                <div
+                  class="mat-sort-header-stem"
+                />
+                <div
+                  class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
+                  style="transform:translateY(0px);0:transform;"
+                >
+                  <div
+                    class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
+                    style="transform:rotate(-45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
+                    style="transform:rotate(45deg);0:transform;"
+                  />
+                  <div
+                    class="mat-sort-header-pointer-middle"
+                  />
+                </div>
+              </div>
+            </div>
+          </mat-header-cell>
+          <mat-header-cell
+            class="mat-header-cell cdk-column-actions mat-column-actions ng-star-inserted"
+            role="columnheader"
+          >
+             Actions 
+          </mat-header-cell>
+        </mat-header-row>
+        
+        <mat-row
+          class="mat-row ng-star-inserted"
+          role="row"
+        >
+          
+          <mat-cell
+            class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
+            role="gridcell"
+          >
+             Household1 Name 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
+            role="gridcell"
+          >
+             Household1 symbol 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-description mat-column-description ng-star-inserted"
+            role="gridcell"
+          >
+             Household1 description 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
+            fxlayout="row"
+            fxlayoutgap="20px"
+            role="gridcell"
+          >
+            <button
+              class="mat-stroked-button _mat-animation-noopable"
+              mat-stroked-button=""
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Edit
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+            <button
+              class="mat-stroked-button mat-warn _mat-animation-noopable"
+              color="warn"
+              mat-stroked-button=""
+              ng-reflect-color="warn"
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Remove
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+          </mat-cell>
+        </mat-row>
+        <mat-row
+          class="mat-row ng-star-inserted"
+          role="row"
+        >
+          
+          <mat-cell
+            class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
+            role="gridcell"
+          >
+             Household2 Name 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
+            role="gridcell"
+          >
+             Household2 symbol 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-description mat-column-description ng-star-inserted"
+            role="gridcell"
+          >
+             Household2 description 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
+            fxlayout="row"
+            fxlayoutgap="20px"
+            role="gridcell"
+          >
+            <button
+              class="mat-stroked-button _mat-animation-noopable"
+              mat-stroked-button=""
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Edit
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+            <button
+              class="mat-stroked-button mat-warn _mat-animation-noopable"
+              color="warn"
+              mat-stroked-button=""
+              ng-reflect-color="warn"
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Remove
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+          </mat-cell>
+        </mat-row>
+        <mat-row
+          class="mat-row ng-star-inserted"
+          role="row"
+        >
+          
+          <mat-cell
+            class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
+            role="gridcell"
+          >
+             Household3 Name 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
+            role="gridcell"
+          >
+             Household3 symbol 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-description mat-column-description ng-star-inserted"
+            role="gridcell"
+          >
+             Household3 description 
+          </mat-cell>
+          <mat-cell
+            class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
+            fxlayout="row"
+            fxlayoutgap="20px"
+            role="gridcell"
+          >
+            <button
+              class="mat-stroked-button _mat-animation-noopable"
+              mat-stroked-button=""
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Edit
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+            <button
+              class="mat-stroked-button mat-warn _mat-animation-noopable"
+              color="warn"
+              mat-stroked-button=""
+              ng-reflect-color="warn"
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                Remove
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple"
+                matripple=""
+                ng-reflect-centered="false"
+                ng-reflect-disabled="false"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+          </mat-cell>
+        </mat-row>
+        
+      </mat-table>
+      <mat-paginator
+        class="mat-paginator"
+        ng-reflect-page-index="0"
+        ng-reflect-page-size="10"
+        ng-reflect-page-size-options="10,20,50"
+        ng-reflect-show-first-last-buttons=""
+        showfirstlastbuttons=""
+      >
+        <div
+          class="mat-paginator-outer-container"
+        >
+          <div
+            class="mat-paginator-container"
           >
             
             <div
-              class="mat-form-field-hint-spacer"
-            />
-          </div>
-        </div>
-      </div>
-    </mat-form-field>
-    <button
-      class="mat-icon-button _mat-animation-noopable"
-      id="household-btn-add"
-      mat-icon-button=""
-    >
-      <span
-        class="mat-button-wrapper"
-      >
-        <mat-icon
-          aria-hidden="true"
-          class="mat-icon material-icons"
-          role="img"
-        >
-          add
-        </mat-icon>
-      </span>
-      <div
-        class="mat-button-ripple mat-ripple mat-button-ripple-round"
-        matripple=""
-        ng-reflect-centered="true"
-        ng-reflect-disabled="false"
-        ng-reflect-trigger="[object HTMLButtonElement]"
-      />
-      <div
-        class="mat-button-focus-overlay"
-      />
-    </button>
-  </div><mat-table
-    class="mat-elevation-z8 mat-table"
-    matsort=""
-    ng-reflect-data-source="[object Object]"
-    role="grid"
-  >
-    
-    <mat-header-row
-      class="mat-header-row ng-star-inserted app-none"
-      ng-reflect-ng-class="[object Object]"
-      role="row"
-    >
-      
-      <mat-header-cell
-        class="mat-header-cell ng-tns-c25-1 cdk-column-name mat-column-name ng-star-inserted"
-        mat-sort-header=""
-        ng-reflect-id=""
-        role="columnheader"
-      >
-        <div
-          class="mat-sort-header-container"
-        >
-          <button
-            aria-label="Change sorting for name"
-            class="mat-sort-header-button"
-            type="button"
-          >
-             Name 
-          </button>
-          <div
-            class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
-            style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
-          >
-            <div
-              class="mat-sort-header-stem"
-            />
-            <div
-              class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
-              style="transform:translateY(0px);0:transform;"
+              class="mat-paginator-page-size ng-star-inserted"
             >
               <div
-                class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
-                style="transform:rotate(-45deg);0:transform;"
-              />
+                class="mat-paginator-page-size-label"
+              >
+                Items per page:
+              </div>
+              
+              <mat-form-field
+                class="mat-paginator-page-size-select mat-form-field ng-tns-c21-4 mat-primary mat-form-field-type-mat-select mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable ng-star-inserted mat-form-field-should-float"
+              >
+                <div
+                  class="mat-form-field-wrapper"
+                >
+                  <div
+                    class="mat-form-field-flex"
+                  >
+                    
+                    
+                    <div
+                      class="mat-form-field-infix"
+                    >
+                      <mat-select
+                        aria-disabled="false"
+                        aria-invalid="false"
+                        aria-label="Items per page:"
+                        aria-multiselectable="false"
+                        aria-required="false"
+                        class="mat-select ng-tns-c27-5 ng-star-inserted"
+                        id="mat-select-2"
+                        ng-reflect-aria-label="Items per page:"
+                        ng-reflect-disabled="false"
+                        ng-reflect-value="10"
+                        role="listbox"
+                        tabindex="0"
+                      >
+                        <div
+                          aria-hidden="true"
+                          cdk-overlay-origin=""
+                          class="mat-select-trigger"
+                        >
+                          <div
+                            class="mat-select-value"
+                            ng-reflect-ng-switch="false"
+                          >
+                            
+                            
+                            <span
+                              class="mat-select-value-text ng-tns-c27-5 ng-star-inserted"
+                              ng-reflect-ng-switch="false"
+                            >
+                              
+                              <span
+                                class="ng-tns-c27-5 ng-star-inserted"
+                              >
+                                10
+                              </span>
+                              
+                            </span>
+                          </div>
+                          <div
+                            class="mat-select-arrow-wrapper"
+                          >
+                            <div
+                              class="mat-select-arrow"
+                            />
+                          </div>
+                        </div>
+                        
+                      </mat-select>
+                      <span
+                        class="mat-form-field-label-wrapper"
+                      >
+                        
+                      </span>
+                    </div>
+                    
+                  </div>
+                  
+                  <div
+                    class="mat-form-field-underline ng-tns-c21-4 ng-star-inserted"
+                  >
+                    <span
+                      class="mat-form-field-ripple"
+                    />
+                  </div>
+                  <div
+                    class="mat-form-field-subscript-wrapper"
+                    ng-reflect-ng-switch="hint"
+                  >
+                    
+                    
+                    <div
+                      class="mat-form-field-hint-wrapper ng-tns-c21-4 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+                      style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+                    >
+                      
+                      <div
+                        class="mat-form-field-hint-spacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </mat-form-field>
+              
+            </div>
+            <div
+              class="mat-paginator-range-actions"
+            >
               <div
-                class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
-                style="transform:rotate(45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-middle"
-              />
+                class="mat-paginator-range-label"
+              >
+                0 of 0
+              </div>
+              
+              <button
+                aria-describedby="cdk-describedby-message-10"
+                aria-label="First page"
+                cdk-describedby-host=""
+                class="mat-paginator-navigation-first mat-icon-button _mat-animation-noopable ng-star-inserted"
+                disabled=""
+                mat-icon-button=""
+                ng-reflect-disabled="true"
+                ng-reflect-message="First page"
+                ng-reflect-position="above"
+                type="button"
+              >
+                <span
+                  class="mat-button-wrapper"
+                >
+                  <svg
+                    class="mat-paginator-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"
+                    />
+                  </svg>
+                </span>
+                <div
+                  class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                  matripple=""
+                  ng-reflect-centered="true"
+                  ng-reflect-disabled="true"
+                  ng-reflect-trigger="[object HTMLButtonElement]"
+                />
+                <div
+                  class="mat-button-focus-overlay"
+                />
+              </button>
+              
+              <button
+                aria-describedby="cdk-describedby-message-8"
+                aria-label="Previous page"
+                cdk-describedby-host=""
+                class="mat-paginator-navigation-previous mat-icon-button _mat-animation-noopable"
+                disabled=""
+                mat-icon-button=""
+                ng-reflect-disabled="true"
+                ng-reflect-message="Previous page"
+                ng-reflect-position="above"
+                type="button"
+              >
+                <span
+                  class="mat-button-wrapper"
+                >
+                  <svg
+                    class="mat-paginator-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+                    />
+                  </svg>
+                </span>
+                <div
+                  class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                  matripple=""
+                  ng-reflect-centered="true"
+                  ng-reflect-disabled="true"
+                  ng-reflect-trigger="[object HTMLButtonElement]"
+                />
+                <div
+                  class="mat-button-focus-overlay"
+                />
+              </button>
+              <button
+                aria-describedby="cdk-describedby-message-9"
+                aria-label="Next page"
+                cdk-describedby-host=""
+                class="mat-paginator-navigation-next mat-icon-button _mat-animation-noopable"
+                disabled=""
+                mat-icon-button=""
+                ng-reflect-disabled="true"
+                ng-reflect-message="Next page"
+                ng-reflect-position="above"
+                type="button"
+              >
+                <span
+                  class="mat-button-wrapper"
+                >
+                  <svg
+                    class="mat-paginator-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                    />
+                  </svg>
+                </span>
+                <div
+                  class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                  matripple=""
+                  ng-reflect-centered="true"
+                  ng-reflect-disabled="true"
+                  ng-reflect-trigger="[object HTMLButtonElement]"
+                />
+                <div
+                  class="mat-button-focus-overlay"
+                />
+              </button>
+              
+              <button
+                aria-describedby="cdk-describedby-message-11"
+                aria-label="Last page"
+                cdk-describedby-host=""
+                class="mat-paginator-navigation-last mat-icon-button _mat-animation-noopable ng-star-inserted"
+                disabled=""
+                mat-icon-button=""
+                ng-reflect-disabled="true"
+                ng-reflect-message="Last page"
+                ng-reflect-position="above"
+                type="button"
+              >
+                <span
+                  class="mat-button-wrapper"
+                >
+                  <svg
+                    class="mat-paginator-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"
+                    />
+                  </svg>
+                </span>
+                <div
+                  class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                  matripple=""
+                  ng-reflect-centered="true"
+                  ng-reflect-disabled="true"
+                  ng-reflect-trigger="[object HTMLButtonElement]"
+                />
+                <div
+                  class="mat-button-focus-overlay"
+                />
+              </button>
+              
             </div>
           </div>
         </div>
-      </mat-header-cell>
-      <mat-header-cell
-        class="mat-header-cell ng-tns-c25-2 cdk-column-symbol mat-column-symbol ng-star-inserted"
-        mat-sort-header=""
-        ng-reflect-id=""
-        role="columnheader"
-      >
-        <div
-          class="mat-sort-header-container"
-        >
-          <button
-            aria-label="Change sorting for symbol"
-            class="mat-sort-header-button"
-            type="button"
-          >
-             Symbol 
-          </button>
-          <div
-            class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
-            style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
-          >
-            <div
-              class="mat-sort-header-stem"
-            />
-            <div
-              class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
-              style="transform:translateY(0px);0:transform;"
-            >
-              <div
-                class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
-                style="transform:rotate(-45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
-                style="transform:rotate(45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-middle"
-              />
-            </div>
-          </div>
-        </div>
-      </mat-header-cell>
-      <mat-header-cell
-        class="mat-header-cell ng-tns-c25-3 cdk-column-description mat-column-description ng-star-inserted"
-        mat-sort-header=""
-        ng-reflect-id=""
-        role="columnheader"
-      >
-        <div
-          class="mat-sort-header-container"
-        >
-          <button
-            aria-label="Change sorting for description"
-            class="mat-sort-header-button"
-            type="button"
-          >
-             Description 
-          </button>
-          <div
-            class="mat-sort-header-arrow ng-trigger ng-trigger-arrowPosition"
-            style="transform:translateY(25%);opacity:0;0:transform;1:opacity;"
-          >
-            <div
-              class="mat-sort-header-stem"
-            />
-            <div
-              class="mat-sort-header-indicator ng-trigger ng-trigger-indicator"
-              style="transform:translateY(0px);0:transform;"
-            >
-              <div
-                class="mat-sort-header-pointer-left ng-trigger ng-trigger-leftPointer"
-                style="transform:rotate(-45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-right ng-trigger ng-trigger-rightPointer"
-                style="transform:rotate(45deg);0:transform;"
-              />
-              <div
-                class="mat-sort-header-pointer-middle"
-              />
-            </div>
-          </div>
-        </div>
-      </mat-header-cell>
-      <mat-header-cell
-        class="mat-header-cell cdk-column-actions mat-column-actions ng-star-inserted"
-        role="columnheader"
-      >
-         Actions 
-      </mat-header-cell>
-    </mat-header-row>
-    
-    <mat-row
-      class="mat-row app-table-row-mobile ng-star-inserted"
-      ng-reflect-ng-class="[object Object]"
-      role="row"
-    >
-      
-      <mat-cell
-        class="mat-cell cdk-column-name mat-column-name app-table-cell-mobile ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Name:
-        </span>
-         Household1 Name 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-symbol mat-column-symbol app-table-cell-mobile ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Symbol:
-        </span>
-         Household1 symbol 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-description mat-column-description app-table-cell-mobile ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Description:
-        </span>
-         Household1 description 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
-        fxlayout="row"
-        fxlayoutgap="20px"
-        role="gridcell"
-      >
-        <button
-          class="mat-raised-button _mat-animation-noopable"
-          mat-raised-button=""
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Edit
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-        <button
-          class="mat-raised-button mat-warn _mat-animation-noopable"
-          color="warn"
-          mat-raised-button=""
-          ng-reflect-color="warn"
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Remove
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-      </mat-cell>
-    </mat-row>
-    <mat-row
-      class="mat-row app-table-row-mobile ng-star-inserted"
-      ng-reflect-ng-class="[object Object]"
-      role="row"
-    >
-      
-      <mat-cell
-        class="mat-cell cdk-column-name mat-column-name app-table-cell-mobile ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Name:
-        </span>
-         Household2 Name 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-symbol mat-column-symbol app-table-cell-mobile ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Symbol:
-        </span>
-         Household2 symbol 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-description mat-column-description app-table-cell-mobile ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Description:
-        </span>
-         Household2 description 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
-        fxlayout="row"
-        fxlayoutgap="20px"
-        role="gridcell"
-      >
-        <button
-          class="mat-raised-button _mat-animation-noopable"
-          mat-raised-button=""
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Edit
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-        <button
-          class="mat-raised-button mat-warn _mat-animation-noopable"
-          color="warn"
-          mat-raised-button=""
-          ng-reflect-color="warn"
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Remove
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-      </mat-cell>
-    </mat-row>
-    <mat-row
-      class="mat-row app-table-row-mobile ng-star-inserted"
-      ng-reflect-ng-class="[object Object]"
-      role="row"
-    >
-      
-      <mat-cell
-        class="mat-cell cdk-column-name mat-column-name app-table-cell-mobile ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Name:
-        </span>
-         Household3 Name 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-symbol mat-column-symbol app-table-cell-mobile ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Symbol:
-        </span>
-         Household3 symbol 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-description mat-column-description app-table-cell-mobile ng-star-inserted"
-        ng-reflect-ng-class="[object Object]"
-        role="gridcell"
-      >
-        <span
-          class="app-table-mobile-label"
-          ng-reflect-klass="app-table-mobile-label"
-          ng-reflect-ng-class="[object Object]"
-        >
-          Description:
-        </span>
-         Household3 description 
-      </mat-cell>
-      <mat-cell
-        class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
-        fxlayout="row"
-        fxlayoutgap="20px"
-        role="gridcell"
-      >
-        <button
-          class="mat-raised-button _mat-animation-noopable"
-          mat-raised-button=""
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Edit
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-        <button
-          class="mat-raised-button mat-warn _mat-animation-noopable"
-          color="warn"
-          mat-raised-button=""
-          ng-reflect-color="warn"
-        >
-          <span
-            class="mat-button-wrapper"
-          >
-            Remove
-          </span>
-          <div
-            class="mat-button-ripple mat-ripple"
-            matripple=""
-            ng-reflect-centered="false"
-            ng-reflect-disabled="false"
-            ng-reflect-trigger="[object HTMLButtonElement]"
-          />
-          <div
-            class="mat-button-focus-overlay"
-          />
-        </button>
-      </mat-cell>
-    </mat-row>
-    
-  </mat-table>
+      </mat-paginator>
+    </div>
+  </div>
 </app-household-list>
 `;

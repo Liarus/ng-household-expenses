@@ -29,10 +29,13 @@ import {
   LoadHouseholdsSuccess,
   LoadHouseholdsFail,
   OpenCreateHouseholdDialog,
-  OpenEditHouseholdDialog
+  OpenEditHouseholdDialog,
+  ApplyFilter
 } from '../actions/household.actions';
+import { HouseholdFilter } from '../../models/householdFilter.model';
+import { User } from '../../../auth/models/user.model';
 
-describe('AuthEffects', () => {
+describe('HouseholdEffects', () => {
   let effects: HouseholdEffects;
   let actions$: Observable<any>;
   let dialog: any;
@@ -116,8 +119,8 @@ describe('AuthEffects', () => {
       const completion = new AddHouseholdSuccess(household);
 
       actions$ = hot('-a---', {a: action});
-      const response = cold('-a|', {a: of(true)});
-      const expected = cold('--b', {b: completion});
+      const response = cold('-a|', { a: of(true) });
+      const expected = cold('--b', { b: completion });
       householdService.create = jest.fn(() => response);
 
       expect(effects.addHousehold$).toBeObservable(expected);
@@ -142,8 +145,8 @@ describe('AuthEffects', () => {
       });
 
       actions$ = hot('-a---', {a: action});
-      const response = cold('-#|', {}, error);
-      const expected = cold('--b', {b: completion});
+      const response = cold('-#|', { }, error);
+      const expected = cold('--b', { b: completion });
       householdService.create = jest.fn(() => response);
 
       expect(effects.addHousehold$).toBeObservable(expected);
@@ -179,9 +182,9 @@ describe('AuthEffects', () => {
         version: household.version + 1
       });
 
-      actions$ = hot('-a---', {a: action});
-      const response = cold('-a|', {a: of(true)});
-      const expected = cold('--b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-a|', { a: of(true) });
+      const expected = cold('--b', { b: completion });
       householdService.update = jest.fn(() => response);
 
       expect(effects.updateHousehold$).toBeObservable(expected);
@@ -205,8 +208,8 @@ describe('AuthEffects', () => {
       });
 
       actions$ = hot('-a---', {a: action});
-      const response = cold('-#|', {}, error);
-      const expected = cold('--b', {b: completion});
+      const response = cold('-#|', { }, error);
+      const expected = cold('--b', { b: completion });
       householdService.update = jest.fn(() => response);
 
       expect(effects.updateHousehold$).toBeObservable(expected);
@@ -221,9 +224,9 @@ describe('AuthEffects', () => {
       const action = new RemoveHousehold(request);
       const completion = new RemoveHouseholdSuccess(request);
 
-      actions$ = hot('-a---', {a: action});
-      const response = cold('-a|', {a: of(true)});
-      const expected = cold('--b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-a|', { a: of(true) });
+      const expected = cold('--b', { b: completion });
       householdService.delete = jest.fn(() => response);
 
       expect(effects.deleteHousehold$).toBeObservable(expected);
@@ -238,9 +241,9 @@ describe('AuthEffects', () => {
         message: error
       });
 
-      actions$ = hot('-a---', {a: action});
-      const response = cold('-#|', {}, error);
-      const expected = cold('--b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-#|', { }, error);
+      const expected = cold('--b', { b: completion });
       householdService.delete = jest.fn(() => response);
 
       expect(effects.deleteHousehold$).toBeObservable(expected);
@@ -248,6 +251,19 @@ describe('AuthEffects', () => {
   });
 
   describe('loadHouseholds$', () => {
+    beforeEach(() => {
+      store.setState({
+        households: {
+          filter: {
+            pageNumber: 10,
+            pageSize: 10,
+            searchText: 'test',
+            sortingField: 'symbol',
+            sortDirection: 'desc'
+          } as HouseholdFilter
+        }
+      });
+    });
     it('should return LoadHouseholdsSuccess with households on LoadHouseholds when success', () => {
       const households = [
         {
@@ -287,11 +303,14 @@ describe('AuthEffects', () => {
       const action = new LoadHouseholds({
         userId: '550416ea-b523-4468-ae10-ea07d35eb9f0'
       });
-      const completion = new LoadHouseholdsSuccess(households);
+      const completion = new LoadHouseholdsSuccess({
+        count: households.length,
+        households: households
+      });
 
-      actions$ = hot('-a---', {a: action});
-      const response = cold('-a|', {a: households});
-      const expected = cold('--b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-a|', { a: { count: households.length, households: households } });
+      const expected = cold('--b', { b: completion });
       householdService.getAllForUser = jest.fn(() => response);
 
       expect(effects.loadHouseholds$).toBeObservable(expected);
@@ -306,9 +325,9 @@ describe('AuthEffects', () => {
         message: error
       });
 
-      actions$ = hot('-a---', {a: action});
-      const response = cold('-#|', {}, error);
-      const expected = cold('--b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-#|', { }, error);
+      const expected = cold('--b', { b: completion });
       householdService.getAllForUser = jest.fn(() => response);
 
       expect(effects.loadHouseholds$).toBeObservable(expected);
@@ -334,9 +353,9 @@ describe('AuthEffects', () => {
       });
       const completion = new AddHousehold(request);
 
-      actions$ = hot('-a---', {a: action});
-      const response = cold('-a|', {a: request});
-      const expected = cold('--b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-a|', { a: request });
+      const expected = cold('--b', { b: completion });
       dialog.open = jest.fn(() => {
         return {
           afterClosed: jest.fn(() => response)
@@ -351,23 +370,21 @@ describe('AuthEffects', () => {
     beforeEach(() => {
       store.setState({
         households: {
-          households: {
-            loading: false,
-            ids: [
-              '550416ea-b523-4468-ae10-ea07d35eb9f0'
-            ],
-            entities: {
-              '550416ea-b523-4468-ae10-ea07d35eb9f0': {
-                id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-                name: 'Household1 Name',
-                symbol: 'Household1 symbol',
-                description: 'Household1 description',
-                street: 'Household1 street',
-                city: 'Household1 city',
-                country: 'Household1 country',
-                zipCode: 'Household1 zipCode',
-                version: 1
-              }
+          loading: false,
+          ids: [
+            '550416ea-b523-4468-ae10-ea07d35eb9f0'
+          ],
+          entities: {
+            '550416ea-b523-4468-ae10-ea07d35eb9f0': {
+              id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
+              name: 'Household1 Name',
+              symbol: 'Household1 symbol',
+              description: 'Household1 description',
+              street: 'Household1 street',
+              city: 'Household1 city',
+              country: 'Household1 country',
+              zipCode: 'Household1 zipCode',
+              version: 1
             }
           }
         }
@@ -392,9 +409,9 @@ describe('AuthEffects', () => {
       });
       const completion = new UpdateHousehold(request);
 
-      actions$ = hot('-a---', {a: action});
-      const response = cold('-a|', {a: request});
-      const expected = cold('--b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-a|', { a: request });
+      const expected = cold('--b', { b: completion });
       dialog.open = jest.fn(() => {
         return {
           afterClosed: jest.fn(() => response)
@@ -456,6 +473,29 @@ describe('AuthEffects', () => {
     effects.error$.subscribe(() => {
       expect(toastrService.error).toHaveBeenCalled();
       done();
+    });
+  });
+
+  describe('applyFilter$', () => {
+    it('should return LoadHouseholds', () => {
+      const loggedUser = {
+        id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
+        name: 'UserName'
+      } as User;
+      store.setState({
+        auth: {
+          status: {
+            user: loggedUser
+          }
+        }
+      });
+
+      const action = new ApplyFilter({ searchText: 'test'});
+      const completion = new LoadHouseholds({ userId: loggedUser.id });
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.applyFilter$).toBeObservable(expected);
     });
   });
 });

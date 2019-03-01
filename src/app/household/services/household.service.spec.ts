@@ -10,6 +10,7 @@ import { Household } from '../models/household.model';
 import { CreateHousehold } from '../models/requests/createHousehold.model';
 import { ModifyHousehold } from '../models/requests/modifyHousehold.model';
 import { HouseholdService } from './household.service';
+import { HouseholdFilter } from '../models/householdFilter.model';
 
 describe('HouseholdService', () => {
   let service: HouseholdService;
@@ -95,12 +96,19 @@ describe('HouseholdService', () => {
         version: 1
       }
     ] as Household[];
+    const householdFilter = {
+      pageNumber: 10,
+      pageSize: 10,
+      searchText: 'test',
+      sortingField: 'symbol',
+      sortDirection: 'desc'
+    } as HouseholdFilter;
     const expected = cold('-a|', { a: households });
     http.get = jest.fn(() => expected);
 
-    expect(service.getAllForUser(userId)).toBeObservable(expected);
+    expect(service.getAllForUser(userId, householdFilter)).toBeObservable(expected);
     expect(http.get).toHaveBeenCalledWith(
-      `${appConfig.BASE_URL}${userEndpoint}/${userId}/households`
+      `${appConfig.BASE_URL}${userEndpoint}/${userId}/households`, expect.anything()
     );
   });
 
