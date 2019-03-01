@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { HouseholdEffects } from './store/effects/household.effects';
-import { reducers } from './store/reducers';
+import { reducer } from './store/reducers/household.reducer';
 import { HouseholdRoutingModule } from './household-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { HouseholdPageComponent } from './containers';
@@ -25,7 +25,7 @@ export const COMPONENTS = [
     HouseholdRoutingModule,
     MaterialModule,
     FlexLayoutModule,
-    StoreModule.forFeature('households', reducers),
+    StoreModule.forFeature('households', reducer),
     EffectsModule.forFeature([HouseholdEffects]),
   ],
   declarations: COMPONENTS,

@@ -1,9 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { Component, ChangeDetectionStrategy, Input, Output, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil, tap } from 'rxjs/operators';
 
 import { Household } from '../../models/household.model';
-
+import { HouseholdFilter } from '../../models/householdFilter.model';
 
 @Component({
   selector: 'app-household-list',
@@ -11,39 +13,90 @@ import { Household } from '../../models/household.model';
   templateUrl: './household-list.component.html',
   styleUrls: ['./household-list.component.scss']
 })
-export class HouseholdListComponent implements OnInit {
+export class HouseholdListComponent implements AfterViewInit, OnDestroy {
   @Input()
   set households(households: Household[]) {
     this.setDataSource(households);
   }
   @Input() isLoading: boolean;
   @Input() isMobile: boolean;
+  @Input() filter: HouseholdFilter;
+  @Input() itemCount: number;
+
   @Output() create = new EventEmitter();
   @Output() edit = new EventEmitter<string>();
   @Output() remove = new EventEmitter<string>();
+  @Output() filterChanged = new EventEmitter<Partial<HouseholdFilter>>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = ['name', 'symbol', 'description', 'actions'];
   dataSource: MatTableDataSource<Household>;
 
-  constructor() { }
+  private searchUpdated = new Subject<string>();
+  private unsubscribe: Subject<void> = new Subject();
 
-  ngOnInit() {
+  constructor() {
+    this.searchUpdated.asObservable().pipe(
+      takeUntil(this.unsubscribe),
+      debounceTime(750),
+      distinctUntilChanged()
+     )
+     .subscribe(data => this.searchChange(data));
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
+  ngAfterViewInit(): void {
+    this.paginator.page.pipe(
+      takeUntil(this.unsubscribe),
+      tap(() => this.pageChange())
+    )
+    .subscribe();
+
+    this.sort.sortChange.pipe(
+      takeUntil(this.unsubscribe),
+      tap(() => {
+        this.paginator.pageIndex = 0;
+        this.sortChange();
+      })
+    )
+    .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
+
+  search(searchValue: string) {
+    searchValue = searchValue.trim();
+    searchValue = searchValue.toLowerCase();
+    this.searchUpdated.next(searchValue);
+  }
+
+  private pageChange() {
+    this.filterChanged.emit({
+      pageNumber: this.paginator.pageIndex + 1,
+      pageSize: this.paginator.pageSize,
+    } as Partial<HouseholdFilter>);
+  }
+
+  private sortChange() {
+    this.filterChanged.emit({
+      pageNumber: this.paginator.pageIndex + 1,
+      sortingField: this.sort.active,
+      sortDirection: this.sort.direction
+    } as Partial<HouseholdFilter>);
+  }
+
+  private searchChange(searchValue: string) {
+    this.filterChanged.emit({
+      searchText: searchValue
+    } as Partial<HouseholdFilter>);
   }
 
   private setDataSource(households: Household[]) {
     this.dataSource = new MatTableDataSource(households);
     this.dataSource.sort = this.sort;
-    this.dataSource.filterPredicate = function(data, filter: string): boolean {
-      return (data.name && data.name.toLowerCase().includes(filter))
-        || (data.symbol && data.symbol.toLowerCase().includes(filter))
-        || (data.description && data.description.toString() === filter);
-    };
   }
 }

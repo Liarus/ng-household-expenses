@@ -11,10 +11,10 @@ import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { HouseholdService } from '../../services/household.service';
 import { HttpError } from '../../../shared/helpers/httpError';
 import { ModifyHousehold } from '../../models/requests/modifyHousehold.model';
-import { Household } from '../../models/household.model';
 import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import * as fromRoot from '../../../store/reducers';
 import * as fromHousehold from '../reducers';
+import * as fromAuth from '../../../auth/store/reducers';
 import {
     HouseholdActionTypes,
     AddHousehold,
@@ -33,7 +33,9 @@ import {
     OpenEditHouseholdDialog
 } from '../actions/household.actions';
 import { HouseholdDialogComponent } from '../../components';
-import { Guid } from 'src/app/shared/helpers/guid';
+import { Guid } from '../../../shared/helpers/guid';
+import { HouseholdSearch } from '../../models/responses/householdSearch.model';
+import { User } from '../../../auth/models/user.model';
 
 @Injectable()
 export class HouseholdEffects {
@@ -44,19 +46,17 @@ export class HouseholdEffects {
         switchMap((request: CreateHousehold) =>
             this.householdService.create(request)
             .pipe(
-                map(response => new AddHouseholdSuccess(
-                    {
-                        id: request.id,
-                        name: request.name,
-                        symbol: request.symbol,
-                        description: request.description,
-                        street: request.street,
-                        city: request.city,
-                        country: request.country,
-                        zipCode: request.zipCode,
-                        version: request.version,
-                    })
-                ),
+                map(() => new AddHouseholdSuccess({
+                    id: request.id,
+                    name: request.name,
+                    symbol: request.symbol,
+                    description: request.description,
+                    street: request.street,
+                    city: request.city,
+                    country: request.country,
+                    zipCode: request.zipCode,
+                    version: request.version,
+                })),
                 catchError(error => of(new AddHouseholdFail(HttpError.parse(error))))
             )
         )
@@ -69,19 +69,17 @@ export class HouseholdEffects {
         switchMap((request: ModifyHousehold) =>
             this.householdService.update(request)
             .pipe(
-                map(response => new UpdateHouseholdSuccess(
-                    {
-                        id: request.id,
-                        name: request.name,
-                        symbol: request.symbol,
-                        description: request.description,
-                        street: request.street,
-                        city: request.city,
-                        country: request.country,
-                        zipCode: request.zipCode,
-                        version: request.version + 1,
-                    })
-                ),
+                map(() => new UpdateHouseholdSuccess({
+                    id: request.id,
+                    name: request.name,
+                    symbol: request.symbol,
+                    description: request.description,
+                    street: request.street,
+                    city: request.city,
+                    country: request.country,
+                    zipCode: request.zipCode,
+                    version: request.version + 1,
+                })),
                 catchError(error => of(new UpdateHouseholdFail(HttpError.parse(error))))
             )
         )
@@ -94,7 +92,7 @@ export class HouseholdEffects {
         switchMap((householdId: string) =>
             this.householdService.delete(householdId)
             .pipe(
-                map(response => new RemoveHouseholdSuccess({householdId: householdId})),
+                map(() => new RemoveHouseholdSuccess({householdId: householdId})),
                 catchError(error => of(new RemoveHouseholdFail(HttpError.parse(error))))
             )
         )
@@ -104,10 +102,20 @@ export class HouseholdEffects {
     loadHouseholds$ = this.actions$.pipe(
         ofType(HouseholdActionTypes.LoadHouseholds),
         map((action: LoadHouseholds) => action.payload.userId),
-        switchMap((userId: string) =>
-            this.householdService.getAllForUser(userId)
+        switchMap((userId: any) =>
+            this.store$.select(fromHousehold.getHouseholdFilter)
             .pipe(
-                map((response: Household[]) => new LoadHouseholdsSuccess(response)),
+                first(),
+                map(currentfilter => [userId, currentfilter])
+            )
+        ),
+        switchMap(([userId, currentFilter]) =>
+            this.householdService.getAllForUser(userId, currentFilter)
+            .pipe(
+                map((response: HouseholdSearch) => new LoadHouseholdsSuccess({
+                    count: response.count,
+                    households: response.households
+                })),
                 catchError(error => of(new LoadHouseholdsFail(HttpError.parse(error))))
             )
         )
@@ -119,7 +127,10 @@ export class HouseholdEffects {
         map((action: OpenCreateHouseholdDialog) => action.payload.userId),
         switchMap((userId: string) => {
             const dialogRef = this.dialog.open(HouseholdDialogComponent, {
-                data: {userId: userId, household: {id: Guid.newGuid(), version: 1}}
+                data: {
+                    userId: userId,
+                    household: { id: Guid.newGuid(), version: 1 }
+                }
             });
             return dialogRef.afterClosed();
         }),
@@ -146,6 +157,16 @@ export class HouseholdEffects {
         }),
         filter((result: ModifyHousehold) => result !== undefined),
         map((result: ModifyHousehold) => new UpdateHousehold(result))
+    );
+
+    @Effect()
+    applyFilter$ = this.actions$.pipe(
+        ofType(HouseholdActionTypes.ApplyFilter),
+        switchMap(() =>
+            this.store$.select(fromAuth.getLoggedUser)
+            .pipe(first())
+        ),
+        map((user: User) => new LoadHouseholds({ userId: user.id}))
     );
 
     @Effect({ dispatch: false })

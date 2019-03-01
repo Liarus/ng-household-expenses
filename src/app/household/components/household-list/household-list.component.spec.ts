@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { HouseholdListComponent } from './household-list.component';
 import { MaterialModule } from '../../../material/material.module';
 import { Household } from '../../models/household.model';
+import { HouseholdFilter } from '../../models/householdFilter.model';
 
 describe('HouseholdListComponent', () => {
   let component: HouseholdListComponent;
@@ -76,18 +77,18 @@ describe('HouseholdListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should match snapshot when loading', () => {
-    component.isLoading = true;
-
-    fixture.detectChanges();
-
-    expect(fixture).toMatchSnapshot();
-  });
-
   it('should match snapshot when with households', () => {
     component.isLoading = false;
     component.households = households;
     component.isMobile = false;
+    component.itemCount = households.length;
+    component.filter = {
+      pageNumber: 1,
+      pageSize: 10,
+      searchText: '',
+      sortingField: 'name',
+      sortDirection: 'asc'
+    } as HouseholdFilter;
 
     fixture.detectChanges();
 
@@ -104,16 +105,6 @@ describe('HouseholdListComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should match snapshot when with filtered households', () => {
-    component.isLoading = false;
-    component.households = households;
-    component.isMobile = false;
-
-    fixture.detectChanges();
-    component.applyFilter('Household2');
-
-    expect(component.dataSource.filteredData).toMatchSnapshot();
-  });
 
   it('should create household', () => {
     const buttonDebugElement = fixture.debugElement.query(By.css('#household-btn-add'));
@@ -155,4 +146,57 @@ describe('HouseholdListComponent', () => {
 
     expect(component.remove.emit).toHaveBeenCalled();
   });
+
+  it('should change filter when searched', () => {
+    jest.useFakeTimers();
+    spyOn(component.filterChanged, 'emit');
+    component.search('test');
+    setTimeout(() => {
+      expect(component.filterChanged.emit).toHaveBeenCalled();
+    }, 1500);
+    jest.runAllTimers();
+  });
+
+  // it('should change filter when page changed', () => {
+  //   spyOn(component.filterChanged, 'emit');
+  //   component.filter = {
+  //     pageNumber: 1,
+  //     pageSize: 10,
+  //     searchText: '',
+  //     sortingField: 'name',
+  //     sortDirection: 'asc'
+  //   } as HouseholdFilter;
+  //   fixture.detectChanges();
+  //   component.ngAfterViewInit();
+  //   fixture.detectChanges();
+
+  //   component.paginator.page.emit({ pageIndex: 2, pageSize: 10, length: 10 });
+
+  //   expect(component.filterChanged.emit).toHaveBeenCalled();
+  // });
+
+  // it('should change filter when sorting changed', () => {
+  //   spyOn(component.filterChanged, 'emit');
+  //   component.isLoading = false;
+  //   component.households = households;
+  //   component.isMobile = false;
+  //   component.itemCount = households.length;
+  //   component.filter = {
+  //     pageNumber: 1,
+  //     pageSize: 10,
+  //     searchText: '',
+  //     sortingField: 'name',
+  //     sortDirection: 'asc'
+  //   } as HouseholdFilter;
+  //   fixture.detectChanges();
+  //   component.ngAfterViewInit();
+  //   fixture.detectChanges();
+
+  //   const sortHeader = fixture.debugElement.queryAll(By.css('.mat-column-name > .mat-sort-header-container > button'));
+  //   expect(sortHeader).toBeDefined();
+  //   expect(sortHeader.length).toBeGreaterThan(0);
+  //   sortHeader[0].triggerEventHandler('click', {});
+
+  //   expect(component.filterChanged.emit).toHaveBeenCalled();
+  // });
 });

@@ -1,9 +1,11 @@
 
-import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { Action } from '@ngrx/store';
+
+import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { Household } from '../../models/household.model';
-import { ErrorMessage } from 'src/app/shared/models/errorMessage.model';
+import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import { ModifyHousehold } from '../../models/requests/modifyHousehold.model';
+import { HouseholdFilter } from '../../models/householdFilter.model';
 
 export enum HouseholdActionTypes {
     AddHousehold = '[Household] Add Household',
@@ -19,7 +21,8 @@ export enum HouseholdActionTypes {
     LoadHouseholdsSuccess = '[Household API] Load Households Success',
     LoadHouseholdsFail = '[Household API] Load Households Fail',
     OpenCreateHouseholdDialog = '[Household] Open Create Household Dialog',
-    OpenEditHouseholdDialog = '[Household] Open Edit Household Dialog'
+    OpenEditHouseholdDialog = '[Household] Open Edit Household Dialog',
+    ApplyFilter = '[Household] Apply Filter'
 }
 
 export class AddHousehold implements Action {
@@ -61,13 +64,13 @@ export class UpdateHouseholdSuccess implements Action {
 export class RemoveHousehold implements Action {
     readonly type = HouseholdActionTypes.RemoveHousehold;
 
-    constructor(public payload: {householdId: string}) {}
+    constructor(public payload: { householdId: string }) {}
 }
 
 export class RemoveHouseholdSuccess implements Action {
     readonly type = HouseholdActionTypes.RemoveHouseholdSuccess;
 
-    constructor(public payload: {householdId: string}) {}
+    constructor(public payload: { householdId: string }) {}
 }
 
 export class RemoveHouseholdFail implements Action {
@@ -79,13 +82,16 @@ export class RemoveHouseholdFail implements Action {
 export class LoadHouseholds implements Action {
     readonly type = HouseholdActionTypes.LoadHouseholds;
 
-    constructor(public payload: {userId: string}) {}
+    constructor(public payload: { userId: string }) {}
 }
 
 export class LoadHouseholdsSuccess implements Action {
     readonly type = HouseholdActionTypes.LoadHouseholdsSuccess;
 
-    constructor(public payload: Household[]) {}
+    constructor(public payload: {
+        count: number
+        households: Household[]
+    }) {}
 }
 
 export class LoadHouseholdsFail implements Action {
@@ -97,13 +103,19 @@ export class LoadHouseholdsFail implements Action {
 export class OpenCreateHouseholdDialog implements Action {
     readonly type = HouseholdActionTypes.OpenCreateHouseholdDialog;
 
-    constructor(public payload: {userId: string}) {}
+    constructor(public payload: { userId: string }) {}
 }
 
 export class OpenEditHouseholdDialog implements Action {
     readonly type = HouseholdActionTypes.OpenEditHouseholdDialog;
 
-    constructor(public payload: {userId: string, householdId: string}) {}
+    constructor(public payload: { userId: string, householdId: string }) {}
+}
+
+export class ApplyFilter implements Action {
+    readonly type = HouseholdActionTypes.ApplyFilter;
+
+    constructor(public payload: Partial<HouseholdFilter>) {}
 }
 
 export type HouseholdActionsUnion =
@@ -120,4 +132,5 @@ export type HouseholdActionsUnion =
     | LoadHouseholdsSuccess
     | LoadHouseholdsFail
     | OpenCreateHouseholdDialog
-    | OpenEditHouseholdDialog;
+    | OpenEditHouseholdDialog
+    | ApplyFilter;

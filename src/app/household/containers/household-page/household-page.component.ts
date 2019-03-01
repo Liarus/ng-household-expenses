@@ -9,6 +9,7 @@ import * as fromCore from '../../../core/store/reducers';
 import * as fromHousehold from '../../store/reducers';
 import * as HouseholdActions from '../../store/actions/household.actions';
 import { User } from '../../../auth/models/user.model';
+import { HouseholdFilter } from '../../models/householdFilter.model';
 
 
 @Component({
@@ -19,9 +20,12 @@ import { User } from '../../../auth/models/user.model';
       <app-household-list [isLoading]='isLoading$ | async'
         [isMobile]='isMobile$ | async'
         [households]='household$ | async'
-        (create)=onCreate()
-        (remove)=onRemove($event)
-        (edit)=onEdit($event)
+        [filter]="filter$ | async"
+        [itemCount]="count$ | async"
+        (create)="onCreate()"
+        (remove)="onRemove($event)"
+        (edit)="onEdit($event)"
+        (filterChanged)="onFilterChanged($event)"
       ></app-household-list>
     </div>
   `
@@ -31,6 +35,8 @@ export class HouseholdPageComponent implements OnInit, OnDestroy {
   isLoading$ = this.store.pipe(select(fromHousehold.getHouseholdsLoading));
   isMobile$ = this.store.pipe(select(fromCore.getIsMobile));
   household$ = this.store.pipe(select(fromHousehold.getAllHouseholds));
+  filter$ = this.store.pipe(select(fromHousehold.getHouseholdFilter));
+  count$ = this.store.pipe(select(fromHousehold.getHouseholdsCount));
 
   private unsubscribe: Subject<void> = new Subject();
   private userId: string;
@@ -55,14 +61,21 @@ export class HouseholdPageComponent implements OnInit, OnDestroy {
   }
 
   onCreate() {
-    this.store.dispatch(new HouseholdActions.OpenCreateHouseholdDialog({userId: this.userId}));
+    this.store.dispatch(new HouseholdActions.OpenCreateHouseholdDialog( {userId: this.userId }));
   }
 
   onRemove(id: string) {
-    this.store.dispatch(new HouseholdActions.RemoveHousehold({householdId: id}));
+    this.store.dispatch(new HouseholdActions.RemoveHousehold({ householdId: id }));
   }
 
   onEdit(id: string) {
-    this.store.dispatch(new HouseholdActions.OpenEditHouseholdDialog({userId: this.userId, householdId: id}));
+    this.store.dispatch(new HouseholdActions.OpenEditHouseholdDialog({
+      userId: this.userId,
+      householdId: id
+    }));
+  }
+
+  onFilterChanged(change: Partial<HouseholdFilter>) {
+    this.store.dispatch(new HouseholdActions.ApplyFilter(change));
   }
 }

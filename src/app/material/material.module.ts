@@ -20,7 +20,8 @@ import {
   MatTableModule,
   MatDialogModule,
   MatExpansionModule,
-  MatSortModule
+  MatSortModule,
+  MatPaginatorModule,
 } from '@angular/material';
 
 const MaterialModules = [
@@ -42,7 +43,8 @@ const MaterialModules = [
   MatTableModule,
   MatDialogModule,
   MatExpansionModule,
-  MatSortModule
+  MatSortModule,
+  MatPaginatorModule
 ];
 
 @NgModule({
