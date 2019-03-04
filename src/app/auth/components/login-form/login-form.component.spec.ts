@@ -1,6 +1,5 @@
 /// <reference types="jest" />
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangeDetectionStrategy } from '@angular/core';
@@ -39,7 +38,6 @@ describe('LoginFormComponent', () => {
 
   it('should should match snapshot if not pending', () => {
     component.pending = false;
-
     fixture.detectChanges();
 
     expect(fixture).toMatchSnapshot();
@@ -47,7 +45,6 @@ describe('LoginFormComponent', () => {
 
   it('should should match snapshot if pending', () => {
     component.pending = true;
-
     fixture.detectChanges();
 
     expect(fixture).toMatchSnapshot();
@@ -61,8 +58,8 @@ describe('LoginFormComponent', () => {
     component.pending = false;
     component.form.setValue(expected);
     spyOn(component.submitted, 'emit');
-
     fixture.detectChanges();
+
     component.submit();
 
     expect(component.form.valid).toBe(true);

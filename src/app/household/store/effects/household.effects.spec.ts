@@ -1,5 +1,4 @@
 /// <reference types="jest" />
-
 import { Observable, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { ToastrService } from 'ngx-toastr';
@@ -118,7 +117,7 @@ describe('HouseholdEffects', () => {
       });
       const completion = new AddHouseholdSuccess(household);
 
-      actions$ = hot('-a---', {a: action});
+      actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: of(true) });
       const expected = cold('--b', { b: completion });
       householdService.create = jest.fn(() => response);
@@ -145,7 +144,7 @@ describe('HouseholdEffects', () => {
       });
 
       actions$ = hot('-a---', {a: action});
-      const response = cold('-#|', { }, error);
+      const response = cold('-#|', {}, error);
       const expected = cold('--b', { b: completion });
       householdService.create = jest.fn(() => response);
 
@@ -208,7 +207,7 @@ describe('HouseholdEffects', () => {
       });
 
       actions$ = hot('-a---', {a: action});
-      const response = cold('-#|', { }, error);
+      const response = cold('-#|', {}, error);
       const expected = cold('--b', { b: completion });
       householdService.update = jest.fn(() => response);
 
@@ -242,7 +241,7 @@ describe('HouseholdEffects', () => {
       });
 
       actions$ = hot('-a---', { a: action });
-      const response = cold('-#|', { }, error);
+      const response = cold('-#|', {}, error);
       const expected = cold('--b', { b: completion });
       householdService.delete = jest.fn(() => response);
 
@@ -326,7 +325,7 @@ describe('HouseholdEffects', () => {
       });
 
       actions$ = hot('-a---', { a: action });
-      const response = cold('-#|', { }, error);
+      const response = cold('-#|', {}, error);
       const expected = cold('--b', { b: completion });
       householdService.getAllForUser = jest.fn(() => response);
 

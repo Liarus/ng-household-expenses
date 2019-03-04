@@ -5,53 +5,53 @@ import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import { User } from '../../models/user.model';
 
 export enum AuthActionTypes {
-    Login = '[Auth] Login',
-    Logout = '[Auth] Logout',
-    LoginSuccess = '[Auth API] Login Success',
-    LoginFailure = '[Auth API] Login Failure',
-    LoginRedirect = '[Auth API] Login Redirect',
-    AuthHttpError = '[Auth API] Authorization Http Error'
+  Login = '[Auth] Login',
+  Logout = '[Auth] Logout',
+  LoginSuccess = '[Auth API] Login Success',
+  LoginFailure = '[Auth API] Login Failure',
+  LoginRedirect = '[Auth API] Login Redirect',
+  AuthHttpError = '[Auth API] Authorization Http Error'
 }
 
 export class Login implements Action {
-    readonly type = AuthActionTypes.Login;
+  readonly type = AuthActionTypes.Login;
 
-    constructor(public payload: LoginRequest) {}
+  constructor(public payload: LoginRequest) {}
 }
 
 export class Logout implements Action {
-    readonly type = AuthActionTypes.Logout;
+  readonly type = AuthActionTypes.Logout;
 }
 
 export class LoginSuccess implements Action {
-    readonly type = AuthActionTypes.LoginSuccess;
+  readonly type = AuthActionTypes.LoginSuccess;
 
-    constructor(public payload: {
-        user: User,
-        accessToken: string
-    }) {}
+  constructor(public payload: {
+    user: User,
+    accessToken: string
+  }) {}
 }
 
 export class LoginFailure implements Action {
-    readonly type = AuthActionTypes.LoginFailure;
+  readonly type = AuthActionTypes.LoginFailure;
 
-    constructor(public payload: ErrorMessage) {}
+  constructor(public payload: ErrorMessage) {}
 }
 
 export class LoginRedirect implements Action {
-    readonly type = AuthActionTypes.LoginRedirect;
+  readonly type = AuthActionTypes.LoginRedirect;
 }
 
 export class AuthHttpError implements Action {
-    readonly type = AuthActionTypes.AuthHttpError;
+  readonly type = AuthActionTypes.AuthHttpError;
 
-    constructor(public payload: ErrorMessage) {}
+  constructor(public payload: ErrorMessage) {}
 }
 
 export type AuthActionsUnion =
-    | Login
-    | Logout
-    | LoginSuccess
-    | LoginFailure
-    | LoginRedirect
-    | AuthHttpError;
+  | Login
+  | Logout
+  | LoginSuccess
+  | LoginFailure
+  | LoginRedirect
+  | AuthHttpError;

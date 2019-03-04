@@ -1,5 +1,4 @@
 /// <reference types="jest" />
-
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
 

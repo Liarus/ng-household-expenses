@@ -1,5 +1,4 @@
 /// <reference types="jest" />
-
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
@@ -55,6 +54,7 @@ describe('AuthService', () => {
       userName: request.username,
       accessToken: 'testAccessToken'
     } as SignInResponse;
+
     const expected = cold('-a|', { a: response });
     http.post = jest.fn(() => expected);
 

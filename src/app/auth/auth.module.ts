@@ -12,8 +12,8 @@ import { LoginFormComponent } from './components';
 import { MaterialModule } from '../material/material.module';
 
 export const COMPONENTS = [
-    LoginPageComponent,
-    LoginFormComponent
+  LoginPageComponent,
+  LoginFormComponent
 ];
 
 @NgModule({

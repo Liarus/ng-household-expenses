@@ -1,4 +1,4 @@
 
 export interface HouseholdCreateDialog {
-    userId: string;
+  userId: string;
 }

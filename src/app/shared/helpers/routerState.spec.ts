@@ -1,5 +1,4 @@
 /// <reference types="jest" />
-
 import { RouterStateSnapshot } from '@angular/router';
 
 import { CustomRouterStateSerializer } from './routerState';

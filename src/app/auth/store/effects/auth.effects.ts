@@ -14,8 +14,8 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/requests/loginRequest.model';
 import { HttpError } from '../../../shared/helpers/httpError';
-import { RefreshMenuItems } from 'src/app/core/store/actions/layout.actions';
-import { ErrorMessage } from 'src/app/shared/models/errorMessage.model';
+import { RefreshMenuItems } from '../../../core/store/actions/layout.actions';
+import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 
 @Injectable()
 export class AuthEffects {

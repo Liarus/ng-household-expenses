@@ -12,30 +12,29 @@ import { ToolbarComponent, SidebarComponent } from './components';
 import { LayoutEffects } from './store/effects/layout.effects';
 
 const COMPONENTS = [
-    AppComponent,
-    PageNotFoundComponent,
-    ToolbarComponent,
-    SidebarComponent
+  AppComponent,
+  PageNotFoundComponent,
+  ToolbarComponent,
+  SidebarComponent
 ];
 
 const PROVIDERS = [
-
 ];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule,
-        MaterialModule,
-        FlexLayoutModule,
-        StoreModule.forFeature('core', reducers),
-        EffectsModule.forFeature([LayoutEffects]),
-    ],
-    declarations: [
-        COMPONENTS
-    ],
-    exports: [
-        COMPONENTS
-    ]
+  imports: [
+    CommonModule,
+    RouterModule,
+    MaterialModule,
+    FlexLayoutModule,
+    StoreModule.forFeature('core', reducers),
+    EffectsModule.forFeature([LayoutEffects]),
+  ],
+  declarations: [
+    COMPONENTS
+  ],
+  exports: [
+    COMPONENTS
+  ]
 })
 export class CoreModule {}

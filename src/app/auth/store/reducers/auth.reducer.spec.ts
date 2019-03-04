@@ -1,5 +1,4 @@
 /// <reference types="jest" />
-
 import { reducer, initialState } from './auth.reducer';
 import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import { LoginRequest } from '../../models/requests/loginRequest.model';

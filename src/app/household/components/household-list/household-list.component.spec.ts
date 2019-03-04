@@ -1,6 +1,5 @@
 /// <reference types="jest" />
-import { async, ComponentFixture, TestBed, fakeAsync, flush, tick } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HAMMER_LOADER, By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy } from '@angular/core';
@@ -196,8 +195,10 @@ fdescribe('HouseholdListComponent', () => {
   it('should change filter when searched', async () => {
     jest.useFakeTimers();
     spyOn(component.filterChanged, 'emit');
+
     component.search('test');
     jest.advanceTimersByTime(1500);
+
     expect(component.filterChanged.emit).toHaveBeenCalled();
   });
 });

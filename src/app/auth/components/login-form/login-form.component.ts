@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { LoginRequest } from '../../models/requests/loginRequest.model';
@@ -14,7 +14,7 @@ const fg = new FormGroup({
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
   @Input()
   set pending(isPending: boolean) {
     if (isPending) {
@@ -28,9 +28,6 @@ export class LoginFormComponent implements OnInit {
   form: FormGroup = fg;
 
   constructor() {}
-
-  ngOnInit() {
-  }
 
   submit() {
     if (this.form.valid) {

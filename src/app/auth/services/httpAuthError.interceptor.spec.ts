@@ -1,12 +1,12 @@
 /// <reference types="jest" />
-
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { MockStore } from '../../shared/tests/mockStore';
 import { async, TestBed } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
+
 import { HttpAuthErrorInterceptor } from './httpAuthError.interceptor';
 import * as AuthActions from '../store/actions/auth.actions';
+import { MockStore } from '../../shared/tests/mockStore';
 
 describe('HttpAuthErrorInterceptor', () => {
   let httpClient: HttpClient;
@@ -45,6 +45,7 @@ describe('HttpAuthErrorInterceptor', () => {
       }
     );
     const req = httpMock.expectOne(testUrl);
+
     req.flush({ message: 'TestErrorMessage' }, { status: 401, statusText: 'Server Error' });
 
     expect(store.dispatch).not.toHaveBeenCalled();
@@ -58,6 +59,7 @@ describe('HttpAuthErrorInterceptor', () => {
     });
     httpClient.get(testUrl).subscribe();
     const req = httpMock.expectOne(testUrl);
+
     req.flush({ message: 'TestErrorMessage' }, { status: 401, statusText: 'Server Error' });
 
     expect(store.dispatch).toHaveBeenCalledWith(expected);

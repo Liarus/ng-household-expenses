@@ -6,23 +6,22 @@ import { Observable, throwError, of } from 'rxjs';
 
 import * as fromAuth from '../store/reducers';
 import * as AuthActions from '../store/actions/auth.actions';
-import { HttpError } from 'src/app/shared/helpers/httpError';
-
+import { HttpError } from '../../shared/helpers/httpError';
 
 @Injectable()
 export class HttpAuthErrorInterceptor implements HttpInterceptor {
 
-    constructor(private store: Store<fromAuth.State>) {}
+  constructor(private store: Store<fromAuth.State>) {}
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(
-            catchError(err => {
-                if (err.status === 401 && !request.url.includes('/login')) {
-                    this.store.dispatch(new AuthActions.AuthHttpError(HttpError.parse(err)));
-                    of({});
-                }
-                return throwError(err);
-            })
-        );
-    }
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(request).pipe(
+      catchError(err => {
+        if (err.status === 401 && !request.url.includes('/login')) {
+          this.store.dispatch(new AuthActions.AuthHttpError(HttpError.parse(err)));
+          of({});
+        }
+          return throwError(err);
+      })
+    );
+  }
 }

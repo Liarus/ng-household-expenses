@@ -1,6 +1,5 @@
 /// <reference types="jest" />
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy } from '@angular/core';
 
@@ -40,7 +39,6 @@ describe('ToolbarComponent', () => {
 
   it('should match snapshot with user', () => {
     component.user = user;
-
     fixture.detectChanges();
 
     expect(fixture).toMatchSnapshot();

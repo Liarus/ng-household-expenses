@@ -1,5 +1,4 @@
 /// <reference types="jest" />
-
 import { reducer, initialState } from './household.reducer';
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { ModifyHousehold } from '../../models/requests/modifyHousehold.model';

@@ -1,6 +1,5 @@
 /// <reference types="jest" />
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,7 +37,7 @@ describe('HouseholdDialogComponent', () => {
       ],
       declarations: [ HouseholdDialogComponent ],
       providers: [
-        { provide: MatDialogRef, useValue:  {
+        { provide: MatDialogRef, useValue: {
           close: jest.fn()
         }
        },

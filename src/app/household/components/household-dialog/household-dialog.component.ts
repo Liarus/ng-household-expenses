@@ -28,7 +28,7 @@ export class HouseholdDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<HouseholdDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: HouseholdDialog) {
-      this.form = fg(Object.assign({}, data.household, {userId: data.userId}));
+      this.form = fg(Object.assign({}, data.household, { userId: data.userId }));
     }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import * as fromAuth from '../../store/reducers';
@@ -15,13 +15,10 @@ import { LoginRequest } from '../../models/requests/loginRequest.model';
     ></app-login-form>
   `
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
   isLoading$ = this.store.pipe(select(fromAuth.getLoading));
 
   constructor(private store: Store<fromAuth.State>) {}
-
-  ngOnInit() {
-  }
 
   onSubmit($event: LoginRequest) {
     this.store.dispatch(new AuthActions.Login($event));

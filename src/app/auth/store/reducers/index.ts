@@ -4,45 +4,45 @@ import * as fromAuth from './auth.reducer';
 import * as fromRoot from '../../../store/reducers';
 
 export interface AuthState {
-    status: fromAuth.State;
+  status: fromAuth.State;
 }
 
 export interface State extends fromRoot.State {
-    auth: AuthState;
+  auth: AuthState;
 }
 
 export const reducers: ActionReducerMap<AuthState> = {
-    status: fromAuth.reducer
+  status: fromAuth.reducer
 };
 
 export const getAuthState = createFeatureSelector<AuthState>('auth');
 
 export const getStatusState = createSelector(
-    getAuthState,
-    (state: AuthState) => state.status
+  getAuthState,
+  (state: AuthState) => state.status
 );
 
 export const getLoggedIn = createSelector(
-    getStatusState,
-    fromAuth.getLoggedIn
+  getStatusState,
+  fromAuth.getLoggedIn
 );
 
 export const getLoading = createSelector(
-    getStatusState,
-    fromAuth.getLoading
+  getStatusState,
+  fromAuth.getLoading
 );
 
 export const getErrorMessage = createSelector(
-    getStatusState,
-    fromAuth.getErrorMessage
+  getStatusState,
+  fromAuth.getErrorMessage
 );
 
 export const getLoggedUser = createSelector(
-    getStatusState,
-    fromAuth.getLoggedUser
+  getStatusState,
+  fromAuth.getLoggedUser
 );
 
 export const getAccessToken = createSelector(
-    getStatusState,
-    fromAuth.getAccessToken
+  getStatusState,
+  fromAuth.getAccessToken
 );

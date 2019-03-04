@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { HouseholdEffects } from './store/effects/household.effects';
 import { reducer } from './store/reducers/household.reducer';
@@ -10,12 +11,11 @@ import { HouseholdRoutingModule } from './household-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { HouseholdPageComponent } from './containers';
 import { HouseholdListComponent, HouseholdDialogComponent } from './components';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 export const COMPONENTS = [
-    HouseholdPageComponent,
-    HouseholdListComponent,
-    HouseholdDialogComponent
+  HouseholdPageComponent,
+  HouseholdListComponent,
+  HouseholdDialogComponent
 ];
 
 @NgModule({

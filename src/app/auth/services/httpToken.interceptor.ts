@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 import * as fromAuth from '../store/reducers';
 
-
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {
 

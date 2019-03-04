@@ -32,12 +32,10 @@ export class AppComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize($event: any) {
-    this.store.dispatch(new LayoutActions.ResizeWindow(
-      {
-        width: $event.target.innerWidth,
-        height: $event.target.innerHeight
-      }
-    ));
+    this.store.dispatch(new LayoutActions.ResizeWindow({
+      width: $event.target.innerWidth,
+      height: $event.target.innerHeight
+    }));
   }
 
   onSidebarToggled() {

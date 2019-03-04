@@ -1,5 +1,4 @@
 /// <reference types="jest" />
-
 import { Observable, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -86,9 +85,9 @@ describe('AuthEffects', () => {
         accessToken: signInresponse.accessToken
       });
 
-      actions$ = hot('-a---', {a: action});
-      const response = cold('-a|', {a: signInresponse});
-      const expected = cold('--b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-a|', { a: signInresponse });
+      const expected = cold('--b', { b: completion });
       authService.login = jest.fn(() => response);
 
       expect(effects.login$).toBeObservable(expected);
@@ -104,9 +103,9 @@ describe('AuthEffects', () => {
         message: error
       });
 
-      actions$ = hot('-a---', {a: action});
+      actions$ = hot('-a---', { a: action });
       const response = cold('-#|', {}, error);
-      const expected = cold('--b', {b: completion});
+      const expected = cold('--b', { b: completion });
       authService.login = jest.fn(() => response);
 
       expect(effects.login$).toBeObservable(expected);
@@ -124,8 +123,8 @@ describe('AuthEffects', () => {
       });
       const completion = new RefreshMenuItems();
 
-      actions$ = hot('-a---', {a: action});
-      const expected = cold('-b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
 
       expect(effects.loginSuccess$).toBeObservable(expected);
     });
@@ -163,8 +162,8 @@ describe('AuthEffects', () => {
       const action = new LoginRedirect();
       const completion = new RefreshMenuItems();
 
-      actions$ = hot('-a---', {a: action});
-      const expected = cold('-b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
 
       expect(effects.loginRedirect$).toBeObservable(expected);
     });
@@ -184,8 +183,8 @@ describe('AuthEffects', () => {
       const action = new Logout();
       const completion = new RefreshMenuItems();
 
-      actions$ = hot('-a---', {a: action});
-      const expected = cold('-b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
 
       expect(effects.loginRedirect$).toBeObservable(expected);
     });
@@ -209,8 +208,8 @@ describe('AuthEffects', () => {
       });
       const completion = new RefreshMenuItems();
 
-      actions$ = hot('-a---', {a: action});
-      const expected = cold('-b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
 
       expect(effects.loginRedirect$).toBeObservable(expected);
     });

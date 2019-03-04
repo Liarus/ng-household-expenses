@@ -11,7 +11,6 @@ import * as HouseholdActions from '../../store/actions/household.actions';
 import { User } from '../../../auth/models/user.model';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 
-
 @Component({
   selector: 'app-household-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,7 +46,7 @@ export class HouseholdPageComponent implements OnInit, OnDestroy {
       .subscribe((loggedIn: User) => {
         if (loggedIn) {
           this.userId = loggedIn.id;
-          this.store.dispatch(new HouseholdActions.LoadHouseholds({userId: this.userId}));
+          this.store.dispatch(new HouseholdActions.LoadHouseholds({ userId: this.userId }));
         }
       });
   }
@@ -61,7 +60,7 @@ export class HouseholdPageComponent implements OnInit, OnDestroy {
   }
 
   onCreate() {
-    this.store.dispatch(new HouseholdActions.OpenCreateHouseholdDialog( {userId: this.userId }));
+    this.store.dispatch(new HouseholdActions.OpenCreateHouseholdDialog({ userId: this.userId }));
   }
 
   onRemove(id: string) {

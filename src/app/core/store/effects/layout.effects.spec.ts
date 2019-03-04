@@ -1,5 +1,4 @@
 /// <reference types="jest" />
-
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
@@ -68,9 +67,9 @@ describe('LayoutEffects', () => {
       const action = new RefreshMenuItems();
       const completion = new ApplyMenuItems(menuItems);
 
-      actions$ = hot('-a---', {a: action});
-      const response = cold('-a|', {a: menuItems});
-      const expected = cold('--b', {b: completion});
+      actions$ = hot('-a---', { a: action });
+      const response = cold('-a|', { a: menuItems });
+      const expected = cold('--b', { b: completion });
       menuService.getMenuItems = jest.fn(() => response);
 
       expect(effects.menuItem$).toBeObservable(expected);

@@ -1,6 +1,4 @@
 /// <reference types="jest" />
-
-
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestBed, async } from '@angular/core/testing';

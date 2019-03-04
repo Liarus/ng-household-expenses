@@ -1,6 +1,5 @@
 /// <reference types="jest" />
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StoreModule, Store } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HAMMER_LOADER } from '@angular/platform-browser';
