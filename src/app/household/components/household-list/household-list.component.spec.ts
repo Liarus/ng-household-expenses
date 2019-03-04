@@ -1,5 +1,5 @@
 /// <reference types="jest" />
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, flush, tick } from '@angular/core/testing';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HAMMER_LOADER, By } from '@angular/platform-browser';
@@ -10,7 +10,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { Household } from '../../models/household.model';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 
-describe('HouseholdListComponent', () => {
+fdescribe('HouseholdListComponent', () => {
   let component: HouseholdListComponent;
   let fixture: ComponentFixture<HouseholdListComponent>;
 
@@ -71,6 +71,10 @@ describe('HouseholdListComponent', () => {
     fixture = TestBed.createComponent(HouseholdListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
   });
 
   it('should create', () => {
@@ -147,56 +151,53 @@ describe('HouseholdListComponent', () => {
     expect(component.remove.emit).toHaveBeenCalled();
   });
 
-  it('should change filter when searched', () => {
+  it('should change filter when page changed', () => {
+    component.isLoading = false;
+    component.households = households;
+    component.isMobile = false;
+    component.itemCount = 50;
+    component.filter = {
+      pageNumber: 1,
+      pageSize: 10,
+      searchText: '',
+      sortingField: 'name',
+      sortDirection: 'asc'
+    } as HouseholdFilter;
+    spyOn(component.filterChanged, 'emit');
+
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    component.paginator.page.emit({ pageIndex: 2, pageSize: 10, length: 10 });
+
+    expect(component.filterChanged.emit).toHaveBeenCalled();
+  });
+
+  it('should change filter when sorting changed', () => {
+    component.isLoading = false;
+    component.households = households;
+    component.isMobile = false;
+    component.itemCount = 50;
+    component.filter = {
+      pageNumber: 1,
+      pageSize: 10,
+      searchText: '',
+      sortingField: 'name',
+      sortDirection: 'asc'
+    } as HouseholdFilter;
+    spyOn(component.filterChanged, 'emit');
+
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    component.sort.sortChange.emit({ active: 'symbol', direction: 'desc' });
+
+    expect(component.filterChanged.emit).toHaveBeenCalled();
+  });
+
+  it('should change filter when searched', async () => {
     jest.useFakeTimers();
     spyOn(component.filterChanged, 'emit');
     component.search('test');
-    setTimeout(() => {
-      expect(component.filterChanged.emit).toHaveBeenCalled();
-    }, 1500);
-    jest.runAllTimers();
+    jest.advanceTimersByTime(1500);
+    expect(component.filterChanged.emit).toHaveBeenCalled();
   });
-
-  // it('should change filter when page changed', () => {
-  //   spyOn(component.filterChanged, 'emit');
-  //   component.filter = {
-  //     pageNumber: 1,
-  //     pageSize: 10,
-  //     searchText: '',
-  //     sortingField: 'name',
-  //     sortDirection: 'asc'
-  //   } as HouseholdFilter;
-  //   fixture.detectChanges();
-  //   component.ngAfterViewInit();
-  //   fixture.detectChanges();
-
-  //   component.paginator.page.emit({ pageIndex: 2, pageSize: 10, length: 10 });
-
-  //   expect(component.filterChanged.emit).toHaveBeenCalled();
-  // });
-
-  // it('should change filter when sorting changed', () => {
-  //   spyOn(component.filterChanged, 'emit');
-  //   component.isLoading = false;
-  //   component.households = households;
-  //   component.isMobile = false;
-  //   component.itemCount = households.length;
-  //   component.filter = {
-  //     pageNumber: 1,
-  //     pageSize: 10,
-  //     searchText: '',
-  //     sortingField: 'name',
-  //     sortDirection: 'asc'
-  //   } as HouseholdFilter;
-  //   fixture.detectChanges();
-  //   component.ngAfterViewInit();
-  //   fixture.detectChanges();
-
-  //   const sortHeader = fixture.debugElement.queryAll(By.css('.mat-column-name > .mat-sort-header-container > button'));
-  //   expect(sortHeader).toBeDefined();
-  //   expect(sortHeader.length).toBeGreaterThan(0);
-  //   sortHeader[0].triggerEventHandler('click', {});
-
-  //   expect(component.filterChanged.emit).toHaveBeenCalled();
-  // });
 });

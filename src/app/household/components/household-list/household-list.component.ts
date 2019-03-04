@@ -43,13 +43,13 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
       debounceTime(750),
       distinctUntilChanged()
      )
-     .subscribe(data => this.searchChange(data));
+     .subscribe(data => this.searchChanged(data));
   }
 
   ngAfterViewInit(): void {
     this.paginator.page.pipe(
       takeUntil(this.unsubscribe),
-      tap(() => this.pageChange())
+      tap(() => this.pageChanged())
     )
     .subscribe();
 
@@ -57,7 +57,7 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
       takeUntil(this.unsubscribe),
       tap(() => {
         this.paginator.pageIndex = 0;
-        this.sortChange();
+        this.sortChanged();
       })
     )
     .subscribe();
@@ -74,14 +74,14 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
     this.searchUpdated.next(searchValue);
   }
 
-  private pageChange() {
+  private pageChanged() {
     this.filterChanged.emit({
       pageNumber: this.paginator.pageIndex + 1,
       pageSize: this.paginator.pageSize,
     } as Partial<HouseholdFilter>);
   }
 
-  private sortChange() {
+  private sortChanged() {
     this.filterChanged.emit({
       pageNumber: this.paginator.pageIndex + 1,
       sortingField: this.sort.active,
@@ -89,7 +89,7 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
     } as Partial<HouseholdFilter>);
   }
 
-  private searchChange(searchValue: string) {
+  private searchChanged(searchValue: string) {
     this.filterChanged.emit({
       searchText: searchValue
     } as Partial<HouseholdFilter>);
