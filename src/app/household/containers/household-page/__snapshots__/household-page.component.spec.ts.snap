@@ -14,6 +14,7 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
 >
   <div
     class="app-basic-container"
+    fxflex=""
   >
     <app-household-list
       ng-reflect-households="[object Object],[object Object"
@@ -306,7 +307,7 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
               <mat-cell
                 class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
                 fxlayout="row"
-                fxlayoutgap="20px"
+                fxlayoutgap="2%"
                 role="gridcell"
               >
                 <button
@@ -379,7 +380,7 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
               <mat-cell
                 class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
                 fxlayout="row"
-                fxlayoutgap="20px"
+                fxlayoutgap="2%"
                 role="gridcell"
               >
                 <button
@@ -452,7 +453,7 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
               <mat-cell
                 class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
                 fxlayout="row"
-                fxlayoutgap="20px"
+                fxlayoutgap="2%"
                 role="gridcell"
               >
                 <button

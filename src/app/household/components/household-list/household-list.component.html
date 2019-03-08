@@ -41,7 +41,7 @@
       </ng-container>
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxLayout="row" fxLayoutGap="20px">
+        <mat-cell *matCellDef="let element" fxLayout="row" fxLayoutGap="2%">
           <button mat-stroked-button (click)="edit.emit(element['id'])">Edit</button>
           <button mat-stroked-button color="warn" (click)="remove.emit(element['id'])">Remove</button> 
         </mat-cell>

@@ -15,7 +15,7 @@ import { HouseholdFilter } from '../../models/householdFilter.model';
   selector: 'app-household-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="app-basic-container">
+    <div class="app-basic-container" fxFlex>
       <app-household-list [isLoading]='isLoading$ | async'
         [isMobile]='isMobile$ | async'
         [households]='household$ | async'

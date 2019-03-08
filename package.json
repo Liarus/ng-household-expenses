@@ -15,6 +15,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test": "jest",
+    "test-update": "jest -u",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand",
     "test:coverage": "jest --coverage"

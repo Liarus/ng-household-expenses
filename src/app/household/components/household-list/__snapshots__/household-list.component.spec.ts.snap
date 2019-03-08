@@ -306,7 +306,7 @@ exports[`HouseholdListComponent should match snapshot when with households 1`] =
           <mat-cell
             class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
             fxlayout="row"
-            fxlayoutgap="20px"
+            fxlayoutgap="2%"
             role="gridcell"
           >
             <button
@@ -379,7 +379,7 @@ exports[`HouseholdListComponent should match snapshot when with households 1`] =
           <mat-cell
             class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
             fxlayout="row"
-            fxlayoutgap="20px"
+            fxlayoutgap="2%"
             role="gridcell"
           >
             <button
@@ -452,7 +452,7 @@ exports[`HouseholdListComponent should match snapshot when with households 1`] =
           <mat-cell
             class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
             fxlayout="row"
-            fxlayoutgap="20px"
+            fxlayoutgap="2%"
             role="gridcell"
           >
             <button
@@ -1090,7 +1090,7 @@ exports[`HouseholdListComponent should match snapshot when with households and m
           <mat-cell
             class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
             fxlayout="row"
-            fxlayoutgap="20px"
+            fxlayoutgap="2%"
             role="gridcell"
           >
             <button
@@ -1163,7 +1163,7 @@ exports[`HouseholdListComponent should match snapshot when with households and m
           <mat-cell
             class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
             fxlayout="row"
-            fxlayoutgap="20px"
+            fxlayoutgap="2%"
             role="gridcell"
           >
             <button
@@ -1236,7 +1236,7 @@ exports[`HouseholdListComponent should match snapshot when with households and m
           <mat-cell
             class="mat-cell cdk-column-actions mat-column-actions ng-star-inserted"
             fxlayout="row"
-            fxlayoutgap="20px"
+            fxlayoutgap="2%"
             role="gridcell"
           >
             <button

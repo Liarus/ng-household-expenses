@@ -9,6 +9,7 @@ exports[`ToolbarComponent should match snapshot with user 1`] = `
   <mat-toolbar
     class="mat-toolbar mat-primary mat-toolbar-single-row"
     color="primary"
+    fxflex=""
     ng-reflect-color="primary"
   >
     <div
