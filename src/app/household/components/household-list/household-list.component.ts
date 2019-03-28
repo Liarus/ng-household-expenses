@@ -19,7 +19,6 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
     this.setDataSource(households);
   }
   @Input() isLoading: boolean;
-  @Input() isMobile: boolean;
   @Input() filter: HouseholdFilter;
   @Input() itemCount: number;
 

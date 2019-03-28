@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { HouseholdPageComponent } from './household-page.component';
 import { MaterialModule } from '../../../material/material.module';
 import { MockStore } from '../../../shared/tests/mockStore';
-import { HouseholdListComponent } from '../../components';
+import { HouseholdListComponent, HouseholdTilesComponent } from '../../components';
 import { User } from '../../../auth/models/user.model';
 import * as HouseholdActions from '../../store/actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
@@ -30,7 +30,11 @@ describe('HouseholdPageComponent', () => {
         NoopAnimationsModule,
         StoreModule.forRoot({})
       ],
-      declarations: [ HouseholdPageComponent, HouseholdListComponent ],
+      declarations: [
+        HouseholdPageComponent,
+        HouseholdListComponent,
+        HouseholdTilesComponent
+      ],
       providers: [
         { provide: Store, useClass: MockStore },
         { provide: HAMMER_LOADER, useValue: () => new Promise(() => {}) }
@@ -158,14 +162,12 @@ describe('HouseholdPageComponent', () => {
     expect(store.dispatch).toHaveBeenCalledWith(expected);
   });
 
-  it('should dispatch LoadHouseholds action on user change', () => {
-    const expected = new HouseholdActions.LoadHouseholds({
-      userId: user.id
-    });
+  it('should dispatch InitHouseholds action on isMobile change', () => {
+    const expected = new HouseholdActions.InitHouseholds();
     store.setState({
       core: {
         layout: {
-          isMobile: false
+          isMobile: true
         }
       },
       auth: {

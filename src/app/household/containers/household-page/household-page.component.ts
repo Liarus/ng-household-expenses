@@ -16,9 +16,9 @@ import { HouseholdFilter } from '../../models/householdFilter.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="app-basic-container" fxFlex>
-      <app-household-list [isLoading]='isLoading$ | async'
-        [isMobile]='isMobile$ | async'
-        [households]='household$ | async'
+      <app-household-list *ngIf="!(isMobile$ | async)"
+        [isLoading]="isLoading$ | async"
+        [households]="household$ | async"
         [filter]="filter$ | async"
         [itemCount]="count$ | async"
         (create)="onCreate()"
@@ -26,6 +26,12 @@ import { HouseholdFilter } from '../../models/householdFilter.model';
         (edit)="onEdit($event)"
         (filterChanged)="onFilterChanged($event)"
       ></app-household-list>
+      <app-household-tiles *ngIf="isMobile$ | async"
+        [isLoading]="isLoading$ | async"
+        [households]="household$ | async"
+        [itemCount]="count$ | async"
+        (filterChanged)="onFilterChanged($event)"
+      ></app-household-tiles>
     </div>
   `
 })
@@ -44,10 +50,12 @@ export class HouseholdPageComponent implements OnInit, OnDestroy {
     this.loggedUser$
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((loggedIn: User) => {
-        if (loggedIn) {
-          this.userId = loggedIn.id;
-          this.store.dispatch(new HouseholdActions.LoadHouseholds({ userId: this.userId }));
-        }
+        this.userId = loggedIn.id;
+      });
+    this.isMobile$
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(() => {
+        this.store.dispatch(new HouseholdActions.InitHouseholds());
       });
   }
 

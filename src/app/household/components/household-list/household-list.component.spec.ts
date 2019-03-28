@@ -83,7 +83,6 @@ fdescribe('HouseholdListComponent', () => {
   it('should match snapshot when with households', () => {
     component.isLoading = false;
     component.households = households;
-    component.isMobile = false;
     component.itemCount = households.length;
     component.filter = {
       pageNumber: 1,
@@ -98,17 +97,6 @@ fdescribe('HouseholdListComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should match snapshot when with households and mobile', () => {
-    component.isLoading = false;
-    component.households = households;
-    component.isMobile = true;
-
-    fixture.detectChanges();
-
-    expect(fixture).toMatchSnapshot();
-  });
-
-
   it('should create household', () => {
     const buttonDebugElement = fixture.debugElement.query(By.css('#household-btn-add'));
     spyOn(component.create, 'emit');
@@ -121,7 +109,6 @@ fdescribe('HouseholdListComponent', () => {
   it('should edit household', () => {
     component.isLoading = false;
     component.households = households;
-    component.isMobile = false;
 
     fixture.detectChanges();
     const buttons = fixture.debugElement.queryAll(By.css('.mat-cell > button'));
@@ -137,7 +124,6 @@ fdescribe('HouseholdListComponent', () => {
   it('should remove household', () => {
     component.isLoading = false;
     component.households = households;
-    component.isMobile = false;
 
     fixture.detectChanges();
     const buttons = fixture.debugElement.queryAll(By.css('button + button[color="warn"]'));
@@ -153,7 +139,6 @@ fdescribe('HouseholdListComponent', () => {
   it('should change filter when page changed', () => {
     component.isLoading = false;
     component.households = households;
-    component.isMobile = false;
     component.itemCount = 50;
     component.filter = {
       pageNumber: 1,
@@ -174,7 +159,6 @@ fdescribe('HouseholdListComponent', () => {
   it('should change filter when sorting changed', () => {
     component.isLoading = false;
     component.households = households;
-    component.isMobile = false;
     component.itemCount = 50;
     component.filter = {
       pageNumber: 1,

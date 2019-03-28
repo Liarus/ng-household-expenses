@@ -16,10 +16,11 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
     class="app-basic-container"
     fxflex=""
   >
+    
     <app-household-list
+      class="ng-star-inserted"
       ng-reflect-households="[object Object],[object Object"
       ng-reflect-is-loading="false"
-      ng-reflect-is-mobile="false"
     >
       <div
         fxlayout="column"
@@ -787,6 +788,7 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
         </div>
       </div>
     </app-household-list>
+    
   </div>
 </app-household-page>
 `;
