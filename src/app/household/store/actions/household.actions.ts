@@ -17,12 +17,14 @@ export enum HouseholdActionTypes {
   RemoveHousehold = '[Household] Remove Household',
   RemoveHouseholdSuccess = '[Household API] Remove Household Success',
   RemoveHouseholdFail = '[Household API] Remove Household Fail',
+  InitHouseholds = '[Household] Init Households',
   LoadHouseholds = '[Household] Load Households',
   LoadHouseholdsSuccess = '[Household API] Load Households Success',
   LoadHouseholdsFail = '[Household API] Load Households Fail',
   OpenCreateHouseholdDialog = '[Household] Open Create Household Dialog',
   OpenEditHouseholdDialog = '[Household] Open Edit Household Dialog',
-  ApplyFilter = '[Household] Apply Filter'
+  ApplyFilter = '[Household] Apply Filter',
+  SetAppendData = '[Household] Append Data'
 }
 
 export class AddHousehold implements Action {
@@ -79,6 +81,12 @@ export class RemoveHouseholdFail implements Action {
   constructor(public payload: ErrorMessage) {}
 }
 
+export class InitHouseholds implements Action {
+  readonly type = HouseholdActionTypes.InitHouseholds;
+
+  constructor() {}
+}
+
 export class LoadHouseholds implements Action {
   readonly type = HouseholdActionTypes.LoadHouseholds;
 
@@ -118,6 +126,12 @@ export class ApplyFilter implements Action {
   constructor(public payload: Partial<HouseholdFilter>) {}
 }
 
+export class SetAppendData implements Action {
+  readonly type = HouseholdActionTypes.SetAppendData;
+
+  constructor(public payload: boolean) {}
+}
+
 export type HouseholdActionsUnion =
   | AddHousehold
   | AddHouseholdSuccess
@@ -128,9 +142,11 @@ export type HouseholdActionsUnion =
   | RemoveHousehold
   | RemoveHouseholdSuccess
   | RemoveHouseholdFail
+  | InitHouseholds
   | LoadHouseholds
   | LoadHouseholdsSuccess
   | LoadHouseholdsFail
   | OpenCreateHouseholdDialog
   | OpenEditHouseholdDialog
-  | ApplyFilter;
+  | ApplyFilter
+  | SetAppendData;

@@ -29,7 +29,9 @@ import {
   LoadHouseholdsFail,
   OpenCreateHouseholdDialog,
   OpenEditHouseholdDialog,
-  ApplyFilter
+  ApplyFilter,
+  InitHouseholds,
+  SetAppendData
 } from '../actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 import { User } from '../../../auth/models/user.model';
@@ -497,4 +499,64 @@ describe('HouseholdEffects', () => {
       expect(effects.applyFilter$).toBeObservable(expected);
     });
   });
+
+  describe('initHouseholds', () => {
+    it('should AppendData and ApplyFilter if mobile', () => {
+      store.setState({
+        core: {
+          layout: {
+            isMobile: true
+          }
+        },
+        auth: {
+          status: {
+            user: {
+              id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
+              name: 'UserName'
+            } as User
+          }
+        }
+      });
+
+      const action = new InitHouseholds();
+      const completion1 = new SetAppendData(true);
+      const completion2 = new ApplyFilter({
+        pageNumber: 1,
+        pageSize: 10,
+        sortingField: 'name',
+        sortDirection: 'asc'
+      });
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-(bc)', { b: completion1, c: completion2 });
+
+      expect(effects.initHouseholds$).toBeObservable(expected);
+    });
+
+    it('should AppendData and LoadHouseholds if desktop', () => {
+      const loggedUser = {
+        id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
+        name: 'UserName'
+      } as User;
+      store.setState({
+        core: {
+          layout: {
+            isMobile: false
+          }
+        },
+        auth: {
+          status: {
+            user: loggedUser
+          }
+        }
+      });
+
+      const action = new InitHouseholds();
+      const completion1 = new SetAppendData(false);
+      const completion2 = new LoadHouseholds({ userId: loggedUser.id });
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-(bc)', { b: completion1, c: completion2 });
+
+      expect(effects.initHouseholds$).toBeObservable(expected);
+    })
+  })
 });

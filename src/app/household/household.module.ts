@@ -10,12 +10,17 @@ import { reducer } from './store/reducers/household.reducer';
 import { HouseholdRoutingModule } from './household-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { HouseholdPageComponent } from './containers';
-import { HouseholdListComponent, HouseholdDialogComponent } from './components';
+import {
+  HouseholdListComponent,
+  HouseholdDialogComponent,
+  HouseholdTilesComponent
+} from './components';
 
 export const COMPONENTS = [
   HouseholdPageComponent,
   HouseholdListComponent,
-  HouseholdDialogComponent
+  HouseholdDialogComponent,
+  HouseholdTilesComponent
 ];
 
 @NgModule({

@@ -1,11 +1,11 @@
 
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
-import { map, switchMap, catchError, tap, filter, withLatestFrom, take, mergeMap, first } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { map, switchMap, catchError, tap, filter, mergeMap, first } from 'rxjs/operators';
+import { of, combineLatest } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material';
-import { Store } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
 
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { HouseholdService } from '../../services/household.service';
@@ -15,6 +15,7 @@ import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import * as fromRoot from '../../../store/reducers';
 import * as fromHousehold from '../reducers';
 import * as fromAuth from '../../../auth/store/reducers';
+import * as fromCore from '../../../core/store/reducers';
 import {
   HouseholdActionTypes,
   AddHousehold,
@@ -30,12 +31,23 @@ import {
   LoadHouseholdsSuccess,
   LoadHouseholdsFail,
   OpenCreateHouseholdDialog,
-  OpenEditHouseholdDialog
+  OpenEditHouseholdDialog,
+  InitHouseholds,
+  SetAppendData,
+  ApplyFilter
 } from '../actions/household.actions';
 import { HouseholdDialogComponent } from '../../components';
 import { Guid } from '../../../shared/helpers/guid';
 import { HouseholdSearch } from '../../models/responses/householdSearch.model';
 import { User } from '../../../auth/models/user.model';
+import { HouseholdFilter } from '../../models/householdFilter.model';
+
+const mobileFilter = {
+  pageNumber: 1,
+  pageSize: 10,
+  sortingField: 'name',
+  sortDirection: 'asc'
+} as Partial<HouseholdFilter>;
 
 @Injectable()
 export class HouseholdEffects {
@@ -96,6 +108,26 @@ export class HouseholdEffects {
           catchError(error => of(new RemoveHouseholdFail(HttpError.parse(error))))
         )
       )
+    );
+
+    @Effect()
+    initHouseholds$ = this.actions$.pipe(
+      ofType(HouseholdActionTypes.InitHouseholds),
+      switchMap(() =>
+        combineLatest(
+          this.store$.select(fromAuth.getLoggedUser),
+          this.store$.select(fromCore.getIsMobile)
+        ).pipe(
+          first(),
+        )
+      ),
+      switchMap(([user, isMobile]) => {
+        const actions = [new SetAppendData(isMobile)] as Action[];
+        actions.push(isMobile
+          ? new ApplyFilter(mobileFilter)
+          : new LoadHouseholds({ userId: user.id}));
+        return actions;
+      })
     );
 
     @Effect()

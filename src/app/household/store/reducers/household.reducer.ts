@@ -9,6 +9,7 @@ export interface State extends EntityState<Household> {
   errorMessage: string;
   count: number;
   filter: HouseholdFilter;
+  appendData: boolean;
 }
 
 export const adapter: EntityAdapter<Household> = createEntityAdapter<Household>({
@@ -26,7 +27,8 @@ export const initialState: State = adapter.getInitialState({
     searchText: '',
     sortingField: 'name',
     sortDirection: 'asc'
-  } as HouseholdFilter
+  } as HouseholdFilter,
+  appendData: false
 });
 
 export function reducer(
@@ -77,19 +79,35 @@ export function reducer(
         loading: false
     });
 
-    case HouseholdActionTypes.LoadHouseholdsSuccess:
-      return adapter.addMany(action.payload.households, {
-        ...adapter.removeAll({
-        ...state
-      }),
-      count: action.payload.count,
-      loading: false
-    });
+    case HouseholdActionTypes.LoadHouseholdsSuccess: {
+      if (state && state.appendData) {
+        return adapter.addMany(action.payload.households, {
+          ...state,
+          count: action.payload.count,
+          loading: false
+        });
+      } else {
+        return adapter.addMany(action.payload.households, {
+          ...adapter.removeAll({
+            ...state
+          }),
+          count: action.payload.count,
+          loading: false
+        });
+      }
+   }
 
     case HouseholdActionTypes.ApplyFilter: {
       return {
         ...state,
         filter: Object.assign({}, state.filter, action.payload)
+      };
+    }
+
+    case HouseholdActionTypes.SetAppendData: {
+      return {
+        ...state,
+        appendData: action.payload
       };
     }
 

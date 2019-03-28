@@ -17,7 +17,8 @@ import {
   UpdateHouseholdSuccess,
   RemoveHouseholdSuccess,
   LoadHouseholdsSuccess,
-  ApplyFilter
+  ApplyFilter,
+  SetAppendData
 } from '../actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 
@@ -340,6 +341,90 @@ describe('HouseholdReducer', () => {
         loading: false
       });
     });
+
+    it('should append household entities', () => {
+      const households = [
+        {
+          id: 'c82bca66-49ca-43b9-bd39-3e578e97f54a',
+          name: 'Household1 Name',
+          symbol: 'Household1 symbol',
+          description: 'Household1 description',
+          street: 'Household1 street',
+          city: 'Household1 city',
+          country: 'Household1 country',
+          zipCode: 'Household1 zipCode',
+          version: 1
+        },
+        {
+          id: '56a9f23d-ba39-455f-8cf9-80c9a3636349',
+          name: 'Household2 Name',
+          symbol: 'Household2 symbol',
+          description: 'Household2 description',
+          street: 'Household2 street',
+          city: 'Household2 city',
+          country: 'Household2 country',
+          zipCode: 'Household2 zipCode',
+          version: 1
+        }
+      ] as Household[];
+      const currentState = {
+        ...initialState,
+        appendData: true,
+        count: 4,
+        entities: households.reduce(
+          (entityMap, item) => ({
+            ...entityMap,
+            [item.id]: item
+          }),
+          {}
+        ),
+        ids: households.map(user => user.id),
+      };
+      const request = {
+        count: 4,
+        households: [
+          {
+            id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
+            name: 'Household3 Name',
+            symbol: 'Household3 symbol',
+            description: 'Household3 description',
+            street: 'Household3 street',
+            city: 'Household3 city',
+            country: 'Household3 country',
+            zipCode: 'Household3 zipCode',
+            version: 1
+          },
+          {
+            id: '55798c3b-5551-489b-9dd2-d7e59691a368',
+            name: 'Household4 Name',
+            symbol: 'Household4 symbol',
+            description: 'Household4 description',
+            street: 'Household4 street',
+            city: 'Household4 city',
+            country: 'Household4 country',
+            zipCode: 'Household4 zipCode',
+            version: 1
+          }
+        ] as Household[]
+      };
+      const expected = households.concat(request.households);
+      const action = new LoadHouseholdsSuccess(request);
+      const result = reducer(currentState, action);
+
+      expect(result).toEqual({
+        ...initialState,
+        count: 4,
+        entities: expected.reduce(
+          (entityMap, item) => ({
+            ...entityMap,
+            [item.id]: item
+          }),
+          {}
+        ),
+        ids: expected.map(user => user.id),
+        appendData: true
+      });
+    });
   });
 
   describe('HouseholdActionTypes.ApplyFilter', () => {
@@ -370,6 +455,19 @@ describe('HouseholdReducer', () => {
       expect(result).toEqual({
         ...initialState,
         filter: Object.assign({}, initialState.filter, request)
+      });
+    });
+  });
+
+  describe('HouseholdActionTypes.SetAppendData', () => {
+    it('shoudl set append Data', () => {
+      const expected = true;
+      const action = new SetAppendData(expected);
+      const result = reducer(initialState, action);
+
+      expect(result).toEqual({
+        ...initialState,
+        appendData: expected
       });
     });
   });
