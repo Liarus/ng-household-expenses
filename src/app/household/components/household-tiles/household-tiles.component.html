@@ -1,0 +1,37 @@
+<div fxLayout="column">
+  <div class="app-spinner-loading-shade" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div fxLayout="column" fxLayoutGap="2%" fxLayoutAlign="flex-start">
+    <ng-container *ngFor="let household of households">
+      <div fxFlex>
+        <mat-card>
+          <div fxLayout="column" fxLayoutGap="1%">
+            <mat-card-title>{{ household.name }}</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content fxLayout="column">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-card-subtitle>{{ household.symbol }}</mat-card-subtitle>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="column">
+                  <p>{{ household.description }}</p>
+                  <p>{{ household.street }}</p>
+                  <p>{{ household.city }}</p>
+                  <p>{{ household.country }}</p>
+                </div>
+              </mat-expansion-panel>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>EDIT</button>
+              <button mat-button>REMOVE</button>
+            </mat-card-actions>
+          </div>
+        </mat-card>
+      </div>
+    </ng-container>
+    <button mat-stroked-button color="primary" (click)="onLoadMore()">Load More</button>
+  </div>
+</div>
