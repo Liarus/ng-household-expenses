@@ -3,10 +3,34 @@
   height: 93vh !important;
 }
 
-.app-sidenav-content-compressed {
+.app-sidenav {
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s ease;
+}
+
+.app-sidenav-content-collapsed {
   margin-left: 65px !important;
 }
 
 .app-sidenav-content-expanded {
   margin-left: 165px !important;
+}
+
+.app-sidenav-container {
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s ease;
+}
+
+.app-nav-list {
+  overflow-x: hidden;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s ease;
+}
+
+.app-nav-list-expanded {
+  width: 165px !important;
+}
+
+.app-nav-list-collapsed {
+  width: 65px !important;
 }

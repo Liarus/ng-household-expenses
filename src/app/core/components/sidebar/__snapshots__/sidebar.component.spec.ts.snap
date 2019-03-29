@@ -30,7 +30,9 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
         class="mat-drawer-inner-container"
       >
         <mat-nav-list
-          class="mat-nav-list mat-list-base"
+          class="app-nav-list mat-nav-list mat-list-base app-nav-list-collapsed"
+          ng-reflect-klass="app-nav-list"
+          ng-reflect-ng-class="app-nav-list-collapsed"
           role="navigation"
         >
           
@@ -60,7 +62,12 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
               <div
                 class="mat-list-text"
               >
-                
+                <p
+                  class="mat-line"
+                  matline=""
+                >
+                  menuTitle1
+                </p>
               </div>
             </div>
           </a>
@@ -90,7 +97,12 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
               <div
                 class="mat-list-text"
               >
-                
+                <p
+                  class="mat-line"
+                  matline=""
+                >
+                  menuTitle2
+                </p>
               </div>
             </div>
           </a>
@@ -120,7 +132,12 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
               <div
                 class="mat-list-text"
               >
-                
+                <p
+                  class="mat-line"
+                  matline=""
+                >
+                  menuTitle3
+                </p>
               </div>
             </div>
           </a>
@@ -131,8 +148,9 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
       class="cdk-visually-hidden cdk-focus-trap-anchor"
     />
     <mat-sidenav-content
-      class="mat-drawer-content mat-sidenav-content app-sidenav-content-compressed"
-      ng-reflect-ng-class="app-sidenav-content-compressed"
+      class="app-sidenav mat-drawer-content mat-sidenav-content app-sidenav-content-collapsed"
+      ng-reflect-klass="app-sidenav"
+      ng-reflect-ng-class="app-sidenav-content-collapsed"
     />
     
   </mat-sidenav-container>
@@ -169,7 +187,9 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
         class="mat-drawer-inner-container"
       >
         <mat-nav-list
-          class="mat-nav-list mat-list-base"
+          class="app-nav-list mat-nav-list mat-list-base app-nav-list-expanded"
+          ng-reflect-klass="app-nav-list"
+          ng-reflect-ng-class="app-nav-list-expanded "
           role="navigation"
         >
           
@@ -199,9 +219,8 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
               <div
                 class="mat-list-text"
               >
-                
                 <p
-                  class="mat-line ng-star-inserted"
+                  class="mat-line"
                   matline=""
                 >
                   menuTitle1
@@ -235,9 +254,8 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
               <div
                 class="mat-list-text"
               >
-                
                 <p
-                  class="mat-line ng-star-inserted"
+                  class="mat-line"
                   matline=""
                 >
                   menuTitle2
@@ -271,9 +289,8 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
               <div
                 class="mat-list-text"
               >
-                
                 <p
-                  class="mat-line ng-star-inserted"
+                  class="mat-line"
                   matline=""
                 >
                   menuTitle3
@@ -288,7 +305,8 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
       class="cdk-visually-hidden cdk-focus-trap-anchor"
     />
     <mat-sidenav-content
-      class="mat-drawer-content mat-sidenav-content app-sidenav-content-expanded"
+      class="app-sidenav mat-drawer-content mat-sidenav-content app-sidenav-content-expanded"
+      ng-reflect-klass="app-sidenav"
       ng-reflect-ng-class="app-sidenav-content-expanded"
     />
     

@@ -17,7 +17,7 @@ exports[`ToolbarComponent should match snapshot with user 1`] = `
       fxlayout="row"
     >
       <button
-        class="mat-icon-button"
+        class="app-toolbar-btn-toggle mat-icon-button"
         id="toolbar-btn-toggle"
         mat-icon-button=""
       >

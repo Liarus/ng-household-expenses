@@ -3,16 +3,18 @@
       mode="side"
       [opened]="true"
     >
-      <mat-nav-list>
+      <mat-nav-list class="app-nav-list"
+        [ngClass]="(isExpanded === true) ? 'app-nav-list-expanded ' : 'app-nav-list-collapsed'"
+      >
         <a mat-list-item [routerLink]="item.url"
         *ngFor="let item of menuItems">
           <mat-icon mat-list-icon>{{ item.icon }}</mat-icon>
-          <p matLine *ngIf="isExpanded">{{ item.title }}</p>
+          <p matLine>{{ item.title }}</p>
         </a>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content
-      [ngClass]="(isExpanded==true) ? 'app-sidenav-content-expanded' : 'app-sidenav-content-compressed'"
+    <mat-sidenav-content class="app-sidenav"
+      [ngClass]="(isExpanded === true) ? 'app-sidenav-content-expanded' : 'app-sidenav-content-collapsed'"
     >
       <ng-content></ng-content>
     </mat-sidenav-content>

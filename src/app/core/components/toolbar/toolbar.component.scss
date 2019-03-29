@@ -6,3 +6,13 @@
   display: inline-block;
   vertical-align: middle;
 }
+
+.app-toolbar-btn-toggle {
+  transition: all 0.5s;
+  -webkit-transition: all 0.25s;
+}
+
+#toolbar-btn-toggle:hover{
+  transform: rotate(90deg);
+  color: #FF9900;
+}
