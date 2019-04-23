@@ -11,17 +11,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { reducers, metaReducers } from './store/reducers';
-import { CustomRouterStateSerializer } from './shared/helpers/routerState';
 import { environment } from '../environments/environment';
-import { AppConfigDev } from './shared/configs/appConfig.dev';
 import { AuthModule } from './auth/auth.module';
 import { HttpTokenInterceptor } from './auth/services/httpToken.interceptor';
 import { HttpAuthErrorInterceptor } from './auth/services/httpAuthError.interceptor';
-import { HttpRequestHeaderInterceptor } from './shared/services/httpRequestHeader.interceptor';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { MaterialModule } from './material/material.module';
+import { HttpRequestHeaderInterceptor } from './core/interceptors/httpRequestHeader.interceptor';
+import { AppConfigDev } from './core/configs/appConfig.dev';
+import { CustomRouterStateSerializer } from './store/reducers/router.reducer';
 
 const PROVIDERS = [
 ];

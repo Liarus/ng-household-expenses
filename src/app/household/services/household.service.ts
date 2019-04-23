@@ -3,7 +3,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AppConfig } from '../../shared/models/appConfig.model';
+import { AppConfig } from '../../core/configs/appConfig.model';
 import { CreateHousehold } from './../models/requests/createHousehold.model';
 import { ModifyHousehold } from './../models/requests/modifyHousehold.model';
 import { HouseholdSorting } from '../household.enum';

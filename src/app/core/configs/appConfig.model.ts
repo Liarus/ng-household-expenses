@@ -1,4 +1,4 @@
-import { RunMode } from '../enums/runMode.enum';
+import { RunMode } from '../core.enum';
 
 export interface AppConfig {
   BASE_URL: string;

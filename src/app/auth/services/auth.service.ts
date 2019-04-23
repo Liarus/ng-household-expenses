@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AppConfig } from '../../shared/models/appConfig.model';
+import { AppConfig } from '../../core/configs/appConfig.model';
 import { SignInResponse } from '../models/responses/signInResponse.model';
 import { LoginRequest } from '../models/requests/loginRequest.model';
 

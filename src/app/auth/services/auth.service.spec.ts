@@ -5,9 +5,9 @@ import { cold } from 'jasmine-marbles';
 
 import { SignInResponse } from '../models/responses/signInResponse.model';
 import { AuthService } from './auth.service';
-import { RunMode } from '../../shared/enums/runMode.enum';
-import { AppConfig } from '../../shared/models/appConfig.model';
+import { AppConfig } from '../../core/configs/appConfig.model';
 import { LoginRequest } from '../models/requests/loginRequest.model';
+import { RunMode } from '../../core/core.enum';
 
 describe('AuthService', () => {
   let service: AuthService;

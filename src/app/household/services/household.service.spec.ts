@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 
-import { RunMode } from '../../shared/enums/runMode.enum';
-import { AppConfig } from '../../shared/models/appConfig.model';
+import { AppConfig } from '../../core/configs/appConfig.model';
 import { Household } from '../models/household.model';
 import { CreateHousehold } from '../models/requests/createHousehold.model';
 import { ModifyHousehold } from '../models/requests/modifyHousehold.model';
 import { HouseholdService } from './household.service';
 import { HouseholdFilter } from '../models/householdFilter.model';
+import { RunMode } from '../../core/core.enum';
 
 describe('HouseholdService', () => {
   let service: HouseholdService;
