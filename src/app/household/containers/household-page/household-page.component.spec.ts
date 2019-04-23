@@ -49,10 +49,8 @@ describe('HouseholdPageComponent', () => {
   beforeEach(() => {
     store = TestBed.get(Store);
     store.setState({
-      core: {
-        layout: {
-          isMobile: false
-        }
+      layout: {
+        isMobile: false
       },
       auth: {
         status: {
@@ -165,10 +163,8 @@ describe('HouseholdPageComponent', () => {
   it('should dispatch InitHouseholds action on isMobile change', () => {
     const expected = new HouseholdActions.InitHouseholds();
     store.setState({
-      core: {
-        layout: {
-          isMobile: true
-        }
+      layout: {
+        isMobile: true
       },
       auth: {
         status: {

@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 
 import * as fromAuth from '../../../auth/store/reducers';
 import * as fromRoot from '../../../store/reducers';
-import * as fromCore from '../../../core/store/reducers';
+import * as fromLayout from '../../../layout/store/reducers';
 import * as fromHousehold from '../../store/reducers';
 import * as HouseholdActions from '../../store/actions/household.actions';
 import { User } from '../../../auth/models/user.model';
@@ -35,10 +35,10 @@ import { HouseholdFilter } from '../../models/householdFilter.model';
     </div>
   `
 })
-export class HouseholdPageComponent implements OnInit, OnDestroy {
+export class HouseholdPageComponent implements OnDestroy {
   loggedUser$ = this.store.pipe(select(fromAuth.getLoggedUser));
   isLoading$ = this.store.pipe(select(fromHousehold.getHouseholdsLoading));
-  isMobile$ = this.store.pipe(select(fromCore.getIsMobile));
+  isMobile$ = this.store.pipe(select(fromLayout.getIsMobile));
   household$ = this.store.pipe(select(fromHousehold.getAllHouseholds));
   filter$ = this.store.pipe(select(fromHousehold.getHouseholdFilter));
   count$ = this.store.pipe(select(fromHousehold.getHouseholdsCount));
@@ -50,16 +50,13 @@ export class HouseholdPageComponent implements OnInit, OnDestroy {
     this.loggedUser$
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((loggedIn: User) => {
-        this.userId = loggedIn.id;
+        this.userId = loggedIn ? loggedIn.id : undefined;
       });
     this.isMobile$
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
         this.store.dispatch(new HouseholdActions.InitHouseholds());
       });
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy(): void {

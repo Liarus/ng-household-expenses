@@ -16,6 +16,13 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         >Take Me Home</button>
       </mat-card-actions>
     </mat-card>
-  `
+  `,
+  styles: [
+    `
+      :host {
+        text-align: center;
+      }
+    `,
+  ]
 })
-export class PageNotFoundComponent { }
+export class PageNotFoundComponent {}

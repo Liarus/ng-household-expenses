@@ -1,19 +1,18 @@
-/// <reference types="jest" />
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Store, StoreModule } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule, Store } from '@ngrx/store';
 
-import { AppComponent } from './app.component';
-import { ToolbarComponent, SidebarComponent } from '../../components';
-import { MaterialModule } from '../../../material/material.module';
+import { LayoutPageComponent } from './layout-page.component';
 import { MockStore } from '../../../shared/tests/mockStore';
+import { MaterialModule } from '../../../material/material.module';
+import { SidebarComponent, ToolbarComponent } from '../../components';
 import * as LayoutActions from '../../store/actions/layout.actions';
 import * as AuthActions from '../../../auth/store/actions/auth.actions';
 
-describe('RootComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+describe('LayoutPageComponent', () => {
+  let component: LayoutPageComponent;
+  let fixture: ComponentFixture<LayoutPageComponent>;
 
   let store: MockStore<any>;
 
@@ -26,11 +25,13 @@ describe('RootComponent', () => {
         StoreModule.forRoot({})
       ],
       declarations: [
-        AppComponent,
+        LayoutPageComponent,
         ToolbarComponent,
         SidebarComponent
       ],
-      providers: [{ provide: Store, useClass: MockStore }]
+      providers: [
+        { provide: Store, useClass: MockStore }
+      ]
     })
     .compileComponents();
   }));
@@ -38,33 +39,31 @@ describe('RootComponent', () => {
   beforeEach(() => {
     store = TestBed.get(Store);
     store.setState({
-      core: {
-        layout: {
-          menuItems: [
-            {
-              url: '/1',
-              title: 'menuTitle1',
-              icon: 'home',
-              permissions: ['CanSeeUsers'],
-              hidden: false
-            },
-            {
-              url: '/2',
-              title: 'menuTitle2',
-              icon: 'home',
-              permissions: ['CanSeeUsers'],
-              hidden: false
-            },
-            {
-              url: '/3',
-              title: 'menuTitle3',
-              icon: 'home',
-              permissions: ['CanSeeUsers'],
-              hidden: false
-            }
-          ],
-          isSidebarExpanded: true
-        }
+      layout: {
+        menuItems: [
+          {
+            url: '/1',
+            title: 'menuTitle1',
+            icon: 'home',
+            permissions: ['CanSeeUsers'],
+            hidden: false
+          },
+          {
+            url: '/2',
+            title: 'menuTitle2',
+            icon: 'home',
+            permissions: ['CanSeeUsers'],
+            hidden: false
+          },
+          {
+            url: '/3',
+            title: 'menuTitle3',
+            icon: 'home',
+            permissions: ['CanSeeUsers'],
+            hidden: false
+          }
+        ],
+        isSidebarExpanded: true
       },
       auth: {
         status: {
@@ -75,7 +74,8 @@ describe('RootComponent', () => {
         }
       }
     });
-    fixture = TestBed.createComponent(AppComponent);
+
+    fixture = TestBed.createComponent(LayoutPageComponent);
     component = fixture.componentInstance;
     spyOn(store, 'dispatch');
     fixture.detectChanges();

@@ -10,7 +10,7 @@ import { cold, hot } from 'jasmine-marbles';
 import { AuthEffects } from './auth.effects';
 import { AuthService } from '../../services/auth.service';
 import { SignInResponse } from '../../models/responses/signInResponse.model';
-import { RefreshMenuItems } from '../../../core/store/actions/layout.actions';
+import { RefreshMenuItems } from '../../../layout/store/actions/layout.actions';
 import {
   Login,
   LoginSuccess,

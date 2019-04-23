@@ -9,7 +9,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './core/containers';
 import { CoreModule } from './core/core.module';
 import { reducers, metaReducers } from './store/reducers';
 import { CustomRouterStateSerializer } from './shared/helpers/routerState';
@@ -19,6 +18,10 @@ import { AuthModule } from './auth/auth.module';
 import { HttpTokenInterceptor } from './auth/services/httpToken.interceptor';
 import { HttpAuthErrorInterceptor } from './auth/services/httpAuthError.interceptor';
 import { HttpRequestHeaderInterceptor } from './shared/services/httpRequestHeader.interceptor';
+import { AppComponent } from './app.component';
+import { LayoutModule } from './layout/layout.module';
+import { PageNotFoundComponent } from './page-not-found.component';
+import { MaterialModule } from './material/material.module';
 
 const PROVIDERS = [
 ];
@@ -31,7 +34,9 @@ const PROVIDERS = [
     ToastrModule.forRoot(),
     CoreModule,
     AuthModule,
+    LayoutModule,
     AppRoutingModule,
+    MaterialModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
@@ -48,6 +53,10 @@ const PROVIDERS = [
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpAuthErrorInterceptor, multi: true },
     { provide: 'AppConfig', useClass: AppConfigDev }
+  ],
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent
   ],
   bootstrap: [AppComponent]
 })

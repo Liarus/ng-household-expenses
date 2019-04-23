@@ -15,7 +15,7 @@ import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import * as fromRoot from '../../../store/reducers';
 import * as fromHousehold from '../reducers';
 import * as fromAuth from '../../../auth/store/reducers';
-import * as fromCore from '../../../core/store/reducers';
+import * as fromLayout from '../../../layout/store/reducers';
 import {
   HouseholdActionTypes,
   AddHousehold,
@@ -116,7 +116,7 @@ export class HouseholdEffects {
       switchMap(() =>
         combineLatest(
           this.store$.select(fromAuth.getLoggedUser),
-          this.store$.select(fromCore.getIsMobile)
+          this.store$.select(fromLayout.getIsMobile)
         ).pipe(
           first(),
         )

@@ -2,7 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageNotFoundComponent } from './page-not-found.component';
-import { MaterialModule } from '../../../material/material.module';
+import { MaterialModule } from './material/material.module';
 
 describe('PageNotFoundComponent', () => {
   let component: PageNotFoundComponent;
@@ -24,9 +24,5 @@ describe('PageNotFoundComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should match snapshot', () => {
-    expect(fixture).toMatchSnapshot();
   });
 });

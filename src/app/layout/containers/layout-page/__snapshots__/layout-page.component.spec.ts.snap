@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RootComponent should match snapshot 1`] = `
-<app-root
+exports[`LayoutPageComponent should match snapshot 1`] = `
+<app-layout-page
   isSidebarExpanded$={[Function Store]}
   menuItems$={[Function Store]}
   store={[Function MockStore]}
@@ -250,5 +250,5 @@ exports[`RootComponent should match snapshot 1`] = `
       
     </mat-sidenav-container>
   </app-sidebar>
-</app-root>
+</app-layout-page>
 `;

@@ -503,10 +503,8 @@ describe('HouseholdEffects', () => {
   describe('initHouseholds', () => {
     it('should AppendData and ApplyFilter if mobile', () => {
       store.setState({
-        core: {
-          layout: {
-            isMobile: true
-          }
+        layout: {
+          isMobile: true
         },
         auth: {
           status: {
@@ -538,10 +536,8 @@ describe('HouseholdEffects', () => {
         name: 'UserName'
       } as User;
       store.setState({
-        core: {
-          layout: {
-            isMobile: false
-          }
+        layout: {
+          isMobile: false
         },
         auth: {
           status: {

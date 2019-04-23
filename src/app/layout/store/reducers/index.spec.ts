@@ -9,15 +9,13 @@ import {
 } from './';
 import { MenuItem } from '../../models/menuItem.model';
 
-describe('Core Selectors', () => {
+describe('Layout Selectors', () => {
   describe('getIsSidebarExpanded', () => {
     it('should return if sidebar expanded', () => {
       const expectedIsExpanded = true;
       const state = {
-        core: {
-          layout: {
-            isSidebarExpanded: expectedIsExpanded
-          }
+        layout: {
+          isSidebarExpanded: expectedIsExpanded
         }
       };
 
@@ -29,10 +27,8 @@ describe('Core Selectors', () => {
     it('should return windows width', () => {
       const expectedWidth = 800;
       const state = {
-        core: {
-          layout: {
-            windowWidth: expectedWidth
-          }
+        layout: {
+          windowWidth: expectedWidth
         }
       };
 
@@ -44,10 +40,8 @@ describe('Core Selectors', () => {
     it('should return windows height', () => {
       const expectedHeight = 600;
       const state = {
-        core: {
-          layout: {
-            windowHeight: expectedHeight
-          }
+        layout: {
+          windowHeight: expectedHeight
         }
       };
 
@@ -59,10 +53,8 @@ describe('Core Selectors', () => {
     it('should return if mobile', () => {
       const expectedIsMobile = true;
       const state = {
-        core: {
-          layout: {
-            isMobile: expectedIsMobile
-          }
+        layout: {
+          isMobile: expectedIsMobile
         }
       };
 
@@ -96,10 +88,8 @@ describe('Core Selectors', () => {
         }
       ];
       const state = {
-        core: {
-          layout: {
-            menuItems: expectedItems
-          }
+        layout: {
+          menuItems: expectedItems
         }
       };
 

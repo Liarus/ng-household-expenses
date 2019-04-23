@@ -3,9 +3,9 @@ import { Observable, of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 
-import { Menu } from '../menu.const';
 import { MenuItem } from '../models/menuItem.model';
 import * as fromAuth from '../../auth/store/reducers';
+import { Menu } from '../layout-consts';
 
 @Injectable({
     providedIn: 'root',
@@ -26,7 +26,7 @@ export class MenuService {
     let menu = [];
     if (!isLoggedId) {
       menu = [{
-        url: '/',
+        url: '/login',
         title: 'Log in',
         icon: 'power_settings_new',
         permissions: [],

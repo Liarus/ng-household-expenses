@@ -57,7 +57,7 @@ Array [
     "icon": "power_settings_new",
     "permissions": Array [],
     "title": "Log in",
-    "url": "/",
+    "url": "/login",
   },
 ]
 `;

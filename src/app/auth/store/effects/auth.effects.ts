@@ -14,7 +14,7 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/requests/loginRequest.model';
 import { HttpError } from '../../../shared/helpers/httpError';
-import { RefreshMenuItems } from '../../../core/store/actions/layout.actions';
+import { RefreshMenuItems } from '../../../layout/store/actions/layout.actions';
 import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 
 @Injectable()
