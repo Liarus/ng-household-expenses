@@ -7,6 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HouseholdDialogComponent } from './household-dialog.component';
 import { MaterialModule } from '../../../material/material.module';
 import { HouseholdDialog } from '../../models/householdDialog.model';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('HouseholdDialogComponent', () => {
   let component: HouseholdDialogComponent;
@@ -14,18 +15,8 @@ describe('HouseholdDialogComponent', () => {
   let matDialogRef: MatDialogRef<HouseholdDialogComponent>;
 
   const matDialogData: HouseholdDialog = {
-    userId: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-    household: {
-      id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-      name: 'Household1 Name',
-      symbol: 'Household1 symbol',
-      description: 'Household1 description',
-      street: 'Household1 street',
-      city: 'Household1 city',
-      country: 'Household1 country',
-      zipCode: 'Household1 zipCode',
-      version: 1
-    }
+    userId: TEST_DATA.auth.userId,
+    household: TEST_DATA.household.household
   };
 
   beforeEach(async(() => {
@@ -65,16 +56,16 @@ describe('HouseholdDialogComponent', () => {
 
   it('should should match snapshot if address invalid', () => {
     component.form.setValue({
-      userId: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-      id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-      name: 'Household1 Name',
-      symbol: 'Household1 symbol',
-      description: 'Household1 description',
+      userId: TEST_DATA.auth.userId,
+      id: TEST_DATA.household.household.id,
+      name: TEST_DATA.household.household.name,
+      symbol: TEST_DATA.household.household.symbol,
+      description: TEST_DATA.household.household.description,
       street: '',
       city: null,
-      country: 'Household1 country',
-      zipCode: 'Household1 zipCode',
-      version: 1
+      country: TEST_DATA.household.household.country,
+      zipCode: TEST_DATA.household.household.zipCode,
+      version: TEST_DATA.household.household.version
     });
 
     component.form.controls['city'].markAsTouched();

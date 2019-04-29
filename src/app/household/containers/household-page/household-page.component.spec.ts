@@ -12,16 +12,14 @@ import { HouseholdListComponent, HouseholdTilesComponent } from '../../component
 import { User } from '../../../auth/models/user.model';
 import * as HouseholdActions from '../../store/actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
+import { TEST_DATA } from 'src/app/shared/tests/test-data';
 
 describe('HouseholdPageComponent', () => {
   let component: HouseholdPageComponent;
   let fixture: ComponentFixture<HouseholdPageComponent>;
 
   let store: MockStore<any>;
-  const user: User = {
-    id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-    name: 'UserName'
-  };
+  const user = TEST_DATA.auth.user as User;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -127,7 +125,7 @@ describe('HouseholdPageComponent', () => {
   });
 
   it('should dispatch OpenEditHouseholdDialog action', () => {
-    const householdId = '550416ea-b523-4468-ae10-ea07d35eb9f0';
+    const householdId = TEST_DATA.household.household.id;
     const expected = new HouseholdActions.OpenEditHouseholdDialog({
       userId: user.id,
       householdId: householdId
@@ -139,7 +137,7 @@ describe('HouseholdPageComponent', () => {
   });
 
   it('should dispatch RemoveHousehold action', () => {
-    const householdId = '550416ea-b523-4468-ae10-ea07d35eb9f0';
+    const householdId = TEST_DATA.household.household.id;
     const expected = new HouseholdActions.RemoveHousehold({
       householdId: householdId
     });

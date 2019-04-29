@@ -10,6 +10,7 @@ import { ModifyHousehold } from '../models/requests/modifyHousehold.model';
 import { HouseholdService } from './household.service';
 import { HouseholdFilter } from '../models/householdFilter.model';
 import { RunMode } from '../../core/core.enum';
+import { TEST_DATA } from '../../shared/tests/test-data';
 
 describe('HouseholdService', () => {
   let service: HouseholdService;
@@ -19,7 +20,7 @@ describe('HouseholdService', () => {
     BASE_URL: 'http://www.test',
     RunMode: RunMode.Test
   } as AppConfig;
-  const userId = '550416ea-b523-4468-ae10-ea07d35eb9f0';
+  const userId = TEST_DATA.auth.userId;
   const householdEndpoint = '/api/household';
   const userEndpoint = '/api/user';
 
@@ -49,18 +50,7 @@ describe('HouseholdService', () => {
   });
 
   it('should create a household', () => {
-    const request = {
-      userId: userId,
-      id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-      name: 'Household1 Name',
-      symbol: 'Household1 symbol',
-      description: 'Household1 description',
-      street: 'Household1 street',
-      city: 'Household1 city',
-      country: 'Household1 country',
-      zipCode: 'Household1 zipCode',
-      version: 1
-    } as CreateHousehold;
+    const request = TEST_DATA.household.createHousehold as CreateHousehold;
     const expected = cold('-a|', { a: request });
     http.post = jest.fn(() => expected);
 
@@ -71,37 +61,8 @@ describe('HouseholdService', () => {
   });
 
   it('should retreive all households for a user', () => {
-    const households = [
-      {
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      },
-      {
-        id: '55798c3b-5551-489b-9dd2-d7e59691a368',
-        name: 'Household2 Name',
-        symbol: 'Household2 symbol',
-        description: 'Household2 description',
-        street: 'Household2 street',
-        city: 'Household2 city',
-        country: 'Household2 country',
-        zipCode: 'Household2 zipCode',
-        version: 1
-      }
-    ] as Household[];
-    const householdFilter = {
-      pageNumber: 10,
-      pageSize: 10,
-      searchText: 'test',
-      sortingField: 'symbol',
-      sortDirection: 'desc'
-    } as HouseholdFilter;
+    const households = TEST_DATA.household.households as Household[];
+    const householdFilter = TEST_DATA.household.filter as HouseholdFilter;
     const expected = cold('-a|', { a: households });
     http.get = jest.fn(() => expected);
 
@@ -112,17 +73,7 @@ describe('HouseholdService', () => {
   });
 
   it('should update a household', () => {
-    const household = {
-      id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-      name: 'Household1 Name',
-      symbol: 'Household1 symbol',
-      description: 'Household1 description',
-      street: 'Household1 street',
-      city: 'Household1 city',
-      country: 'Household1 country',
-      zipCode: 'Household1 zipCode',
-      version: 1
-    } as ModifyHousehold;
+    const household = TEST_DATA.household.modifyHousehold as ModifyHousehold;
     const expected = cold('-a|', { a: household });
     http.put = jest.fn(() => expected);
 
@@ -134,7 +85,7 @@ describe('HouseholdService', () => {
   });
 
   it('should remove a household', () => {
-    const householdId = '550416ea-b523-4468-ae10-ea07d35eb9f0';
+    const householdId = TEST_DATA.household.household.id;
     const expected = cold('-a|', { a: householdId });
     http.delete = jest.fn(() => expected);
 

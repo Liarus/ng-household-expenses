@@ -59,7 +59,7 @@ exports[`LayoutPageComponent should match snapshot 1`] = `
             class="app-toolbar-user-name"
             fxshow.xs="false"
           >
-            UserName
+            testUserName@test.com
           </span>
         </div>
         <button

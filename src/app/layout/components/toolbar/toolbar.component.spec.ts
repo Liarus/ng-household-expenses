@@ -6,15 +6,13 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { User } from '../../../auth/models/user.model';
 import { ToolbarComponent } from './toolbar.component';
 import { MaterialModule } from '../../../material/material.module';
+import { TEST_DATA } from 'src/app/shared/tests/test-data';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
 
-  const user: User = {
-    id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-    name: 'UserName'
-  };
+  const user = TEST_DATA.auth.user as User;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

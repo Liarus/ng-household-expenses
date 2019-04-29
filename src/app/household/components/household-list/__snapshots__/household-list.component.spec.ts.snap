@@ -288,7 +288,7 @@ exports[`HouseholdListComponent should match snapshot when with households 1`] =
             class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
             role="gridcell"
           >
-             Household1 Name 
+             Household1 name 
           </mat-cell>
           <mat-cell
             class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
@@ -361,7 +361,7 @@ exports[`HouseholdListComponent should match snapshot when with households 1`] =
             class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
             role="gridcell"
           >
-             Household2 Name 
+             Household2 name 
           </mat-cell>
           <mat-cell
             class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"
@@ -434,7 +434,7 @@ exports[`HouseholdListComponent should match snapshot when with households 1`] =
             class="mat-cell cdk-column-name mat-column-name ng-star-inserted"
             role="gridcell"
           >
-             Household3 Name 
+             Household3 name 
           </mat-cell>
           <mat-cell
             class="mat-cell cdk-column-symbol mat-column-symbol ng-star-inserted"

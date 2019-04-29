@@ -9,35 +9,14 @@ import { LayoutEffects } from './layout.effects';
 import { MenuService } from '../../services/menu.service';
 import { MenuItem } from '../../models/menuItem.model';
 import { RefreshMenuItems, ApplyMenuItems } from '../actions/layout.actions';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('LayoutEffects', () => {
   let effects: LayoutEffects;
   let actions$: Observable<any>;
   let menuService: MenuService;
 
-  const menuItems = [
-    {
-      url: '/1',
-      title: 'menuTitle1',
-      icon: 'home',
-      permissions: ['CanSeeUsers'],
-      hidden: false
-    },
-    {
-      url: '/2',
-      title: 'menuTitle2',
-      icon: 'home',
-      permissions: ['CanSeeUsers'],
-      hidden: false
-    },
-    {
-      url: '/3',
-      title: 'menuTitle3',
-      icon: 'home',
-      permissions: ['CanSeeUsers'],
-      hidden: false
-    }
-  ] as MenuItem[];
+  const menuItems = TEST_DATA.layout.menuItems as MenuItem[];
 
   beforeEach(() => {
     TestBed.configureTestingModule({

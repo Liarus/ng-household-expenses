@@ -8,6 +8,7 @@ import {
   getAccessToken
 } from './';
 import { User } from '../../models/user.model';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('Auth Selectors', () => {
   describe('getLoggedIn', () => {
@@ -57,10 +58,7 @@ describe('Auth Selectors', () => {
 
   describe('getLoggedUser', () => {
     it('should return logged user', () => {
-      const expectedUser: User = {
-        id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-        name: 'UserName'
-      };
+      const expectedUser = TEST_DATA.auth.user as User;
       const state = {
         auth: {
           status: {
@@ -88,7 +86,7 @@ describe('Auth Selectors', () => {
 
   describe('getAccessToken', () => {
     it('should return token', () => {
-      const expectedToken = 'testToken';
+      const expectedToken = TEST_DATA.auth.accessToken;
       const state = {
         auth: {
           status: {

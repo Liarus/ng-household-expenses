@@ -9,6 +9,7 @@ import {
 } from './';
 import { Household } from '../../models/household.model';
 import { HouseholdFilter } from '../../models/householdFilter.model';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('Household Selectors', () => {
   describe('getHouseholdsLoading', () => {
@@ -39,17 +40,7 @@ describe('Household Selectors', () => {
 
   describe('getHousehold', () => {
     it('should return household', () => {
-      const expectedHousehold: Household = {
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      };
+      const expectedHousehold = TEST_DATA.household.household as Household;
       const households = {
         '550416ea-b523-4468-ae10-ea07d35eb9f0': expectedHousehold,
         '55798c3b-5551-489b-9dd2-d7e59691a368': {
@@ -96,13 +87,7 @@ describe('Household Selectors', () => {
 
   describe('getFilter', () => {
     it('should return filter', () => {
-      const expectedFilter = {
-        pageNumber: 10,
-        pageSize: 10,
-        searchText: 'test',
-        sortingField: 'symbol',
-        sortDirection: 'desc'
-      } as HouseholdFilter;
+      const expectedFilter  = TEST_DATA.household.filter as HouseholdFilter;
       const state = {
         households: {
           filter: expectedFilter

@@ -35,6 +35,7 @@ import {
 } from '../actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 import { User } from '../../../auth/models/user.model';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('HouseholdEffects', () => {
   let effects: HouseholdEffects;
@@ -94,19 +95,9 @@ describe('HouseholdEffects', () => {
 
   describe('addHousehold$', () => {
     it('should return AddHouseholdSuccess on AddHousehold when success', () => {
-      const household = {
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      } as Household;
+      const household = TEST_DATA.household.household as Household;
       const action = new AddHousehold({
-        userId: '550416ea-b523-4468-ae10-ea07d35eb9f0',
+        userId: TEST_DATA.auth.userId,
         id: household.id,
         name: household.name,
         symbol: household.symbol,
@@ -130,16 +121,16 @@ describe('HouseholdEffects', () => {
     it('should return AddHouseholdFail on AddHousehold when error', () => {
       const error = 'error occured';
       const action = new AddHousehold({
-        userId: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
+        userId: TEST_DATA.auth.userId,
+        id: TEST_DATA.household.household.id,
+        name: TEST_DATA.household.household.name,
+        symbol: TEST_DATA.household.household.symbol,
+        description: TEST_DATA.household.household.description,
+        street: TEST_DATA.household.household.street,
+        city: TEST_DATA.household.household.city,
+        country: TEST_DATA.household.household.country,
+        zipCode: TEST_DATA.household.household.zipCode,
+        version: TEST_DATA.household.household.version
       });
       const completion = new AddHouseholdFail({
         message: error
@@ -156,17 +147,7 @@ describe('HouseholdEffects', () => {
 
   describe('updateHousehold$', () => {
     it('should return UpdateHouseholdSuccess on UpdateHousehold when success', () => {
-      const household = {
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      } as Household;
+      const household = TEST_DATA.household.household as Household;
       const action = new UpdateHousehold({
         id: household.id,
         name: household.name,
@@ -194,15 +175,15 @@ describe('HouseholdEffects', () => {
     it('should return UpdateHouseholdFail on UpdateHousehold when error', () => {
       const error = 'error occured';
       const action = new UpdateHousehold({
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
+        id: TEST_DATA.household.household.id,
+        name: TEST_DATA.household.household.name,
+        symbol: TEST_DATA.household.household.symbol,
+        description: TEST_DATA.household.household.description,
+        street: TEST_DATA.household.household.street,
+        city: TEST_DATA.household.household.city,
+        country: TEST_DATA.household.household.country,
+        zipCode: TEST_DATA.household.household.zipCode,
+        version: TEST_DATA.household.household.version
       });
       const completion = new UpdateHouseholdFail({
         message: error
@@ -220,7 +201,7 @@ describe('HouseholdEffects', () => {
   describe('deleteHousehold$', () => {
     it('should return RemoveHouseholdSuccess on RemoveHousehold when success', () => {
       const request = {
-        householdId: '550416ea-b523-4468-ae10-ea07d35eb9f0'
+        householdId: TEST_DATA.household.household.id
       };
       const action = new RemoveHousehold(request);
       const completion = new RemoveHouseholdSuccess(request);
@@ -236,7 +217,7 @@ describe('HouseholdEffects', () => {
     it('should return RemoveHouseholdFail on RemoveHousehold when error', () => {
       const error = 'error occured';
       const action = new RemoveHousehold({
-        householdId: '550416ea-b523-4468-ae10-ea07d35eb9f0'
+        householdId: TEST_DATA.household.household.id
       });
       const completion = new RemoveHouseholdFail({
         message: error
@@ -255,54 +236,14 @@ describe('HouseholdEffects', () => {
     beforeEach(() => {
       store.setState({
         households: {
-          filter: {
-            pageNumber: 10,
-            pageSize: 10,
-            searchText: 'test',
-            sortingField: 'symbol',
-            sortDirection: 'desc'
-          } as HouseholdFilter
+          filter: TEST_DATA.household.filter as HouseholdFilter
         }
       });
     });
     it('should return LoadHouseholdsSuccess with households on LoadHouseholds when success', () => {
-      const households = [
-        {
-          id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-          name: 'Household1 Name',
-          symbol: 'Household1 symbol',
-          description: 'Household1 description',
-          street: 'Household1 street',
-          city: 'Household1 city',
-          country: 'Household1 country',
-          zipCode: 'Household1 zipCode',
-          version: 1
-        },
-        {
-          id: '55798c3b-5551-489b-9dd2-d7e59691a368',
-          name: 'Household2 Name',
-          symbol: 'Household2 symbol',
-          description: 'Household2 description',
-          street: 'Household2 street',
-          city: 'Household2 city',
-          country: 'Household2 country',
-          zipCode: 'Household2 zipCode',
-          version: 1
-        },
-        {
-          id: 'b28e143a-a64a-469a-9704-a294cc7356cf',
-          name: 'Household3 Name',
-          symbol: 'Household3 symbol',
-          description: 'Household3 description',
-          street: 'Household3 street',
-          city: 'Household3 city',
-          country: 'Household3 country',
-          zipCode: 'Household3 zipCode',
-          version: 1
-        }
-      ] as Household[];
+      const households = TEST_DATA.household.households as Household[];
       const action = new LoadHouseholds({
-        userId: '550416ea-b523-4468-ae10-ea07d35eb9f0'
+        userId: TEST_DATA.auth.userId
       });
       const completion = new LoadHouseholdsSuccess({
         count: households.length,
@@ -320,7 +261,7 @@ describe('HouseholdEffects', () => {
     it('should return LoadHouseholdsFail on LoadHouseholds when error', () => {
       const error = 'error occured';
       const action = new LoadHouseholds({
-        userId: '550416ea-b523-4468-ae10-ea07d35eb9f0'
+        userId: TEST_DATA.auth.userId
       });
       const completion = new LoadHouseholdsFail({
         message: error
@@ -337,18 +278,7 @@ describe('HouseholdEffects', () => {
 
   describe('openCreateDialog$', () => {
     it('should return AddHousehold on OpenCreateHouseholdDialog when request provided', () => {
-      const request = {
-        userId: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      } as CreateHousehold;
+      const request = TEST_DATA.household.createHousehold as CreateHousehold;
       const action = new OpenCreateHouseholdDialog({
         userId: request.id,
       });
@@ -393,19 +323,9 @@ describe('HouseholdEffects', () => {
     });
 
     it('should return UpdateHousehold on OpenEditHouseholdDialog when request provided', () => {
-      const request = {
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      } as ModifyHousehold;
+      const request = TEST_DATA.household.modifyHousehold as ModifyHousehold;
       const action = new OpenEditHouseholdDialog({
-        userId: '550416ea-b523-4468-ae10-ea07d35eb9f0',
+        userId: TEST_DATA.auth.userId,
         householdId: request.id
       });
       const completion = new UpdateHousehold(request);
@@ -479,10 +399,7 @@ describe('HouseholdEffects', () => {
 
   describe('applyFilter$', () => {
     it('should return LoadHouseholds', () => {
-      const loggedUser = {
-        id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-        name: 'UserName'
-      } as User;
+      const loggedUser = TEST_DATA.auth.user as User;
       store.setState({
         auth: {
           status: {
@@ -508,10 +425,7 @@ describe('HouseholdEffects', () => {
         },
         auth: {
           status: {
-            user: {
-              id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-              name: 'UserName'
-            } as User
+            user: TEST_DATA.auth.user as User
           }
         }
       });
@@ -531,10 +445,7 @@ describe('HouseholdEffects', () => {
     });
 
     it('should AppendData and LoadHouseholds if desktop', () => {
-      const loggedUser = {
-        id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-        name: 'UserName'
-      } as User;
+      const loggedUser = TEST_DATA.auth.user as User;
       store.setState({
         layout: {
           isMobile: false
@@ -553,6 +464,6 @@ describe('HouseholdEffects', () => {
       const expected = cold('-(bc)', { b: completion1, c: completion2 });
 
       expect(effects.initHouseholds$).toBeObservable(expected);
-    })
-  })
+    });
+  });
 });

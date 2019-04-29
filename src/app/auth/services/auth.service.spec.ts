@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { AppConfig } from '../../core/configs/appConfig.model';
 import { LoginRequest } from '../models/requests/loginRequest.model';
 import { RunMode } from '../../core/core.enum';
+import { TEST_DATA } from '../../shared/tests/test-data';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -45,15 +46,8 @@ describe('AuthService', () => {
   });
 
   it('should log in', () => {
-    const request = {
-      username: 'testUsername',
-      password: 'testPassword'
-    } as LoginRequest;
-    const response = {
-      userId: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-      userName: request.username,
-      accessToken: 'testAccessToken'
-    } as SignInResponse;
+    const request = TEST_DATA.auth.loginRequest as LoginRequest;
+    const response = TEST_DATA.auth.signInResponse as SignInResponse;
 
     const expected = cold('-a|', { a: response });
     http.post = jest.fn(() => expected);

@@ -10,6 +10,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { MockStore } from '../../../shared/tests/mockStore';
 import * as AuthActions from '../../store/actions/auth.actions';
 import { LoginRequest } from '../../models/requests/loginRequest.model';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -59,10 +60,7 @@ describe('LoginPageComponent', () => {
   });
 
   it('should dispatch Login action', () => {
-    const credentials: LoginRequest = {
-      username: 'user@test.comn',
-      password: 'test'
-    };
+    const credentials = TEST_DATA.auth.loginRequest as LoginRequest;
     const expected = new AuthActions.Login(credentials);
 
     component.onSubmit(credentials);

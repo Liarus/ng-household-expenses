@@ -7,34 +7,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './sidebar.component';
 import { MaterialModule } from '../../../material/material.module';
 import { MenuItem } from '../../models/menuItem.model';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
   let fixture: ComponentFixture<SidebarComponent>;
 
-  const menuItems: MenuItem[] = [
-    {
-      url: '/1',
-      title: 'menuTitle1',
-      icon: 'home',
-      permissions: ['CanSeeUsers'],
-      hidden: false
-    },
-    {
-      url: '/2',
-      title: 'menuTitle2',
-      icon: 'home',
-      permissions: ['CanSeeUsers'],
-      hidden: false
-    },
-    {
-      url: '/3',
-      title: 'menuTitle3',
-      icon: 'home',
-      permissions: ['CanSeeUsers'],
-      hidden: false
-    },
-  ];
+  const menuItems = TEST_DATA.layout.menuItems as MenuItem[];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

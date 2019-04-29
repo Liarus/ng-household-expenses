@@ -9,6 +9,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { SidebarComponent, ToolbarComponent } from '../../components';
 import * as LayoutActions from '../../store/actions/layout.actions';
 import * as AuthActions from '../../../auth/store/actions/auth.actions';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('LayoutPageComponent', () => {
   let component: LayoutPageComponent;
@@ -40,37 +41,12 @@ describe('LayoutPageComponent', () => {
     store = TestBed.get(Store);
     store.setState({
       layout: {
-        menuItems: [
-          {
-            url: '/1',
-            title: 'menuTitle1',
-            icon: 'home',
-            permissions: ['CanSeeUsers'],
-            hidden: false
-          },
-          {
-            url: '/2',
-            title: 'menuTitle2',
-            icon: 'home',
-            permissions: ['CanSeeUsers'],
-            hidden: false
-          },
-          {
-            url: '/3',
-            title: 'menuTitle3',
-            icon: 'home',
-            permissions: ['CanSeeUsers'],
-            hidden: false
-          }
-        ],
+        menuItems: TEST_DATA.layout.menuItems,
         isSidebarExpanded: true
       },
       auth: {
         status: {
-          user: {
-            id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-            name: 'UserName'
-          }
+          user: TEST_DATA.auth.user
         }
       }
     });

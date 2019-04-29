@@ -52,7 +52,7 @@ exports[`ToolbarComponent should match snapshot with user 1`] = `
           class="app-toolbar-user-name"
           fxshow.xs="false"
         >
-          UserName
+          testUserName@test.com
         </span>
       </div>
       <button

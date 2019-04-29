@@ -8,6 +8,7 @@ import {
   getIsMobile
 } from './';
 import { MenuItem } from '../../models/menuItem.model';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('Layout Selectors', () => {
   describe('getIsSidebarExpanded', () => {
@@ -64,29 +65,7 @@ describe('Layout Selectors', () => {
 
   describe('getMenuItems', () => {
     it('should return menu items', () => {
-      const expectedItems: MenuItem[] = [
-        {
-          url: '/',
-          title: 'Log in',
-          icon: 'power_settings_new',
-          permissions: [],
-          hidden: false
-        },
-        {
-          url: '/Test',
-          title: 'Test',
-          icon: 'test',
-          permissions: ['Test permission'],
-          hidden: true
-        },
-        {
-          url: '/Test2',
-          title: 'Test2',
-          icon: 'test2',
-          permissions: ['Test permission', 'Test permission2'],
-          hidden: true
-        }
-      ];
+      const expectedItems = TEST_DATA.layout.menuItems as MenuItem[];
       const state = {
         layout: {
           menuItems: expectedItems

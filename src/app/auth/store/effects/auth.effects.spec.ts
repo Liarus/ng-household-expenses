@@ -19,6 +19,7 @@ import {
   Logout,
   AuthHttpError
 } from '../actions/auth.actions';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('AuthEffects', () => {
   let effects: AuthEffects;
@@ -68,15 +69,8 @@ describe('AuthEffects', () => {
 
   describe('login$', () => {
     it('should return LoginSuccess with user when succesfull', () => {
-      const signInresponse = {
-        userId: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-        userName: 'UserName',
-        accessToken: 'TestToken'
-      } as SignInResponse;
-      const action = new Login({
-        username: 'TestUser',
-        password: 'TestPassword'
-      });
+      const signInresponse = TEST_DATA.auth.signInResponse as SignInResponse;
+      const action = new Login(TEST_DATA.auth.loginRequest);
       const completion = new LoginSuccess({
         user: {
           id: signInresponse.userId,
@@ -95,10 +89,7 @@ describe('AuthEffects', () => {
 
     it('should return LoginFailure when error', () => {
       const error = 'error occured';
-      const action = new Login({
-        username: 'TestUser',
-        password: 'TestPassword'
-      });
+      const action = new Login(TEST_DATA.auth.loginRequest);
       const completion = new LoginFailure({
         message: error
       });
@@ -115,11 +106,8 @@ describe('AuthEffects', () => {
   describe('loginSuccess$', () => {
     it('should return RefreshMenuItems', () => {
       const action = new LoginSuccess({
-        user: {
-          id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-          name: 'UserName',
-        },
-        accessToken: 'TestToken'
+        user: TEST_DATA.auth.user,
+        accessToken: TEST_DATA.auth.accessToken
       });
       const completion = new RefreshMenuItems();
 
@@ -131,11 +119,8 @@ describe('AuthEffects', () => {
 
     it('should navigate to root', (done) => {
       const action = new LoginSuccess({
-        user: {
-          id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-          name: 'UserName',
-        },
-        accessToken: 'TestToken'
+        user: TEST_DATA.auth.user,
+        accessToken: TEST_DATA.auth.accessToken
       });
 
       actions$ = of(action);

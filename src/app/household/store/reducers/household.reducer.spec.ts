@@ -21,6 +21,7 @@ import {
   SetAppendData
 } from '../actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('HouseholdReducer', () => {
   describe('undefined action', () => {
@@ -34,18 +35,7 @@ describe('HouseholdReducer', () => {
 
   describe('HouseholdActionTypes.AddHousehold', () => {
     it('should update state as loading', () => {
-      const request: CreateHousehold = {
-        userId: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      };
+      const request = TEST_DATA.household.createHousehold as CreateHousehold;
       const action = new AddHousehold(request);
       const result = reducer(initialState, action);
 
@@ -58,17 +48,7 @@ describe('HouseholdReducer', () => {
 
   describe('HouseholdActionTypes.UpdateHousehold', () => {
     it('should update state as loading', () => {
-      const request: ModifyHousehold = {
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      };
+      const request = TEST_DATA.household.modifyHousehold as ModifyHousehold;
       const action = new UpdateHousehold(request);
       const result = reducer(initialState, action);
 
@@ -82,7 +62,7 @@ describe('HouseholdReducer', () => {
   describe('HouseholdActionTypes.RemoveHousehold', () => {
     it('should update state as loading', () => {
       const request = {
-        householdId: '550416ea-b523-4468-ae10-ea07d35eb9f0'
+        householdId: TEST_DATA.household.household.id
       };
       const action = new RemoveHousehold(request);
       const result = reducer(initialState, action);
@@ -97,7 +77,7 @@ describe('HouseholdReducer', () => {
   describe('HouseholdActionTypes.LoadHouseholds', () => {
     it('should update state as loading', () => {
       const request = {
-        userId: '550416ea-b523-4468-ae10-ea07d35eb9f0'
+        userId: TEST_DATA.auth.userId
       };
       const action = new LoadHouseholds(request);
       const result = reducer(initialState, action);
@@ -171,17 +151,7 @@ describe('HouseholdReducer', () => {
 
   describe('HouseholdActionTypes.AddHouseholdSuccess', () => {
     it('should add household entity', () => {
-      const request: Household = {
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      };
+      const request = TEST_DATA.household.household as Household;
       const action = new AddHouseholdSuccess(request);
       const result = reducer(initialState, action);
 
@@ -198,19 +168,9 @@ describe('HouseholdReducer', () => {
 
   describe('HouseholdActionTypes.UpdateHouseholdSuccess', () => {
     it('should add household entity', () => {
-      const origin: Household = {
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-        name: 'Household1 Name',
-        symbol: 'Household1 symbol',
-        description: 'Household1 description',
-        street: 'Household1 street',
-        city: 'Household1 city',
-        country: 'Household1 country',
-        zipCode: 'Household1 zipCode',
-        version: 1
-      };
+      const origin = TEST_DATA.household.household as Household;
       const request: Household = {
-        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
+        id: origin.id,
         name: 'Updated Household1 Name',
         symbol: 'Updated Household1 symbol',
         description: 'Updated Household1 description',
@@ -429,13 +389,7 @@ describe('HouseholdReducer', () => {
 
   describe('HouseholdActionTypes.ApplyFilter', () => {
     it('should apply filter', () => {
-      const request = {
-        pageNumber: 10,
-        pageSize: 10,
-        searchText: 'test',
-        sortingField: 'symbol',
-        sortDirection: 'desc'
-      } as HouseholdFilter;
+      const request = TEST_DATA.household.filter as HouseholdFilter;
       const action = new ApplyFilter(request);
       const result = reducer(initialState, action);
 

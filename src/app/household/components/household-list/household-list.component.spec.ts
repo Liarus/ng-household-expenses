@@ -8,46 +8,13 @@ import { HouseholdListComponent } from './household-list.component';
 import { MaterialModule } from '../../../material/material.module';
 import { Household } from '../../models/household.model';
 import { HouseholdFilter } from '../../models/householdFilter.model';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 fdescribe('HouseholdListComponent', () => {
   let component: HouseholdListComponent;
   let fixture: ComponentFixture<HouseholdListComponent>;
 
-  const households: Household[] = [
-    {
-      id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-      name: 'Household1 Name',
-      symbol: 'Household1 symbol',
-      description: 'Household1 description',
-      street: 'Household1 street',
-      city: 'Household1 city',
-      country: 'Household1 country',
-      zipCode: 'Household1 zipCode',
-      version: 1
-    },
-    {
-      id: '55798c3b-5551-489b-9dd2-d7e59691a368',
-      name: 'Household2 Name',
-      symbol: 'Household2 symbol',
-      description: 'Household2 description',
-      street: 'Household2 street',
-      city: 'Household2 city',
-      country: 'Household2 country',
-      zipCode: 'Household2 zipCode',
-      version: 1
-    },
-    {
-      id: 'b28e143a-a64a-469a-9704-a294cc7356cf',
-      name: 'Household3 Name',
-      symbol: 'Household3 symbol',
-      description: 'Household3 description',
-      street: 'Household3 street',
-      city: 'Household3 city',
-      country: 'Household3 country',
-      zipCode: 'Household3 zipCode',
-      version: 1
-    }
-  ];
+  const households = TEST_DATA.household.households as Household[];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -84,13 +51,7 @@ fdescribe('HouseholdListComponent', () => {
     component.isLoading = false;
     component.households = households;
     component.itemCount = households.length;
-    component.filter = {
-      pageNumber: 1,
-      pageSize: 10,
-      searchText: '',
-      sortingField: 'name',
-      sortDirection: 'asc'
-    } as HouseholdFilter;
+    component.filter = TEST_DATA.household.filter as HouseholdFilter;
 
     fixture.detectChanges();
 
@@ -140,13 +101,7 @@ fdescribe('HouseholdListComponent', () => {
     component.isLoading = false;
     component.households = households;
     component.itemCount = 50;
-    component.filter = {
-      pageNumber: 1,
-      pageSize: 10,
-      searchText: '',
-      sortingField: 'name',
-      sortDirection: 'asc'
-    } as HouseholdFilter;
+    component.filter = TEST_DATA.household.filter as HouseholdFilter;
     spyOn(component.filterChanged, 'emit');
 
     component.ngAfterViewInit();
@@ -160,13 +115,7 @@ fdescribe('HouseholdListComponent', () => {
     component.isLoading = false;
     component.households = households;
     component.itemCount = 50;
-    component.filter = {
-      pageNumber: 1,
-      pageSize: 10,
-      searchText: '',
-      sortingField: 'name',
-      sortDirection: 'asc'
-    } as HouseholdFilter;
+    component.filter = TEST_DATA.household.filter as HouseholdFilter;
     spyOn(component.filterChanged, 'emit');
 
     component.ngAfterViewInit();

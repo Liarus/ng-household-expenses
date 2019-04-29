@@ -9,6 +9,7 @@ import {
   Logout,
   AuthHttpError
 } from '../actions/auth.actions';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('AuthReducer', () => {
   describe('undefined action', () => {
@@ -37,10 +38,7 @@ describe('AuthReducer', () => {
 
   describe('AuthActionTypes.Login', () => {
     it('should update loading state', () => {
-      const request: LoginRequest = {
-        username: 'TestUSer',
-        password: 'TestPassword'
-      };
+      const request = TEST_DATA.auth.loginRequest as LoginRequest;
       const action = new Login(request);
       const result = reducer(initialState, action);
 
@@ -54,11 +52,8 @@ describe('AuthReducer', () => {
   describe('AuthActionTypes.LoginSuccess', () => {
     it('should update user and token', () => {
       const request = {
-        user: {
-          id: '7bb78f33-0612-409e-a1d6-4341fcee9a7e',
-          name: 'UserName'
-        },
-        accessToken: 'TestToken'
+        user: TEST_DATA.auth.user,
+        accessToken: TEST_DATA.auth.accessToken
       };
       const action = new LoginSuccess(request);
       const result = reducer(initialState, action);

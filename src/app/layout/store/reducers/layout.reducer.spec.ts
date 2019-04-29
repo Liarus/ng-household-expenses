@@ -10,6 +10,7 @@ import {
   ResizeWindow,
   ApplyMenuItems
 } from '../actions/layout.actions';
+import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('LayoutReducer', () => {
   describe('undefined action', () => {
@@ -108,29 +109,7 @@ describe('LayoutReducer', () => {
 
   describe('LayoutActionTypes.ApplyMenuItems', () => {
     it('should set menu items', () => {
-      const request: MenuItem[] = [
-        {
-          url: '/1',
-          title: 'menuTitle1',
-          icon: 'home',
-          permissions: ['CanSeeUsers'],
-          hidden: false
-        },
-        {
-          url: '/2',
-          title: 'menuTitle2',
-          icon: 'home',
-          permissions: ['CanSeeUsers'],
-          hidden: false
-        },
-        {
-          url: '/3',
-          title: 'menuTitle3',
-          icon: 'home',
-          permissions: ['CanSeeUsers'],
-          hidden: false
-        },
-      ];
+      const request = TEST_DATA.layout.menuItems as MenuItem[];
       const action = new ApplyMenuItems(request);
       const result = reducer(initialState, action);
 
