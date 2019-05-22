@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, Output, ViewChild, OnDestroy
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, takeUntil, tap } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 
 import { Household } from '../../models/household.model';
 import { HouseholdFilter } from '../../models/householdFilter.model';
@@ -22,7 +22,6 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
   @Input() filter: HouseholdFilter;
   @Input() itemCount: number;
 
-  @Output() create = new EventEmitter();
   @Output() edit = new EventEmitter<string>();
   @Output() remove = new EventEmitter<string>();
   @Output() filterChanged = new EventEmitter<Partial<HouseholdFilter>>();
@@ -33,16 +32,9 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['name', 'symbol', 'description', 'actions'];
   dataSource: MatTableDataSource<Household>;
 
-  private searchUpdated = new Subject<string>();
   private unsubscribe: Subject<void> = new Subject();
 
   constructor() {
-    this.searchUpdated.asObservable().pipe(
-      takeUntil(this.unsubscribe),
-      debounceTime(750),
-      distinctUntilChanged()
-     )
-     .subscribe(data => this.searchChanged(data));
   }
 
   ngAfterViewInit(): void {
@@ -67,12 +59,6 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
     this.unsubscribe.complete();
   }
 
-  search(searchValue: string) {
-    searchValue = searchValue.trim();
-    searchValue = searchValue.toLowerCase();
-    this.searchUpdated.next(searchValue);
-  }
-
   private pageChanged() {
     this.filterChanged.emit({
       pageNumber: this.paginator.pageIndex + 1,
@@ -85,12 +71,6 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
       pageNumber: this.paginator.pageIndex + 1,
       sortingField: this.sort.active,
       sortDirection: this.sort.direction
-    } as Partial<HouseholdFilter>);
-  }
-
-  private searchChanged(searchValue: string) {
-    this.filterChanged.emit({
-      searchText: searchValue
     } as Partial<HouseholdFilter>);
   }
 

@@ -2,11 +2,13 @@
 
 exports[`HouseholdTilesComponent should match snapshot when with households 1`] = `
 <app-household-tiles
+  edit={[Function EventEmitter]}
   filterChanged={[Function EventEmitter]}
   households={[Function Array]}
   isLoading="false"
   itemCount={[Function Number]}
   pageIndex={[Function Number]}
+  remove={[Function EventEmitter]}
 >
   <div
     fxlayout="column"
@@ -15,7 +17,7 @@ exports[`HouseholdTilesComponent should match snapshot when with households 1`] 
     <div
       fxlayout="column"
       fxlayoutalign="flex-start"
-      fxlayoutgap="2%"
+      fxlayoutgap="1em"
     >
       
       <button

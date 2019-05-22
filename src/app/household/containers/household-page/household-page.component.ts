@@ -16,12 +16,15 @@ import { HouseholdFilter } from '../../models/householdFilter.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="app-basic-container" fxFlex>
+      <app-household-search
+        (create)="onCreate()"
+        (searchChanged)="onFilterChanged($event)"
+      ></app-household-search>
       <app-household-list *ngIf="!(isMobile$ | async)"
         [isLoading]="isLoading$ | async"
         [households]="household$ | async"
         [filter]="filter$ | async"
         [itemCount]="count$ | async"
-        (create)="onCreate()"
         (remove)="onRemove($event)"
         (edit)="onEdit($event)"
         (filterChanged)="onFilterChanged($event)"

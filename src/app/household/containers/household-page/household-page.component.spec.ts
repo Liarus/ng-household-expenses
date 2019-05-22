@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { HouseholdPageComponent } from './household-page.component';
 import { MaterialModule } from '../../../material/material.module';
 import { MockStore } from '../../../shared/tests/mockStore';
-import { HouseholdListComponent, HouseholdTilesComponent } from '../../components';
+import { HouseholdListComponent, HouseholdTilesComponent, HouseholdSearchComponent } from '../../components';
 import { User } from '../../../auth/models/user.model';
 import * as HouseholdActions from '../../store/actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
@@ -31,7 +31,8 @@ describe('HouseholdPageComponent', () => {
       declarations: [
         HouseholdPageComponent,
         HouseholdListComponent,
-        HouseholdTilesComponent
+        HouseholdTilesComponent,
+        HouseholdSearchComponent
       ],
       providers: [
         { provide: Store, useClass: MockStore },

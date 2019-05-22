@@ -13,14 +13,16 @@ import { HouseholdPageComponent } from './containers';
 import {
   HouseholdListComponent,
   HouseholdDialogComponent,
-  HouseholdTilesComponent
+  HouseholdTilesComponent,
+  HouseholdSearchComponent
 } from './components';
 
 export const COMPONENTS = [
   HouseholdPageComponent,
   HouseholdListComponent,
   HouseholdDialogComponent,
-  HouseholdTilesComponent
+  HouseholdTilesComponent,
+  HouseholdSearchComponent
 ];
 
 @NgModule({

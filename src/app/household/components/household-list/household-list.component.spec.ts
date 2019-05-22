@@ -58,15 +58,6 @@ fdescribe('HouseholdListComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should create household', () => {
-    const buttonDebugElement = fixture.debugElement.query(By.css('#household-btn-add'));
-    spyOn(component.create, 'emit');
-
-    buttonDebugElement.triggerEventHandler('click', {});
-
-    expect(component.create.emit).toHaveBeenCalled();
-  });
-
   it('should edit household', () => {
     component.isLoading = false;
     component.households = households;
@@ -121,16 +112,6 @@ fdescribe('HouseholdListComponent', () => {
     component.ngAfterViewInit();
     fixture.detectChanges();
     component.sort.sortChange.emit({ active: 'symbol', direction: 'desc' });
-
-    expect(component.filterChanged.emit).toHaveBeenCalled();
-  });
-
-  it('should change filter when searched', async () => {
-    jest.useFakeTimers();
-    spyOn(component.filterChanged, 'emit');
-
-    component.search('test');
-    jest.advanceTimersByTime(1500);
 
     expect(component.filterChanged.emit).toHaveBeenCalled();
   });

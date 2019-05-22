@@ -16,6 +16,113 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
     class="app-basic-container"
     fxflex=""
   >
+    <app-household-search>
+      <div
+        fxlayout="row"
+        fxlayoutalign="start center"
+        fxlayoutgap="2%"
+      >
+        <mat-form-field
+          class="mat-form-field ng-tns-c10-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable"
+          fxflex=""
+        >
+          <div
+            class="mat-form-field-wrapper"
+          >
+            <div
+              class="mat-form-field-flex"
+            >
+              
+              
+              <div
+                class="mat-form-field-infix"
+              >
+                <input
+                  aria-invalid="false"
+                  aria-required="false"
+                  class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored"
+                  id="mat-input-1"
+                  matinput=""
+                  ng-reflect-placeholder="Filter"
+                  placeholder="Filter"
+                />
+                <span
+                  class="mat-form-field-label-wrapper"
+                >
+                  
+                  <label
+                    aria-owns="mat-input-1"
+                    class="mat-form-field-label ng-tns-c10-0 mat-empty mat-form-field-empty ng-star-inserted"
+                    for="mat-input-1"
+                    id="mat-form-field-label-5"
+                    ng-reflect-disabled="true"
+                    ng-reflect-ng-switch="false"
+                  >
+                    
+                    
+                    Filter
+                    
+                    
+                  </label>
+                </span>
+              </div>
+              
+            </div>
+            
+            <div
+              class="mat-form-field-underline ng-tns-c10-0 ng-star-inserted"
+            >
+              <span
+                class="mat-form-field-ripple"
+              />
+            </div>
+            <div
+              class="mat-form-field-subscript-wrapper"
+              ng-reflect-ng-switch="hint"
+            >
+              
+              
+              <div
+                class="mat-form-field-hint-wrapper ng-tns-c10-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+                style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+              >
+                
+                <div
+                  class="mat-form-field-hint-spacer"
+                />
+              </div>
+            </div>
+          </div>
+        </mat-form-field>
+        <button
+          class="mat-icon-button _mat-animation-noopable"
+          id="household-btn-add"
+          mat-icon-button=""
+        >
+          <span
+            class="mat-button-wrapper"
+          >
+            <mat-icon
+              aria-hidden="true"
+              class="mat-icon material-icons"
+              role="img"
+            >
+              add
+            </mat-icon>
+          </span>
+          <div
+            class="mat-button-ripple mat-ripple mat-button-ripple-round"
+            matripple=""
+            ng-reflect-centered="true"
+            ng-reflect-disabled="false"
+            ng-reflect-trigger="[object HTMLButtonElement]"
+          />
+          <div
+            class="mat-button-focus-overlay"
+          />
+        </button>
+      </div>
+    </app-household-search>
     
     <app-household-list
       class="ng-star-inserted"
@@ -26,111 +133,6 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
         fxlayout="column"
       >
         
-        <div
-          fxlayout="row"
-          fxlayoutalign="start center"
-          fxlayoutgap="2%"
-        >
-          <mat-form-field
-            class="mat-form-field ng-tns-c11-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable"
-            fxflex=""
-          >
-            <div
-              class="mat-form-field-wrapper"
-            >
-              <div
-                class="mat-form-field-flex"
-              >
-                
-                
-                <div
-                  class="mat-form-field-infix"
-                >
-                  <input
-                    aria-invalid="false"
-                    aria-required="false"
-                    class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored"
-                    id="mat-input-1"
-                    matinput=""
-                    ng-reflect-placeholder="Filter"
-                    placeholder="Filter"
-                  />
-                  <span
-                    class="mat-form-field-label-wrapper"
-                  >
-                    
-                    <label
-                      aria-owns="mat-input-1"
-                      class="mat-form-field-label ng-tns-c11-0 mat-empty mat-form-field-empty ng-star-inserted"
-                      for="mat-input-1"
-                      id="mat-form-field-label-5"
-                      ng-reflect-disabled="true"
-                      ng-reflect-ng-switch="false"
-                    >
-                      
-                      
-                      Filter
-                      
-                      
-                    </label>
-                  </span>
-                </div>
-                
-              </div>
-              
-              <div
-                class="mat-form-field-underline ng-tns-c11-0 ng-star-inserted"
-              >
-                <span
-                  class="mat-form-field-ripple"
-                />
-              </div>
-              <div
-                class="mat-form-field-subscript-wrapper"
-                ng-reflect-ng-switch="hint"
-              >
-                
-                
-                <div
-                  class="mat-form-field-hint-wrapper ng-tns-c11-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
-                  style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
-                >
-                  
-                  <div
-                    class="mat-form-field-hint-spacer"
-                  />
-                </div>
-              </div>
-            </div>
-          </mat-form-field>
-          <button
-            class="mat-icon-button _mat-animation-noopable"
-            id="household-btn-add"
-            mat-icon-button=""
-          >
-            <span
-              class="mat-button-wrapper"
-            >
-              <mat-icon
-                aria-hidden="true"
-                class="mat-icon material-icons"
-                role="img"
-              >
-                add
-              </mat-icon>
-            </span>
-            <div
-              class="mat-button-ripple mat-ripple mat-button-ripple-round"
-              matripple=""
-              ng-reflect-centered="true"
-              ng-reflect-disabled="false"
-              ng-reflect-trigger="[object HTMLButtonElement]"
-            />
-            <div
-              class="mat-button-focus-overlay"
-            />
-          </button>
-        </div>
         <div
           class="table mat-elevation-z8"
           fxlayout="column"
@@ -528,7 +530,7 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
                   </div>
                   
                   <mat-form-field
-                    class="mat-paginator-page-size-select mat-form-field ng-tns-c11-4 mat-primary mat-form-field-type-mat-select mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable ng-star-inserted mat-form-field-should-float"
+                    class="mat-paginator-page-size-select mat-form-field ng-tns-c10-4 mat-primary mat-form-field-type-mat-select mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable ng-star-inserted mat-form-field-should-float"
                   >
                     <div
                       class="mat-form-field-wrapper"
@@ -599,7 +601,7 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
                       </div>
                       
                       <div
-                        class="mat-form-field-underline ng-tns-c11-4 ng-star-inserted"
+                        class="mat-form-field-underline ng-tns-c10-4 ng-star-inserted"
                       >
                         <span
                           class="mat-form-field-ripple"
@@ -612,7 +614,7 @@ exports[`HouseholdPageComponent should match snapshot 1`] = `
                         
                         
                         <div
-                          class="mat-form-field-hint-wrapper ng-tns-c11-4 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+                          class="mat-form-field-hint-wrapper ng-tns-c10-4 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
                           style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
                         >
                           

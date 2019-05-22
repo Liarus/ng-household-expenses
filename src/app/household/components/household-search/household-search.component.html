@@ -1,0 +1,11 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2%">
+  <mat-form-field fxFlex>
+    <input matInput (keyup)="search($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <button id="household-btn-add"
+    mat-icon-button
+    (click)="create.emit()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
