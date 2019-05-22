@@ -31,6 +31,8 @@ import { HouseholdFilter } from '../../models/householdFilter.model';
         [households]="household$ | async"
         [itemCount]="count$ | async"
         (filterChanged)="onFilterChanged($event)"
+        (remove)="onRemove($event)"
+        (edit)="onEdit($event)"
       ></app-household-tiles>
     </div>
   `

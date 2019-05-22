@@ -15,6 +15,8 @@ export class HouseholdTilesComponent {
   @Input() itemCount: number;
 
   @Output() filterChanged = new EventEmitter<Partial<HouseholdFilter>>();
+  @Output() edit = new EventEmitter<string>();
+  @Output() remove = new EventEmitter<string>();
 
   private pageIndex = 1;
 

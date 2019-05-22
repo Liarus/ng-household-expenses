@@ -2,31 +2,31 @@
   <div class="app-spinner-loading-shade" *ngIf="isLoading">
     <mat-spinner></mat-spinner>
   </div>
-  <div fxLayout="column" fxLayoutGap="2%" fxLayoutAlign="flex-start">
+  <div fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="flex-start">
     <ng-container *ngFor="let household of households">
       <div fxFlex>
         <mat-card>
-          <div fxLayout="column" fxLayoutGap="1%">
+          <div fxLayout="column" fxLayoutGap="1em">
             <mat-card-title>{{ household.name }}</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content fxLayout="column">
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    <mat-card-subtitle>{{ household.symbol }}</mat-card-subtitle>
+                    <mat-card-subtitle>{{ household.symbol || household.name }}</mat-card-subtitle>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div fxLayout="column">
-                  <p>{{ household.description }}</p>
-                  <p>{{ household.street }}</p>
-                  <p>{{ household.city }}</p>
-                  <p>{{ household.country }}</p>
+                  <p *ngIf="household.description">{{ household.description }}</p>
+                  <p *ngIf="household.street">{{ household.street }}</p>
+                  <p *ngIf="household.city">{{ household.city }}</p>
+                  <p *ngIf="household.country">{{ household.country }}</p>
                 </div>
               </mat-expansion-panel>
             </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>EDIT</button>
-              <button mat-button>REMOVE</button>
+            <mat-card-actions fxLayout="row wrap" fxLayoutGap="1%">
+              <button mat-stroked-button (click)="edit.emit(household.id)">Edit</button>
+              <button mat-stroked-button (click)="remove.emit(household.id)">Remove</button>
             </mat-card-actions>
           </div>
         </mat-card>
