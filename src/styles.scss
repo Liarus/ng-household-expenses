@@ -36,18 +36,35 @@ body {
 // Material start
 
 .mat-table {
-    mat-row, mat-header-row, mat-footer-row {
-      padding-left: 24px;
-      padding-right: 24px;
-    }
+  mat-row, mat-header-row, mat-footer-row {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
   
-    mat-cell:first-child, mat-footer-cell:first-child, mat-header-cell:first-child {
-      padding-left: 0;
-    }
+  mat-cell:first-child, mat-footer-cell:first-child, mat-header-cell:first-child {
+    padding-left: 0;
+  }
   
-    mat-cell:last-child, mat-footer-cell:last-child, mat-header-cell:last-child {
-      padding-right: 0;
+  mat-cell:last-child, mat-footer-cell:last-child, mat-header-cell:last-child {
+    padding-right: 0;
+  }
+}
+
+mat-expansion-panel {
+  mat-expansion-panel-header {
+    height: 48px; // height may be different for you
+  }
+  .mat-expansion-panel-content {
+    height: 0;
+  }
+  &.mat-expanded {
+    mat-expansion-panel-header {
+      height: 64px; // height may be different for you
     }
+    .mat-expansion-panel-content {
+      height: auto;
+    }
+  }
 }
 
 // Material end
