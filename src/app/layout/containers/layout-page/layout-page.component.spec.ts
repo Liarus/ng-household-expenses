@@ -66,12 +66,7 @@ describe('LayoutPageComponent', () => {
     expect(app.title).toEqual('ng-household-expenses');
   });
 
-  it('should match snapshot', () => {
-    fixture.detectChanges();
-    expect(fixture).toMatchSnapshot();
-  });
-
-  it('should dipsatch ResizeWindow action', () => {
+  it('should dispatch ResizeWindow action', () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
     const expected = new LayoutActions.ResizeWindow({
@@ -87,7 +82,7 @@ describe('LayoutPageComponent', () => {
   it('should dispatch Toggle Sidebar action', () => {
     const expected = new LayoutActions.ToggleSidebar();
 
-    component.onSidebarToggled();
+    component.onToggleSidebar();
 
     expect(store.dispatch).toHaveBeenLastCalledWith(expected);
   });

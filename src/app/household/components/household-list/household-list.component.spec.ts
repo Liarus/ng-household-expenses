@@ -39,23 +39,8 @@ fdescribe('HouseholdListComponent', () => {
     fixture.detectChanges();
   });
 
-  afterEach(() => {
-    jest.clearAllTimers();
-  });
-
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should match snapshot when with households', () => {
-    component.isLoading = false;
-    component.households = households;
-    component.itemCount = households.length;
-    component.filter = TEST_DATA.household.filter as HouseholdFilter;
-
-    fixture.detectChanges();
-
-    expect(fixture).toMatchSnapshot();
   });
 
   it('should edit household', () => {

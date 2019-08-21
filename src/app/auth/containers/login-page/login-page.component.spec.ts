@@ -54,16 +54,11 @@ describe('LoginPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should match snapshot', () => {
-    fixture.detectChanges();
-    expect(fixture).toMatchSnapshot();
-  });
-
   it('should dispatch Login action', () => {
     const credentials = TEST_DATA.auth.loginRequest as LoginRequest;
     const expected = new AuthActions.Login(credentials);
 
-    component.onSubmit(credentials);
+    component.onLogin(credentials);
 
     expect(store.dispatch).toHaveBeenLastCalledWith(expected);
   });

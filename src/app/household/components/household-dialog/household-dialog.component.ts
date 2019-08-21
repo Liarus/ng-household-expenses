@@ -23,16 +23,13 @@ const fg = dataItem => new FormGroup({
   styleUrls: ['./household-dialog.component.scss']
 })
 
-export class HouseholdDialogComponent implements OnInit {
+export class HouseholdDialogComponent {
   form: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<HouseholdDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: HouseholdDialog) {
       this.form = fg(Object.assign({}, data.household, { userId: data.userId }));
     }
-
-  ngOnInit() {
-  }
 
   getAddressErrorMessage() {
     return (this.form.controls['street'].touched && this.form.controls['street'].errors)

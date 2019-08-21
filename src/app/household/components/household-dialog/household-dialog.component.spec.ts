@@ -50,10 +50,6 @@ describe('HouseholdDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should should match snapshot', () => {
-    expect(fixture).toMatchSnapshot();
-  });
-
   it('should should match snapshot if address invalid', () => {
     component.form.setValue({
       userId: TEST_DATA.auth.userId,

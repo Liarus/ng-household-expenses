@@ -11,7 +11,7 @@ import { LoginRequest } from '../../models/requests/loginRequest.model';
   template: `
     <app-login-form
       [pending]="isLoading$ | async"
-      (submitted)="onSubmit($event)"
+      (login)="onLogin($event)"
     ></app-login-form>
   `
 })
@@ -20,7 +20,7 @@ export class LoginPageComponent {
 
   constructor(private store: Store<fromAuth.State>) {}
 
-  onSubmit($event: LoginRequest) {
+  onLogin($event: LoginRequest) {
     this.store.dispatch(new AuthActions.Login($event));
   }
 }

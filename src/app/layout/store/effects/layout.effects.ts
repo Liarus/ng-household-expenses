@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { mergeMap, map } from 'rxjs/operators';
+import { mergeMap, map, switchMap } from 'rxjs/operators';
 
 import { MenuService } from '../../services/menu.service';
 import { LayoutActionTypes, ApplyMenuItems } from '../actions/layout.actions';
@@ -11,7 +11,7 @@ export class LayoutEffects {
   @Effect()
   menuItem$ = this.actions$.pipe(
     ofType(LayoutActionTypes.RefreshMenuItems),
-    mergeMap(() => {
+    switchMap(() => {
       return this.menuService.getMenuItems()
       .pipe(
         map((menu: MenuItem[]) => new ApplyMenuItems(menu))

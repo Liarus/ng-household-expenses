@@ -35,13 +35,6 @@ describe('ToolbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should match snapshot with user', () => {
-    component.user = user;
-    fixture.detectChanges();
-
-    expect(fixture).toMatchSnapshot();
-  });
-
   it('should logout', () => {
     const buttonDebugElement = fixture.debugElement.query(By.css('#toolbar-btn-logout'));
     spyOn(component.logout, 'emit');

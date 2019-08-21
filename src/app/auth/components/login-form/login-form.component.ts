@@ -23,15 +23,15 @@ export class LoginFormComponent {
       this.form.enable();
     }
   }
-  @Output() submitted = new EventEmitter<LoginRequest>();
+  @Output() login = new EventEmitter<LoginRequest>();
 
   form: FormGroup = fg;
 
   constructor() {}
 
-  submit() {
+  onSubmit() {
     if (this.form.valid) {
-      this.submitted.emit(this.form.value);
+      this.login.emit(this.form.value);
     }
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Store } from '@ngrx/store';
-import { first, flatMap } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import { first, mergeMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import * as fromAuth from '../store/reducers';
@@ -12,9 +12,10 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   constructor(private store: Store<fromAuth.State>) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>  {
-    return this.store.select(fromAuth.getAccessToken).pipe(
+    return this.store.pipe(
+      select(fromAuth.getAccessToken),
       first(),
-      flatMap(token => {
+      mergeMap(token => {
         const authReq = !!token ? req.clone({
           setHeaders: { Authorization: 'Bearer ' + token },
         }) : req;

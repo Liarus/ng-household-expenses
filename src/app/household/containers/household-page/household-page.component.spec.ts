@@ -110,11 +110,6 @@ describe('HouseholdPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should match snapshot', () => {
-    fixture.detectChanges();
-    expect(fixture).toMatchSnapshot();
-  });
-
   it('should dispatch OpenCreateHouseholdDialog action', () => {
     const expected = new HouseholdActions.OpenCreateHouseholdDialog({
       userId: user.id

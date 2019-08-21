@@ -11,7 +11,7 @@ import * as AuthActions from '../../../auth/store/actions/auth.actions';
   selector: 'app-layout-page',
   template: `
     <app-toolbar [user]="user$ | async"
-      (toggleSidebar)="onSidebarToggled()"
+      (toggleSidebar)="onToggleSidebar()"
       (logout)="onLogout()"
     ></app-toolbar>
     <app-sidebar [isExpanded]="isSidebarExpanded$ | async"
@@ -37,7 +37,7 @@ export class LayoutPageComponent {
     }));
   }
 
-  onSidebarToggled() {
+  onToggleSidebar() {
     this.store.dispatch(new LayoutActions.ToggleSidebar());
   }
 

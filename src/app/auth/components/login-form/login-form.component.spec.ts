@@ -36,33 +36,19 @@ describe('LoginFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should should match snapshot if not pending', () => {
-    component.pending = false;
-    fixture.detectChanges();
-
-    expect(fixture).toMatchSnapshot();
-  });
-
-  it('should should match snapshot if pending', () => {
-    component.pending = true;
-    fixture.detectChanges();
-
-    expect(fixture).toMatchSnapshot();
-  });
-
-  it('should submit with credentials if valid', () => {
+  it('should login with credentials if valid', () => {
     const expected = {
       email: 'user@test.com',
       password: 'test'
     };
     component.pending = false;
     component.form.setValue(expected);
-    spyOn(component.submitted, 'emit');
+    spyOn(component.login, 'emit');
     fixture.detectChanges();
 
-    component.submit();
+    component.onSubmit();
 
     expect(component.form.valid).toBe(true);
-    expect(component.submitted.emit).toHaveBeenCalledWith(expected);
+    expect(component.login.emit).toHaveBeenCalledWith(expected);
   });
 });

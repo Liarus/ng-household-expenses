@@ -33,16 +33,6 @@ describe('HouseholdTilesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should match snapshot when with households', () => {
-    component.isLoading = false;
-    component.households = households;
-    component.itemCount = households.length;
-
-    fixture.detectChanges();
-
-    expect(fixture).toMatchSnapshot();
-  });
-
   describe('onLoadMore', () => {
     it('should chenge filter when more households exist', () => {
       component.isLoading = false;
