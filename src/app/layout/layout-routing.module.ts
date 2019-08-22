@@ -21,12 +21,12 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        loadChildren: '../dummy/dummy.module#DummyModule',
+        loadChildren: () => import('../dummy/dummy.module').then(m => m.DummyModule),
         canActivate: [AuthLoggedInGuard]
       },
       {
         path: 'households',
-        loadChildren: '../household/household.module#HouseholdModule',
+        loadChildren: () => import('../household/household.module').then(m => m.HouseholdModule),
         canActivate: [AuthLoggedInGuard]
       }
     ]
