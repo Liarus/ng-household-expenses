@@ -1,8 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
-import * as fromLayout from '../../store/reducers/index';
-import * as fromAuth from '../../../auth/store/reducers';
+import * as fromLayoutSelectors from '../../store/selectors/layout.selectors';
+import * as fromAuthSelectors from '../../../auth/store/selectors/auth.selectors';
 import * as fromRoot from '../../../store/reducers';
 import * as LayoutActions from '../../store/actions/layout.actions';
 import * as AuthActions from '../../../auth/store/actions/auth.actions';
@@ -22,9 +22,9 @@ import * as AuthActions from '../../../auth/store/actions/auth.actions';
   `
 })
 export class LayoutPageComponent {
-  user$ = this.store.pipe(select(fromAuth.getLoggedUser));
-  isSidebarExpanded$ = this.store.pipe(select(fromLayout.getIsSidebarExpanded));
-  menuItems$ = this.store.pipe(select(fromLayout.getMenuItems));
+  user$ = this.store.pipe(select(fromAuthSelectors.getLoggedUser));
+  isSidebarExpanded$ = this.store.pipe(select(fromLayoutSelectors.getIsSidebarExpanded));
+  menuItems$ = this.store.pipe(select(fromLayoutSelectors.getMenuItems));
   title = 'ng-household-expenses';
 
   constructor(private store: Store<fromRoot.State>) { }

@@ -1,24 +1,24 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import * as fromHouseholds from './household.reducer';
+import * as fromHousehold from '../reducers/household.reducer';
 
-export const getHouseholdsState = createFeatureSelector<fromHouseholds.State>('households');
+export const getHouseholdsState = createFeatureSelector<fromHousehold.State>('households');
 
 export const {
   selectIds: getHouseholdIds,
   selectEntities: getHouseholdEntities,
   selectAll: getAllHouseholds,
   selectTotal: getTotalHouseholds,
-} = fromHouseholds.adapter.getSelectors(getHouseholdsState);
+} = fromHousehold.adapter.getSelectors(getHouseholdsState);
 
 export const getHouseholdsLoading = createSelector(
   getHouseholdsState,
-  fromHouseholds.getLoading
+  fromHousehold.getLoading
 );
 
 export const getHouseholdErrorMessage = createSelector(
   getHouseholdsState,
-  fromHouseholds.getErrorMessage
+  fromHousehold.getErrorMessage
 );
 
 export const getHousehold = (id: string) => createSelector(
@@ -28,10 +28,10 @@ export const getHousehold = (id: string) => createSelector(
 
 export const getHouseholdFilter = createSelector(
   getHouseholdsState,
-  fromHouseholds.getFilter
+  fromHousehold.getFilter
 );
 
 export const getHouseholdsCount = createSelector(
   getHouseholdsState,
-  fromHouseholds.getCount
+  fromHousehold.getCount
 );

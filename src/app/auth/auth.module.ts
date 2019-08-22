@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AuthEffects } from './store/effects/auth.effects';
-import { reducers } from './store/reducers';
+import { reducer } from './store/reducers/auth.reducer';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './containers';
 import { LoginFormComponent } from './components';
@@ -22,7 +22,7 @@ export const COMPONENTS = [
     ReactiveFormsModule,
     AuthRoutingModule,
     MaterialModule,
-    StoreModule.forFeature('auth', reducers),
+    StoreModule.forFeature('auth', reducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: COMPONENTS,

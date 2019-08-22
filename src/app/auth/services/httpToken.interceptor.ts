@@ -4,7 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { first, mergeMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import * as fromAuth from '../store/reducers';
+import * as fromAuth from '../store/reducers/auth.reducer';
+import * as fromAuthSelectors from '../store/selectors/auth.selectors';
 
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {
@@ -13,7 +14,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>  {
     return this.store.pipe(
-      select(fromAuth.getAccessToken),
+      select(fromAuthSelectors.getAccessToken),
       first(),
       mergeMap(token => {
         const authReq = !!token ? req.clone({

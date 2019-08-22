@@ -4,7 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 
 import { MenuItem } from '../models/menuItem.model';
-import * as fromAuth from '../../auth/store/reducers';
+import * as fromAuth from '../../auth/store/reducers/auth.reducer';
+import * as fromAuthSelectors from '../../auth/store/selectors/auth.selectors';
 import { Menu } from '../layout-consts';
 
 @Injectable({
@@ -12,7 +13,7 @@ import { Menu } from '../layout-consts';
 })
 export class MenuService {
   private baseMenu = Menu;
-  private isUserLoggedIn$ = this.store.pipe(select(fromAuth.getLoggedIn));
+  private isUserLoggedIn$ = this.store.pipe(select(fromAuthSelectors.getLoggedIn));
 
   constructor(private store: Store<fromAuth.State>) {  }
 

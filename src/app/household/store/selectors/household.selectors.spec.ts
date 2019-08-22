@@ -6,7 +6,7 @@ import {
   getHousehold,
   getHouseholdsCount,
   getHouseholdFilter
-} from './';
+} from './household.selectors';
 import { Household } from '../../models/household.model';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';

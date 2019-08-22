@@ -6,7 +6,7 @@ import {
   getWindowHeight,
   getMenuItems,
   getIsMobile
-} from './';
+} from './layout.selectors';
 import { MenuItem } from '../../models/menuItem.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';
 

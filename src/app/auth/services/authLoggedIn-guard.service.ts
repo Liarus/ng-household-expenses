@@ -5,7 +5,8 @@ import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import * as AuthActions from '../store/actions/auth.actions';
-import * as fromAuth from '../store/reducers';
+import * as fromAuth from '../store/reducers/auth.reducer';
+import * as fromAuthSelectors from '../store/selectors/auth.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class AuthLoggedInGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.store.pipe(
-      select(fromAuth.getLoggedIn),
+      select(fromAuthSelectors.getLoggedIn),
       map(logged => {
         if (!logged) {
           this.store.dispatch(new AuthActions.LoginRedirect());

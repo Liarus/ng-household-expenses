@@ -6,7 +6,7 @@ import {
   getErrorMessage,
   getLoggedUser,
   getAccessToken
-} from './';
+} from './auth.selectors';
 import { User } from '../../models/user.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';
 

@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
-import { map, switchMap, catchError, tap, filter, mergeMap, first, withLatestFrom } from 'rxjs/operators';
+import { map, switchMap, catchError, tap, filter, mergeMap, first, withLatestFrom, concatMap, exhaustMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material';
@@ -13,9 +13,9 @@ import { HttpError } from '../../../shared/helpers/httpError';
 import { ModifyHousehold } from '../../models/requests/modifyHousehold.model';
 import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import * as fromRoot from '../../../store/reducers';
-import * as fromHousehold from '../reducers';
-import * as fromAuth from '../../../auth/store/reducers';
-import * as fromLayout from '../../../layout/store/reducers';
+import * as fromHouseholdSelectors from '../selectors/household.selectors';
+import * as fromAuthSelectors from '../../../auth/store/selectors/auth.selectors';
+import * as fromLayoutSelectors from '../../../layout/store/selectors/layout.selectors';
 import {
   HouseholdActionTypes,
   AddHousehold,
@@ -57,7 +57,7 @@ export class HouseholdEffects {
   addHousehold$ = this.actions$.pipe(
     ofType(HouseholdActionTypes.AddHousehold),
     map((action: AddHousehold) => action.payload),
-    switchMap((request: CreateHousehold) =>
+    concatMap((request: CreateHousehold) =>
       this.householdService.create(request)
         .pipe(
           map(() => new AddHouseholdSuccess({ householdId: request.id })),
@@ -70,7 +70,7 @@ export class HouseholdEffects {
   updateHousehold$ = this.actions$.pipe(
     ofType(HouseholdActionTypes.UpdateHousehold),
     map((action: UpdateHousehold) => action.payload),
-    switchMap((request: ModifyHousehold) =>
+    concatMap((request: ModifyHousehold) =>
       this.householdService.update(request)
       .pipe(
         map(() => new UpdateHouseholdSuccess({ householdId: request.id })),
@@ -83,7 +83,7 @@ export class HouseholdEffects {
   deleteHousehold$ = this.actions$.pipe(
     ofType(HouseholdActionTypes.RemoveHousehold),
     map((action: RemoveHousehold) => action.payload.householdId),
-    switchMap((householdId: string) =>
+    concatMap((householdId: string) =>
       this.householdService.delete(householdId)
       .pipe(
         map(() => new RemoveHouseholdSuccess({ householdId: householdId })),
@@ -95,7 +95,7 @@ export class HouseholdEffects {
   @Effect()
   initHouseholds$ = this.actions$.pipe(
     ofType(HouseholdActionTypes.InitHouseholds),
-    withLatestFrom(this.store$.pipe(select(fromLayout.getIsMobile))),
+    withLatestFrom(this.store$.pipe(select(fromLayoutSelectors.getIsMobile))),
     switchMap(([_action, isMobile]) =>
       isMobile ? of(new ApplyFilter(mobileFilter)) : of(new ApplyFilter(desktopFilter))
     )
@@ -105,8 +105,8 @@ export class HouseholdEffects {
   loadHouseholds$ = this.actions$.pipe(
     ofType(HouseholdActionTypes.LoadHouseholds),
     withLatestFrom(
-      this.store$.pipe(select(fromAuth.getLoggedUser)),
-      this.store$.pipe(select(fromHousehold.getHouseholdFilter))
+      this.store$.pipe(select(fromAuthSelectors.getLoggedUser)),
+      this.store$.pipe(select(fromHouseholdSelectors.getHouseholdFilter))
     ),
     switchMap(([_action, user, currentFilter]) =>
       this.householdService.getAllForUser(user.id, currentFilter)
@@ -123,8 +123,8 @@ export class HouseholdEffects {
   @Effect()
   openCreateDialog$ = this.actions$.pipe(
     ofType(HouseholdActionTypes.OpenCreateHouseholdDialog),
-    withLatestFrom(this.store$.pipe(select(fromAuth.getLoggedUser))),
-    switchMap(([_action, user]) => {
+    withLatestFrom(this.store$.pipe(select(fromAuthSelectors.getLoggedUser))),
+    exhaustMap(([_action, user]) => {
       const dialogRef = this.dialog.open(HouseholdDialogComponent, {
         data: {
           userId: user.id,
@@ -141,15 +141,15 @@ export class HouseholdEffects {
   openModifyDialog$ = this.actions$.pipe(
     ofType(HouseholdActionTypes.OpenEditHouseholdDialog),
     map((action: OpenEditHouseholdDialog) => action.payload),
-    withLatestFrom(this.store$.pipe(select(fromAuth.getLoggedUser))),
+    withLatestFrom(this.store$.pipe(select(fromAuthSelectors.getLoggedUser))),
     mergeMap(([payload, user]) =>
       this.store$.pipe(
-        select(fromHousehold.getHousehold(payload.householdId)),
+        select(fromHouseholdSelectors.getHousehold(payload.householdId)),
         first(),
         map(household => [household, user])
       )
     ),
-    switchMap(([household, user]) => {
+    exhaustMap(([household, user]) => {
       const dialogRef = this.dialog.open(HouseholdDialogComponent, {
         data: {
           userId: user.id,
@@ -164,7 +164,7 @@ export class HouseholdEffects {
 
   @Effect()
   isMobile$ = this.store$.pipe(
-    select(fromLayout.getIsMobile),
+    select(fromLayoutSelectors.getIsMobile),
     switchMap(() => of(new InitHouseholds()))
   );
 

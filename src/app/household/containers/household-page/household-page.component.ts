@@ -2,8 +2,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import * as fromRoot from '../../../store/reducers';
-import * as fromLayout from '../../../layout/store/reducers';
-import * as fromHousehold from '../../store/reducers';
+import * as fromLayoutSelectors from '../../../layout/store/selectors/layout.selectors';
+import * as fromHouseholdSelectors from '../../store/selectors/household.selectors';
 import * as HouseholdActions from '../../store/actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 
@@ -37,11 +37,11 @@ import { HouseholdFilter } from '../../models/householdFilter.model';
   `
 })
 export class HouseholdPageComponent {
-  isLoading$ = this.store.pipe(select(fromHousehold.getHouseholdsLoading));
-  isMobile$ = this.store.pipe(select(fromLayout.getIsMobile));
-  household$ = this.store.pipe(select(fromHousehold.getAllHouseholds));
-  filter$ = this.store.pipe(select(fromHousehold.getHouseholdFilter));
-  count$ = this.store.pipe(select(fromHousehold.getHouseholdsCount));
+  isLoading$ = this.store.pipe(select(fromHouseholdSelectors.getHouseholdsLoading));
+  isMobile$ = this.store.pipe(select(fromLayoutSelectors.getIsMobile));
+  household$ = this.store.pipe(select(fromHouseholdSelectors.getAllHouseholds));
+  filter$ = this.store.pipe(select(fromHouseholdSelectors.getHouseholdFilter));
+  count$ = this.store.pipe(select(fromHouseholdSelectors.getHouseholdsCount));
 
   constructor(private store: Store<fromRoot.State>) {
     this.store.dispatch(new HouseholdActions.InitHouseholds());

@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
-import * as fromAuth from '../../store/reducers';
+import * as fromAuthSelectors from '../../store/selectors/auth.selectors';
+import * as fromAuth from '../../store/reducers/auth.reducer'
 import * as AuthActions from '../../store/actions/auth.actions';
 import { LoginRequest } from '../../models/requests/loginRequest.model';
 
@@ -16,7 +17,7 @@ import { LoginRequest } from '../../models/requests/loginRequest.model';
   `
 })
 export class LoginPageComponent {
-  isLoading$ = this.store.pipe(select(fromAuth.getLoading));
+  isLoading$ = this.store.pipe(select(fromAuthSelectors.getLoading));
 
   constructor(private store: Store<fromAuth.State>) {}
 

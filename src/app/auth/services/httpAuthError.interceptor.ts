@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError, of, EMPTY } from 'rxjs';
 
-import * as fromAuth from '../store/reducers';
+import * as fromAuth from '../store/reducers/auth.reducer';
 import * as AuthActions from '../store/actions/auth.actions';
 import { HttpError } from '../../shared/helpers/httpError';
 
