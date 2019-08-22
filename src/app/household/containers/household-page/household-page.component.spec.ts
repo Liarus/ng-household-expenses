@@ -111,9 +111,7 @@ describe('HouseholdPageComponent', () => {
   });
 
   it('should dispatch OpenCreateHouseholdDialog action', () => {
-    const expected = new HouseholdActions.OpenCreateHouseholdDialog({
-      userId: user.id
-    });
+    const expected = new HouseholdActions.OpenCreateHouseholdDialog();
 
     component.onCreate();
 
@@ -123,7 +121,6 @@ describe('HouseholdPageComponent', () => {
   it('should dispatch OpenEditHouseholdDialog action', () => {
     const householdId = TEST_DATA.household.household.id;
     const expected = new HouseholdActions.OpenEditHouseholdDialog({
-      userId: user.id,
       householdId: householdId
     });
 
@@ -151,28 +148,6 @@ describe('HouseholdPageComponent', () => {
 
     component.onFilterChanged(filterChange);
 
-    expect(store.dispatch).toHaveBeenCalledWith(expected);
-  });
-
-  it('should dispatch InitHouseholds action on isMobile change', () => {
-    const expected = new HouseholdActions.InitHouseholds();
-    store.setState({
-      layout: {
-        isMobile: true
-      },
-      auth: {
-        status: {
-          user: Object.assign({}, user)
-        }
-      },
-      households: {
-        households: {
-          ids: [],
-        }
-      }
-    });
-
-    fixture.detectChanges();
     expect(store.dispatch).toHaveBeenCalledWith(expected);
   });
 });

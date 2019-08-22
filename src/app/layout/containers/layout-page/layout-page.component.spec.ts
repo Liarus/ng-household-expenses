@@ -66,19 +66,6 @@ describe('LayoutPageComponent', () => {
     expect(app.title).toEqual('ng-household-expenses');
   });
 
-  it('should dispatch ResizeWindow action', () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const expected = new LayoutActions.ResizeWindow({
-      width: width,
-      height: height
-    });
-
-    window.dispatchEvent(new Event('resize'));
-
-    expect(store.dispatch).toHaveBeenLastCalledWith(expected);
-  });
-
   it('should dispatch Toggle Sidebar action', () => {
     const expected = new LayoutActions.ToggleSidebar();
 

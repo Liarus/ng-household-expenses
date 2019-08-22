@@ -30,8 +30,7 @@ import {
   OpenCreateHouseholdDialog,
   OpenEditHouseholdDialog,
   ApplyFilter,
-  InitHouseholds,
-  SetAppendData
+  InitHouseholds
 } from '../actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 import { User } from '../../../auth/models/user.model';
@@ -108,7 +107,7 @@ describe('HouseholdEffects', () => {
         zipCode: household.zipCode,
         version: household.version
       });
-      const completion = new AddHouseholdSuccess(household);
+      const completion = new AddHouseholdSuccess({ householdId: household.id });
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: of(true) });
@@ -159,10 +158,7 @@ describe('HouseholdEffects', () => {
         zipCode: household.zipCode,
         version: household.version
       });
-      const completion = new UpdateHouseholdSuccess({
-        ...household,
-        version: household.version + 1
-      });
+      const completion = new UpdateHouseholdSuccess({ householdId: household.id });
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: of(true) });
@@ -232,19 +228,63 @@ describe('HouseholdEffects', () => {
     });
   });
 
+  describe('initHouseholds', () => {
+    it('should ApplyFilter with appendData if mobile', () => {
+      store.setState({
+        layout: {
+          isMobile: true
+        }
+      });
+      const action = new InitHouseholds();
+      const completion = new ApplyFilter({
+        pageNumber: 1,
+        pageSize: 10,
+        sortingField: 'name',
+        sortDirection: 'asc',
+        appendData: true
+      });
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.initHouseholds$).toBeObservable(expected);
+    });
+
+    it('should ApplyFilter with no appendData if desktop', () => {
+      store.setState({
+        layout: {
+          isMobile: false
+        }
+      });
+      const action = new InitHouseholds();
+      const completion = new ApplyFilter({
+        appendData: false
+      });
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.initHouseholds$).toBeObservable(expected);
+    });
+  });
+
   describe('loadHouseholds$', () => {
     beforeEach(() => {
       store.setState({
         households: {
           filter: TEST_DATA.household.filter as HouseholdFilter
+        },
+        auth: {
+          status: {
+            user: TEST_DATA.auth.user as User
+          }
         }
       });
     });
+
     it('should return LoadHouseholdsSuccess with households on LoadHouseholds when success', () => {
       const households = TEST_DATA.household.households as Household[];
-      const action = new LoadHouseholds({
-        userId: TEST_DATA.auth.userId
-      });
+      const action = new LoadHouseholds();
       const completion = new LoadHouseholdsSuccess({
         count: households.length,
         households: households
@@ -260,9 +300,7 @@ describe('HouseholdEffects', () => {
 
     it('should return LoadHouseholdsFail on LoadHouseholds when error', () => {
       const error = 'error occured';
-      const action = new LoadHouseholds({
-        userId: TEST_DATA.auth.userId
-      });
+      const action = new LoadHouseholds();
       const completion = new LoadHouseholdsFail({
         message: error
       });
@@ -278,10 +316,15 @@ describe('HouseholdEffects', () => {
 
   describe('openCreateDialog$', () => {
     it('should return AddHousehold on OpenCreateHouseholdDialog when request provided', () => {
-      const request = TEST_DATA.household.createHousehold as CreateHousehold;
-      const action = new OpenCreateHouseholdDialog({
-        userId: request.id,
+      store.setState({
+        auth: {
+          status: {
+            user: TEST_DATA.auth.user as User
+          }
+        }
       });
+      const request = TEST_DATA.household.createHousehold as CreateHousehold;
+      const action = new OpenCreateHouseholdDialog();
       const completion = new AddHousehold(request);
 
       actions$ = hot('-a---', { a: action });
@@ -318,16 +361,18 @@ describe('HouseholdEffects', () => {
               version: 1
             }
           }
+        },
+        auth: {
+          status: {
+            user: TEST_DATA.auth.user as User
+          }
         }
       });
     });
 
     it('should return UpdateHousehold on OpenEditHouseholdDialog when request provided', () => {
       const request = TEST_DATA.household.modifyHousehold as ModifyHousehold;
-      const action = new OpenEditHouseholdDialog({
-        userId: TEST_DATA.auth.userId,
-        householdId: request.id
-      });
+      const action = new OpenEditHouseholdDialog({ householdId: request.id });
       const completion = new UpdateHousehold(request);
 
       actions$ = hot('-a---', { a: action });
@@ -397,73 +442,60 @@ describe('HouseholdEffects', () => {
     });
   });
 
-  describe('applyFilter$', () => {
-    it('should return LoadHouseholds', () => {
-      const loggedUser = TEST_DATA.auth.user as User;
-      store.setState({
-        auth: {
-          status: {
-            user: loggedUser
-          }
-        }
-      });
-
+  describe('reload$', () => {
+    it('should return LoadHouseholds on ApplyFilter', () => {
       const action = new ApplyFilter({ searchText: 'test'});
-      const completion = new LoadHouseholds({ userId: loggedUser.id });
+      const completion = new LoadHouseholds();
+
       actions$ = hot('-a---', { a: action });
       const expected = cold('-b', { b: completion });
 
-      expect(effects.applyFilter$).toBeObservable(expected);
+      expect(effects.reload$).toBeObservable(expected);
+    });
+
+    it('should return LoadHouseholds on RemoveHouseholdSuccess', () => {
+      const action = new RemoveHouseholdSuccess({ householdId: TEST_DATA.household.household.id});
+      const completion = new LoadHouseholds();
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.reload$).toBeObservable(expected);
+    });
+
+    it('should return LoadHouseholds on AddHouseholdSuccess', () => {
+      const action = new AddHouseholdSuccess({ householdId: TEST_DATA.household.household.id});
+      const completion = new LoadHouseholds();
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.reload$).toBeObservable(expected);
+    });
+
+    it('should return LoadHouseholds on UpdateHouseholdSuccess', () => {
+      const action = new UpdateHouseholdSuccess({ householdId: TEST_DATA.household.household.id});
+      const completion = new LoadHouseholds();
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.reload$).toBeObservable(expected);
     });
   });
 
-  describe('initHouseholds', () => {
-    it('should AppendData and ApplyFilter if mobile', () => {
+  describe('isMobile$', () => {
+    it('should return InitHouseholds on mobile change', () => {
       store.setState({
         layout: {
           isMobile: true
-        },
-        auth: {
-          status: {
-            user: TEST_DATA.auth.user as User
-          }
         }
       });
+      const completion = new InitHouseholds();
 
-      const action = new InitHouseholds();
-      const completion1 = new SetAppendData(true);
-      const completion2 = new ApplyFilter({
-        pageNumber: 1,
-        pageSize: 10,
-        sortingField: 'name',
-        sortDirection: 'asc'
-      });
-      actions$ = hot('-a---', { a: action });
-      const expected = cold('-(bc)', { b: completion1, c: completion2 });
+      const expected = cold('a', { a: completion });
 
-      expect(effects.initHouseholds$).toBeObservable(expected);
-    });
-
-    it('should AppendData and LoadHouseholds if desktop', () => {
-      const loggedUser = TEST_DATA.auth.user as User;
-      store.setState({
-        layout: {
-          isMobile: false
-        },
-        auth: {
-          status: {
-            user: loggedUser
-          }
-        }
-      });
-
-      const action = new InitHouseholds();
-      const completion1 = new SetAppendData(false);
-      const completion2 = new LoadHouseholds({ userId: loggedUser.id });
-      actions$ = hot('-a---', { a: action });
-      const expected = cold('-(bc)', { b: completion1, c: completion2 });
-
-      expect(effects.initHouseholds$).toBeObservable(expected);
+      expect(effects.isMobile$).toBeObservable(expected);
     });
   });
 });

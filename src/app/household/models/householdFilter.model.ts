@@ -4,4 +4,5 @@ export interface HouseholdFilter {
   searchText: string;
   sortingField: string;
   sortDirection: 'asc' | 'desc';
+  appendData: boolean;
 }

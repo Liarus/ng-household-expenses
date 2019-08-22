@@ -1,14 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
-import * as fromAuth from '../../../auth/store/reducers';
 import * as fromRoot from '../../../store/reducers';
 import * as fromLayout from '../../../layout/store/reducers';
 import * as fromHousehold from '../../store/reducers';
 import * as HouseholdActions from '../../store/actions/household.actions';
-import { User } from '../../../auth/models/user.model';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 
 @Component({
@@ -40,48 +36,27 @@ import { HouseholdFilter } from '../../models/householdFilter.model';
     </div>
   `
 })
-export class HouseholdPageComponent implements OnDestroy {
-  loggedUser$ = this.store.pipe(select(fromAuth.getLoggedUser));
+export class HouseholdPageComponent {
   isLoading$ = this.store.pipe(select(fromHousehold.getHouseholdsLoading));
   isMobile$ = this.store.pipe(select(fromLayout.getIsMobile));
   household$ = this.store.pipe(select(fromHousehold.getAllHouseholds));
   filter$ = this.store.pipe(select(fromHousehold.getHouseholdFilter));
   count$ = this.store.pipe(select(fromHousehold.getHouseholdsCount));
 
-  private unsubscribe: Subject<void> = new Subject();
-  private userId: string;
-
   constructor(private store: Store<fromRoot.State>) {
-    this.loggedUser$
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe((loggedIn: User) => {
-        this.userId = loggedIn ? loggedIn.id : undefined;
-      });
-    this.isMobile$
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(() => {
-        this.store.dispatch(new HouseholdActions.InitHouseholds());
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.store.dispatch(new HouseholdActions.InitHouseholds());
   }
 
   onCreate() {
-    this.store.dispatch(new HouseholdActions.OpenCreateHouseholdDialog({ userId: this.userId }));
+    this.store.dispatch(new HouseholdActions.OpenCreateHouseholdDialog());
   }
 
-  onRemove(id: string) {
-    this.store.dispatch(new HouseholdActions.RemoveHousehold({ householdId: id }));
+  onRemove(householdId: string) {
+    this.store.dispatch(new HouseholdActions.RemoveHousehold({ householdId }));
   }
 
-  onEdit(id: string) {
-    this.store.dispatch(new HouseholdActions.OpenEditHouseholdDialog({
-      userId: this.userId,
-      householdId: id
-    }));
+  onEdit(householdId: string) {
+    this.store.dispatch(new HouseholdActions.OpenEditHouseholdDialog({ householdId }));
   }
 
   onFilterChanged(change: Partial<HouseholdFilter>) {

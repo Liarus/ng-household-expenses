@@ -116,7 +116,8 @@ export const TEST_DATA = {
       pageSize: 10,
       searchText: '',
       sortingField: 'name',
-      sortDirection: 'asc' as 'asc'
+      sortDirection: 'asc' as 'asc',
+      appendData: true
     }
   }
 };

@@ -8,7 +8,7 @@ import { hot, cold } from 'jasmine-marbles';
 import { LayoutEffects } from './layout.effects';
 import { MenuService } from '../../services/menu.service';
 import { MenuItem } from '../../models/menuItem.model';
-import { RefreshMenuItems, ApplyMenuItems } from '../actions/layout.actions';
+import { RefreshMenuItems, ApplyMenuItems, ResizeWindow } from '../actions/layout.actions';
 import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('LayoutEffects', () => {
@@ -54,4 +54,21 @@ describe('LayoutEffects', () => {
       expect(effects.menuItem$).toBeObservable(expected);
     });
   });
+
+  // describe('', () => {
+  //   it('should dispatch ResizeWindow action', () => {
+  //     const width = window.innerWidth;
+  //     const height = window.innerHeight;
+  //     const completion = new ResizeWindow({
+  //       width: width,
+  //       height: height
+  //     });
+  //     const action = new Event('resize');
+
+  //     actions$ = hot('-a---', { a: action });
+  //     const expected =  cold('--b', { b: completion });
+
+  //     expect(effects.resize$).toBeObservable(expected);
+  //   });
+  // });
 });

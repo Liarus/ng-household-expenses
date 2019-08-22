@@ -17,8 +17,7 @@ import {
   UpdateHouseholdSuccess,
   RemoveHouseholdSuccess,
   LoadHouseholdsSuccess,
-  ApplyFilter,
-  SetAppendData
+  ApplyFilter
 } from '../actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';
@@ -76,10 +75,7 @@ describe('HouseholdReducer', () => {
 
   describe('HouseholdActionTypes.LoadHouseholds', () => {
     it('should update state as loading', () => {
-      const request = {
-        userId: TEST_DATA.auth.userId
-      };
-      const action = new LoadHouseholds(request);
+      const action = new LoadHouseholds();
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
@@ -150,108 +146,41 @@ describe('HouseholdReducer', () => {
   });
 
   describe('HouseholdActionTypes.AddHouseholdSuccess', () => {
-    it('should add household entity', () => {
-      const request = TEST_DATA.household.household as Household;
-      const action = new AddHouseholdSuccess(request);
-      const result = reducer(initialState, action);
-
-      expect(result).toEqual({
+    it('should set loading to false', () => {
+      const request = TEST_DATA.household.household.id;
+      const action = new AddHouseholdSuccess({ householdId: request });
+      const result = reducer({
         ...initialState,
-        entities: {
-          [request.id]: request
-        },
-        ids: [request.id],
-        loading: false
-      });
+        loading: true
+      }, action);
+
+      expect(result).toEqual(initialState);
     });
   });
 
   describe('HouseholdActionTypes.UpdateHouseholdSuccess', () => {
-    it('should add household entity', () => {
-      const origin = TEST_DATA.household.household as Household;
-      const request: Household = {
-        id: origin.id,
-        name: 'Updated Household1 Name',
-        symbol: 'Updated Household1 symbol',
-        description: 'Updated Household1 description',
-        street: 'Updated Household1 street',
-        city: 'Updated Household1 city',
-        country: 'Updated Household1 country',
-        zipCode: 'Updated Household1 zipCode',
-        version: 2
-      };
-      const state = {
+    it('should set loading to false', () => {
+      const request = TEST_DATA.household.household.id;
+      const action = new UpdateHouseholdSuccess({ householdId: request });
+      const result = reducer({
         ...initialState,
-        entities: {
-          [origin.id]: origin
-        },
-        ids: [origin.id],
-        loading: false
-      };
-      const action = new UpdateHouseholdSuccess(request);
-      const result = reducer(state, action);
+        loading: true
+      }, action);
 
-      expect(result).toEqual({
-        ...state,
-        entities: {
-          ...state.entities,
-          [request.id]: request
-        },
-        ids: [...state.ids],
-        loading: false
-      });
+      expect(result).toEqual(initialState);
     });
   });
 
   describe('HouseholdActionTypes.RemoveHouseholdSuccess', () => {
-    it('should remove household entity', () => {
-      const origin: Household[] = [
-        {
-          id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-          name: 'Household1 Name',
-          symbol: 'Household1 symbol',
-          description: 'Household1 description',
-          street: 'Household1 street',
-          city: 'Household1 city',
-          country: 'Household1 country',
-          zipCode: 'Household1 zipCode',
-          version: 1
-        },
-        {
-          id: '55798c3b-5551-489b-9dd2-d7e59691a368',
-          name: 'Household2 Name',
-          symbol: 'Household2 symbol',
-          description: 'Household2 description',
-          street: 'Household2 street',
-          city: 'Household2 city',
-          country: 'Household2 country',
-          zipCode: 'Household2 zipCode',
-          version: 1
-        }
-      ];
-      const request = {
-        householdId: '55798c3b-5551-489b-9dd2-d7e59691a368'
-      };
-      const state = {
+    it('should set loading to false', () => {
+      const request = TEST_DATA.household.household.id;
+      const action = new RemoveHouseholdSuccess({ householdId: request });
+      const result = reducer({
         ...initialState,
-        entities: {
-          [origin[0].id]: origin[0],
-          [origin[1].id]: origin[1],
-        },
-        ids: [origin[0].id, origin[1].id],
-        loading: false
-      };
-      const action = new RemoveHouseholdSuccess(request);
-      const result = reducer(state, action);
+        loading: true
+      }, action);
 
-      expect(result).toEqual({
-        ...state,
-        entities: {
-          [origin[0].id]: origin[0]
-        },
-        ids: [origin[0].id],
-        loading: false
-      });
+      expect(result).toEqual(initialState);
     });
   });
 
@@ -329,7 +258,10 @@ describe('HouseholdReducer', () => {
       ] as Household[];
       const currentState = {
         ...initialState,
-        appendData: true,
+        filter: {
+          ...initialState.filter,
+          appendData: true
+        },
         count: 4,
         entities: households.reduce(
           (entityMap, item) => ({
@@ -382,7 +314,10 @@ describe('HouseholdReducer', () => {
           {}
         ),
         ids: expected.map(user => user.id),
-        appendData: true
+        filter: {
+          ...initialState.filter,
+          appendData: true
+        }
       });
     });
   });
@@ -409,19 +344,6 @@ describe('HouseholdReducer', () => {
       expect(result).toEqual({
         ...initialState,
         filter: Object.assign({}, initialState.filter, request)
-      });
-    });
-  });
-
-  describe('HouseholdActionTypes.SetAppendData', () => {
-    it('shoudl set append Data', () => {
-      const expected = true;
-      const action = new SetAppendData(expected);
-      const result = reducer(initialState, action);
-
-      expect(result).toEqual({
-        ...initialState,
-        appendData: expected
       });
     });
   });

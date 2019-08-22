@@ -9,22 +9,21 @@ import { HouseholdFilter } from '../../models/householdFilter.model';
 
 export enum HouseholdActionTypes {
   AddHousehold = '[Household] Add Household',
-  AddHouseholdSuccess = '[Household API] Add Household Success',
-  AddHouseholdFail = '[Household API] Add Household Fail',
+  AddHouseholdSuccess = '[Household/API] Add Household Success',
+  AddHouseholdFail = '[Household/API] Add Household Fail',
   UpdateHousehold = '[Household] Update Household',
-  UpdateHouseholdSuccess = '[Household API] Update Household Success',
-  UpdateHouseholdFail = '[Household API] Update Household Fail',
+  UpdateHouseholdSuccess = '[Household/API] Update Household Success',
+  UpdateHouseholdFail = '[Household/API] Update Household Fail',
   RemoveHousehold = '[Household] Remove Household',
-  RemoveHouseholdSuccess = '[Household API] Remove Household Success',
-  RemoveHouseholdFail = '[Household API] Remove Household Fail',
+  RemoveHouseholdSuccess = '[Household/API] Remove Household Success',
+  RemoveHouseholdFail = '[Household/API] Remove Household Fail',
   InitHouseholds = '[Household] Init Households',
   LoadHouseholds = '[Household] Load Households',
-  LoadHouseholdsSuccess = '[Household API] Load Households Success',
-  LoadHouseholdsFail = '[Household API] Load Households Fail',
+  LoadHouseholdsSuccess = '[Household/API] Load Households Success',
+  LoadHouseholdsFail = '[Household/API] Load Households Fail',
   OpenCreateHouseholdDialog = '[Household] Open Create Household Dialog',
   OpenEditHouseholdDialog = '[Household] Open Edit Household Dialog',
-  ApplyFilter = '[Household] Apply Filter',
-  SetAppendData = '[Household] Append Data'
+  ApplyFilter = '[Household] Apply Filter'
 }
 
 export class AddHousehold implements Action {
@@ -36,7 +35,7 @@ export class AddHousehold implements Action {
 export class AddHouseholdSuccess implements Action {
   readonly type = HouseholdActionTypes.AddHouseholdSuccess;
 
-  constructor(public payload: Household) {}
+  constructor(public payload: { householdId: string }) {}
 }
 
 export class AddHouseholdFail implements Action {
@@ -60,7 +59,7 @@ export class UpdateHouseholdFail implements Action {
 export class UpdateHouseholdSuccess implements Action {
   readonly type = HouseholdActionTypes.UpdateHouseholdSuccess;
 
-  constructor(public payload: Partial<Household>) {}
+  constructor(public payload: { householdId: string }) {}
 }
 
 export class RemoveHousehold implements Action {
@@ -90,7 +89,7 @@ export class InitHouseholds implements Action {
 export class LoadHouseholds implements Action {
   readonly type = HouseholdActionTypes.LoadHouseholds;
 
-  constructor(public payload: { userId: string }) {}
+  constructor() {}
 }
 
 export class LoadHouseholdsSuccess implements Action {
@@ -111,25 +110,19 @@ export class LoadHouseholdsFail implements Action {
 export class OpenCreateHouseholdDialog implements Action {
   readonly type = HouseholdActionTypes.OpenCreateHouseholdDialog;
 
-  constructor(public payload: { userId: string }) {}
+  constructor() {}
 }
 
 export class OpenEditHouseholdDialog implements Action {
   readonly type = HouseholdActionTypes.OpenEditHouseholdDialog;
 
-  constructor(public payload: { userId: string, householdId: string }) {}
+  constructor(public payload: { householdId: string }) {}
 }
 
 export class ApplyFilter implements Action {
   readonly type = HouseholdActionTypes.ApplyFilter;
 
   constructor(public payload: Partial<HouseholdFilter>) {}
-}
-
-export class SetAppendData implements Action {
-  readonly type = HouseholdActionTypes.SetAppendData;
-
-  constructor(public payload: boolean) {}
 }
 
 export type HouseholdActionsUnion =
@@ -148,5 +141,4 @@ export type HouseholdActionsUnion =
   | LoadHouseholdsFail
   | OpenCreateHouseholdDialog
   | OpenEditHouseholdDialog
-  | ApplyFilter
-  | SetAppendData;
+  | ApplyFilter;

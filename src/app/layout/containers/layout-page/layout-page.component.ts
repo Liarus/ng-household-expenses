@@ -29,14 +29,6 @@ export class LayoutPageComponent {
 
   constructor(private store: Store<fromRoot.State>) { }
 
-  @HostListener('window:resize', ['$event'])
-  onResize($event: any) {
-    this.store.dispatch(new LayoutActions.ResizeWindow({
-      width: $event.target.innerWidth,
-      height: $event.target.innerHeight
-    }));
-  }
-
   onToggleSidebar() {
     this.store.dispatch(new LayoutActions.ToggleSidebar());
   }
