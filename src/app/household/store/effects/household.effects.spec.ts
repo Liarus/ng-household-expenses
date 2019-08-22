@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { ToastrService } from 'ngx-toastr';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Actions } from '@ngrx/effects';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, Store } from '@ngrx/store';
 

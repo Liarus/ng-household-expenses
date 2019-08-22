@@ -4,7 +4,7 @@ import { Effect, ofType, Actions } from '@ngrx/effects';
 import { map, switchMap, catchError, tap, filter, mergeMap, first, withLatestFrom, concatMap, exhaustMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Store, select } from '@ngrx/store';
 
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
