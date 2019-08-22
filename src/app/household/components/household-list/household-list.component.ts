@@ -26,8 +26,8 @@ export class HouseholdListComponent implements AfterViewInit, OnDestroy {
   @Output() remove = new EventEmitter<string>();
   @Output() filterChanged = new EventEmitter<Partial<HouseholdFilter>>();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   displayedColumns: string[] = ['name', 'symbol', 'description', 'actions'];
   dataSource: MatTableDataSource<Household>;
