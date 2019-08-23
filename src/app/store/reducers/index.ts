@@ -1,4 +1,4 @@
-import { storeFreeze } from 'ngrx-store-freeze';
+
 import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 
@@ -35,5 +35,5 @@ export function logout(reducer: ActionReducer<State>): ActionReducer<State> {
 }
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
-  ? [logger, storeFreeze, logout]
+  ? [logger, logout]
   : [logout];

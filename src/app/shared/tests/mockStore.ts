@@ -39,7 +39,7 @@ export function provideMockStore() {
   imports: [
     NoopAnimationsModule,
     RouterTestingModule,
-    StoreModule.forRoot({})
+    StoreModule.forRoot({}, { runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true }})
   ],
   exports: [
     NoopAnimationsModule,
