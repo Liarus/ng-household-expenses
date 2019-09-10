@@ -1,15 +1,13 @@
-/// <reference types="jest" />
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HAMMER_LOADER } from '@angular/platform-browser';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { HouseholdPageComponent } from './household-page.component';
 import { MaterialModule } from '../../../material/material.module';
-import { MockStore } from '../../../shared/tests/mockStore';
 import { HouseholdListComponent, HouseholdTilesComponent, HouseholdSearchComponent } from '../../components';
-import { User } from '../../../auth/models/user.model';
 import * as HouseholdActions from '../../store/actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 import { TEST_DATA } from 'src/app/shared/tests/test-data';
@@ -19,14 +17,28 @@ describe('HouseholdPageComponent', () => {
   let fixture: ComponentFixture<HouseholdPageComponent>;
 
   let store: MockStore<any>;
-  const user = TEST_DATA.auth.user as User;
+  const initialState = {
+    layout: {
+      isMobile: false
+    },
+    auth: {
+      status: {
+        user: TEST_DATA.auth.user
+      }
+    },
+    households: {
+      loading: false,
+      ids: [],
+      entities: {
+      }
+    }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
         NoopAnimationsModule,
-        StoreModule.forRoot({})
       ],
       declarations: [
         HouseholdPageComponent,
@@ -35,8 +47,8 @@ describe('HouseholdPageComponent', () => {
         HouseholdSearchComponent
       ],
       providers: [
-        { provide: Store, useClass: MockStore },
-        { provide: HAMMER_LOADER, useValue: () => new Promise(() => {}) }
+        { provide: HAMMER_LOADER, useValue: () => new Promise(() => {}) },
+        provideMockStore({ initialState })
       ]
     })
     .overrideComponent(HouseholdPageComponent, {
@@ -47,59 +59,6 @@ describe('HouseholdPageComponent', () => {
 
   beforeEach(() => {
     store = TestBed.get(Store);
-    store.setState({
-      layout: {
-        isMobile: false
-      },
-      auth: {
-        status: {
-          user: user
-        }
-      },
-      households: {
-        loading: false,
-        ids: [
-          '550416ea-b523-4468-ae10-ea07d35eb9f0',
-          '55798c3b-5551-489b-9dd2-d7e59691a368',
-          'b28e143a-a64a-469a-9704-a294cc7356cf'
-        ],
-        entities: {
-          '550416ea-b523-4468-ae10-ea07d35eb9f0': {
-            id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-            name: 'Household1 Name',
-            symbol: 'Household1 symbol',
-            description: 'Household1 description',
-            street: 'Household1 street',
-            city: 'Household1 city',
-            country: 'Household1 country',
-            zipCode: 'Household1 zipCode',
-            version: 1
-          },
-          '55798c3b-5551-489b-9dd2-d7e59691a368': {
-            id: '55798c3b-5551-489b-9dd2-d7e59691a368',
-            name: 'Household2 Name',
-            symbol: 'Household2 symbol',
-            description: 'Household2 description',
-            street: 'Household2 street',
-            city: 'Household2 city',
-            country: 'Household2 country',
-            zipCode: 'Household2 zipCode',
-            version: 1
-          },
-          'b28e143a-a64a-469a-9704-a294cc7356cf': {
-            id: 'b28e143a-a64a-469a-9704-a294cc7356cf',
-            name: 'Household3 Name',
-            symbol: 'Household3 symbol',
-            description: 'Household3 description',
-            street: 'Household3 street',
-            city: 'Household3 city',
-            country: 'Household3 country',
-            zipCode: 'Household3 zipCode',
-            version: 1
-          }
-        }
-      }
-    });
     fixture = TestBed.createComponent(HouseholdPageComponent);
     component = fixture.componentInstance;
     spyOn(store, 'dispatch');
@@ -110,43 +69,39 @@ describe('HouseholdPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch OpenCreateHouseholdDialog action', () => {
-    const expected = new HouseholdActions.OpenCreateHouseholdDialog();
+  it('should dispatch openCreateHouseholdDialog action', () => {
+    const expected = HouseholdActions.openCreateHouseholdDialog();
 
     component.onCreate();
 
     expect(store.dispatch).toHaveBeenLastCalledWith(expected);
   });
 
-  it('should dispatch OpenEditHouseholdDialog action', () => {
+  it('should dispatch openEditHouseholdDialog action', () => {
     const householdId = TEST_DATA.household.household.id;
-    const expected = new HouseholdActions.OpenEditHouseholdDialog({
-      householdId: householdId
-    });
+    const expected = HouseholdActions.openEditHouseholdDialog({ request: { householdId } });
 
     component.onEdit(householdId);
 
     expect(store.dispatch).toHaveBeenCalledWith(expected);
   });
 
-  it('should dispatch RemoveHousehold action', () => {
+  it('should dispatch removeHousehold action', () => {
     const householdId = TEST_DATA.household.household.id;
-    const expected = new HouseholdActions.RemoveHousehold({
-      householdId: householdId
-    });
+    const expected = HouseholdActions.removeHousehold({ request: { householdId } });
 
     component.onRemove(householdId);
 
     expect(store.dispatch).toHaveBeenCalledWith(expected);
   });
 
-  it('should dispatch ApplyFilter action', () => {
-    const filterChange = {
+  it('should dispatch applyFilter action', () => {
+    const request = {
       searchText: 'Household1'
     } as Partial<HouseholdFilter>;
-    const expected = new HouseholdActions.ApplyFilter(filterChange);
+    const expected = HouseholdActions.applyFilter({ request });
 
-    component.onFilterChanged(filterChange);
+    component.onFilterChanged(request);
 
     expect(store.dispatch).toHaveBeenCalledWith(expected);
   });

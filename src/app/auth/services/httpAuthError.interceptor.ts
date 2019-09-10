@@ -17,7 +17,7 @@ export class HttpAuthErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError(err => {
         if (err.status === 401 && !request.url.includes('/login')) {
-          this.store.dispatch(new AuthActions.AuthHttpError(HttpError.parse(err)));
+          this.store.dispatch(AuthActions.authHttpError({ error: HttpError.parse(err) }));
           of(EMPTY);
         }
           return throwError(err);

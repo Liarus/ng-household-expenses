@@ -1,4 +1,3 @@
-/// <reference types="jest" />
 import { Observable, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { ToastrService } from 'ngx-toastr';
@@ -6,32 +5,19 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Actions } from '@ngrx/effects';
 import { MatDialog } from '@angular/material/dialog';
 import { hot, cold } from 'jasmine-marbles';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store, MemoizedSelector } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { CreateHousehold } from '../../models/requests/createHousehold.model';
-import { ModifyHousehold } from '../../models/requests/modifyHousehold.model';
-import { MockStore } from '../../../shared/tests/mockStore';
 import { Household } from '../../models/household.model';
 import { HouseholdService } from '../../services/household.service';
 import { HouseholdEffects } from './household.effects';
-import {
-  AddHousehold,
-  AddHouseholdSuccess,
-  AddHouseholdFail,
-  UpdateHousehold,
-  UpdateHouseholdSuccess,
-  UpdateHouseholdFail,
-  RemoveHousehold,
-  RemoveHouseholdSuccess,
-  RemoveHouseholdFail,
-  LoadHouseholds,
-  LoadHouseholdsSuccess,
-  LoadHouseholdsFail,
-  OpenCreateHouseholdDialog,
-  OpenEditHouseholdDialog,
-  ApplyFilter,
-  InitHouseholds
-} from '../actions/household.actions';
+import * as HouseholdActions from '../actions/household.actions';
+import * as fromHousehold from '../reducers/household.reducer';
+import * as fromHouseholdSelectors from '../selectors/household.selectors';
+import * as fromLayout from '../../../layout/store/reducers/layout.reducer';
+import * as fromLayoutSelectors from '../../../layout/store/selectors/layout.selectors';
+import * as fromAuth from '../../../auth/store/reducers/auth.reducer';
+import * as fromAuthSelectors from '../../../auth/store/selectors/auth.selectors';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 import { User } from '../../../auth/models/user.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';
@@ -42,13 +28,22 @@ describe('HouseholdEffects', () => {
   let dialog: any;
   let toastrService: any;
   let householdService: HouseholdService;
-  let store: MockStore<any>;
+  let store: MockStore<fromHousehold.State>;
+  let getIsMobile: MemoizedSelector<fromLayout.State, boolean>;
+  let getLoggedUser: MemoizedSelector<fromAuth.State, User>;
+  let getHouseholdFilter: MemoizedSelector<fromHousehold.State, HouseholdFilter>;
+  let getHousehold: MemoizedSelector<fromHousehold.State, Household>;
+  const testState = {
+    households: {
+    entities: {
+      'id': {
+      }
+    }
+  }
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({})
-      ],
       providers: [
         HouseholdEffects,
         {
@@ -72,11 +67,10 @@ describe('HouseholdEffects', () => {
             open: jest.fn(),
           }
         },
-        {
-          provide: Store,
-          useClass: MockStore
-        },
         provideMockActions(() => actions$),
+        provideMockStore({
+          initialState: testState
+        })
       ]
     });
 
@@ -86,6 +80,32 @@ describe('HouseholdEffects', () => {
     householdService = TestBed.get(HouseholdService);
     dialog = TestBed.get(MatDialog);
     store = TestBed.get(Store);
+    getIsMobile = store.overrideSelector(
+      fromLayoutSelectors.getIsMobile,
+      false
+    );
+    getLoggedUser = store.overrideSelector(
+      fromAuthSelectors.getLoggedUser,
+      TEST_DATA.auth.user
+    );
+    getHouseholdFilter = store.overrideSelector(
+      fromHouseholdSelectors.getHouseholdFilter,
+      TEST_DATA.household.filter
+    );
+    getHousehold = store.overrideSelector(
+      fromHouseholdSelectors.getHousehold('550416ea-b523-4468-ae10-ea07d35eb9f0'),
+      {
+        id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
+        name: 'Household1 Name',
+        symbol: 'Household1 symbol',
+        description: 'Household1 description',
+        street: 'Household1 street',
+        city: 'Household1 city',
+        country: 'Household1 country',
+        zipCode: 'Household1 zipCode',
+        version: 1
+      } as Household
+    );
   });
 
   it('should be created', () => {
@@ -93,9 +113,9 @@ describe('HouseholdEffects', () => {
   });
 
   describe('addHousehold$', () => {
-    it('should return AddHouseholdSuccess on AddHousehold when success', () => {
-      const household = TEST_DATA.household.household as Household;
-      const action = new AddHousehold({
+    it('should return addHouseholdSuccess on addHousehold when success', () => {
+      const household = TEST_DATA.household.household;
+      const action = HouseholdActions.addHousehold({ request: {
         userId: TEST_DATA.auth.userId,
         id: household.id,
         name: household.name,
@@ -106,8 +126,8 @@ describe('HouseholdEffects', () => {
         country: household.country,
         zipCode: household.zipCode,
         version: household.version
-      });
-      const completion = new AddHouseholdSuccess({ householdId: household.id });
+      }});
+      const completion = HouseholdActions.addHouseholdSuccess({ response: { householdId: household.id }});
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: of(true) });
@@ -117,9 +137,11 @@ describe('HouseholdEffects', () => {
       expect(effects.addHousehold$).toBeObservable(expected);
     });
 
-    it('should return AddHouseholdFail on AddHousehold when error', () => {
-      const error = 'error occured';
-      const action = new AddHousehold({
+    it('should return addHouseholdFail on addHousehold when error', () => {
+      const error = {
+        message: 'error occured'
+      };
+      const action = HouseholdActions.addHousehold({ request: {
         userId: TEST_DATA.auth.userId,
         id: TEST_DATA.household.household.id,
         name: TEST_DATA.household.household.name,
@@ -130,10 +152,8 @@ describe('HouseholdEffects', () => {
         country: TEST_DATA.household.household.country,
         zipCode: TEST_DATA.household.household.zipCode,
         version: TEST_DATA.household.household.version
-      });
-      const completion = new AddHouseholdFail({
-        message: error
-      });
+      }});
+      const completion = HouseholdActions.addHouseholdFail({ error });
 
       actions$ = hot('-a---', {a: action});
       const response = cold('-#|', {}, error);
@@ -145,9 +165,9 @@ describe('HouseholdEffects', () => {
   });
 
   describe('updateHousehold$', () => {
-    it('should return UpdateHouseholdSuccess on UpdateHousehold when success', () => {
-      const household = TEST_DATA.household.household as Household;
-      const action = new UpdateHousehold({
+    it('should return updateHouseholdSuccess on updateHousehold when success', () => {
+      const household = TEST_DATA.household.household;
+      const action = HouseholdActions.updateHousehold({ request: {
         id: household.id,
         name: household.name,
         symbol: household.symbol,
@@ -157,8 +177,8 @@ describe('HouseholdEffects', () => {
         country: household.country,
         zipCode: household.zipCode,
         version: household.version
-      });
-      const completion = new UpdateHouseholdSuccess({ householdId: household.id });
+      }});
+      const completion = HouseholdActions.updateHouseholdSuccess({ response: { householdId: household.id } });
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: of(true) });
@@ -168,9 +188,11 @@ describe('HouseholdEffects', () => {
       expect(effects.updateHousehold$).toBeObservable(expected);
     });
 
-    it('should return UpdateHouseholdFail on UpdateHousehold when error', () => {
-      const error = 'error occured';
-      const action = new UpdateHousehold({
+    it('should return updateHouseholdFail on updateHousehold when error', () => {
+      const error = {
+        message: 'error occured'
+      };
+      const action = HouseholdActions.updateHousehold({ request: {
         id: TEST_DATA.household.household.id,
         name: TEST_DATA.household.household.name,
         symbol: TEST_DATA.household.household.symbol,
@@ -180,10 +202,8 @@ describe('HouseholdEffects', () => {
         country: TEST_DATA.household.household.country,
         zipCode: TEST_DATA.household.household.zipCode,
         version: TEST_DATA.household.household.version
-      });
-      const completion = new UpdateHouseholdFail({
-        message: error
-      });
+      }});
+      const completion = HouseholdActions.updateHouseholdFail({ error });
 
       actions$ = hot('-a---', {a: action});
       const response = cold('-#|', {}, error);
@@ -195,12 +215,12 @@ describe('HouseholdEffects', () => {
   });
 
   describe('deleteHousehold$', () => {
-    it('should return RemoveHouseholdSuccess on RemoveHousehold when success', () => {
+    it('should return removeHouseholdSuccess on removeHousehold when success', () => {
       const request = {
         householdId: TEST_DATA.household.household.id
       };
-      const action = new RemoveHousehold(request);
-      const completion = new RemoveHouseholdSuccess(request);
+      const action = HouseholdActions.removeHousehold({ request });
+      const completion = HouseholdActions.removeHouseholdSuccess({ response: { householdId: request.householdId }});
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: of(true) });
@@ -210,14 +230,12 @@ describe('HouseholdEffects', () => {
       expect(effects.deleteHousehold$).toBeObservable(expected);
     });
 
-    it('should return RemoveHouseholdFail on RemoveHousehold when error', () => {
-      const error = 'error occured';
-      const action = new RemoveHousehold({
-        householdId: TEST_DATA.household.household.id
-      });
-      const completion = new RemoveHouseholdFail({
-        message: error
-      });
+    it('should return removeHouseholdFail on removeHousehold when error', () => {
+      const error = {
+        message: 'error occured'
+      };
+      const action = HouseholdActions.removeHousehold({ request: { householdId: TEST_DATA.household.household.id } });
+      const completion = HouseholdActions.removeHouseholdFail({ error });
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-#|', {}, error);
@@ -229,20 +247,16 @@ describe('HouseholdEffects', () => {
   });
 
   describe('initHouseholds', () => {
-    it('should ApplyFilter with appendData if mobile', () => {
-      store.setState({
-        layout: {
-          isMobile: true
-        }
-      });
-      const action = new InitHouseholds();
-      const completion = new ApplyFilter({
+    it('should applyFilter with appendData if mobile', () => {
+      getIsMobile.setResult(true);
+      const action = HouseholdActions.initHouseholds();
+      const completion = HouseholdActions.applyFilter({ request: {
         pageNumber: 1,
         pageSize: 10,
         sortingField: 'name',
         sortDirection: 'asc',
         appendData: true
-      });
+      }});
 
       actions$ = hot('-a---', { a: action });
       const expected = cold('-b', { b: completion });
@@ -250,16 +264,11 @@ describe('HouseholdEffects', () => {
       expect(effects.initHouseholds$).toBeObservable(expected);
     });
 
-    it('should ApplyFilter with no appendData if desktop', () => {
-      store.setState({
-        layout: {
-          isMobile: false
-        }
-      });
-      const action = new InitHouseholds();
-      const completion = new ApplyFilter({
+    it('should applyFilter with no appendData if desktop', () => {
+      const action = HouseholdActions.initHouseholds();
+      const completion = HouseholdActions.applyFilter({ request: {
         appendData: false
-      });
+      }});
 
       actions$ = hot('-a---', { a: action });
       const expected = cold('-b', { b: completion });
@@ -269,26 +278,13 @@ describe('HouseholdEffects', () => {
   });
 
   describe('loadHouseholds$', () => {
-    beforeEach(() => {
-      store.setState({
-        households: {
-          filter: TEST_DATA.household.filter as HouseholdFilter
-        },
-        auth: {
-          status: {
-            user: TEST_DATA.auth.user as User
-          }
-        }
-      });
-    });
-
-    it('should return LoadHouseholdsSuccess with households on LoadHouseholds when success', () => {
-      const households = TEST_DATA.household.households as Household[];
-      const action = new LoadHouseholds();
-      const completion = new LoadHouseholdsSuccess({
+    it('should return loadHouseholdsSuccess with households on loadHouseholds when success', () => {
+      const households = TEST_DATA.household.households;
+      const action = HouseholdActions.loadHouseholds();
+      const completion = HouseholdActions.loadHouseholdsSuccess({ response: {
         count: households.length,
         households: households
-      });
+      }});
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: { count: households.length, households: households } });
@@ -298,12 +294,12 @@ describe('HouseholdEffects', () => {
       expect(effects.loadHouseholds$).toBeObservable(expected);
     });
 
-    it('should return LoadHouseholdsFail on LoadHouseholds when error', () => {
-      const error = 'error occured';
-      const action = new LoadHouseholds();
-      const completion = new LoadHouseholdsFail({
-        message: error
-      });
+    it('should return loadHouseholdsFail on loadHouseholds when error', () => {
+      const error = {
+        message: 'error occured'
+      };
+      const action = HouseholdActions.loadHouseholds();
+      const completion = HouseholdActions.loadHouseholdsFail({ error });
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-#|', {}, error);
@@ -315,17 +311,10 @@ describe('HouseholdEffects', () => {
   });
 
   describe('openCreateDialog$', () => {
-    it('should return AddHousehold on OpenCreateHouseholdDialog when request provided', () => {
-      store.setState({
-        auth: {
-          status: {
-            user: TEST_DATA.auth.user as User
-          }
-        }
-      });
-      const request = TEST_DATA.household.createHousehold as CreateHousehold;
-      const action = new OpenCreateHouseholdDialog();
-      const completion = new AddHousehold(request);
+    it('should return addHousehold on openCreateHouseholdDialog when request provided', () => {
+      const request = TEST_DATA.household.createHousehold;
+      const action = HouseholdActions.openCreateHouseholdDialog();
+      const completion = HouseholdActions.addHousehold({ request });
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: request });
@@ -341,39 +330,10 @@ describe('HouseholdEffects', () => {
   });
 
   describe('openModifyDialog$', () => {
-    beforeEach(() => {
-      store.setState({
-        households: {
-          loading: false,
-          ids: [
-            '550416ea-b523-4468-ae10-ea07d35eb9f0'
-          ],
-          entities: {
-            '550416ea-b523-4468-ae10-ea07d35eb9f0': {
-              id: '550416ea-b523-4468-ae10-ea07d35eb9f0',
-              name: 'Household1 Name',
-              symbol: 'Household1 symbol',
-              description: 'Household1 description',
-              street: 'Household1 street',
-              city: 'Household1 city',
-              country: 'Household1 country',
-              zipCode: 'Household1 zipCode',
-              version: 1
-            }
-          }
-        },
-        auth: {
-          status: {
-            user: TEST_DATA.auth.user as User
-          }
-        }
-      });
-    });
-
-    it('should return UpdateHousehold on OpenEditHouseholdDialog when request provided', () => {
-      const request = TEST_DATA.household.modifyHousehold as ModifyHousehold;
-      const action = new OpenEditHouseholdDialog({ householdId: request.id });
-      const completion = new UpdateHousehold(request);
+    it('should return updateHousehold on openEditHouseholdDialog when request provided', () => {
+      const request = TEST_DATA.household.modifyHousehold;
+      const action = HouseholdActions.openEditHouseholdDialog({ request: { householdId: request.id } });
+      const completion = HouseholdActions.updateHousehold({ request });
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: request });
@@ -389,10 +349,10 @@ describe('HouseholdEffects', () => {
   });
 
   describe('error$', () => {
-    it('should show toast on AddHouseholdFail', (done) => {
-      const action = new AddHouseholdFail({
+    it('should show toast on addHouseholdFail', (done) => {
+      const action = HouseholdActions.addHouseholdFail({ error: {
         message: 'error occured'
-      });
+      }});
 
       actions$ = of(action);
 
@@ -402,10 +362,10 @@ describe('HouseholdEffects', () => {
       });
     });
 
-    it('should show toast on LoadHouseholdsFail', (done) => {
-      const action = new LoadHouseholdsFail({
+    it('should show toast on loadHouseholdsFail', (done) => {
+      const action = HouseholdActions.loadHouseholdsFail({ error: {
         message: 'error occured'
-      });
+      }});
 
       actions$ = of(action);
 
@@ -416,10 +376,10 @@ describe('HouseholdEffects', () => {
     });
   });
 
-  it('should show toast on RemoveHouseholdFail', (done) => {
-    const action = new RemoveHouseholdFail({
+  it('should show toast on removeHouseholdFail', (done) => {
+    const action = HouseholdActions.removeHouseholdFail({ error: {
       message: 'error occured'
-    });
+    }});
 
     actions$ = of(action);
 
@@ -429,10 +389,10 @@ describe('HouseholdEffects', () => {
     });
   });
 
-  it('should show toast on UpdateHouseholdFail', (done) => {
-    const action = new UpdateHouseholdFail({
+  it('should show toast on updateHouseholdFail', (done) => {
+    const action = HouseholdActions.updateHouseholdFail({ error: {
       message: 'error occured'
-    });
+    }});
 
     actions$ = of(action);
 
@@ -443,9 +403,9 @@ describe('HouseholdEffects', () => {
   });
 
   describe('reload$', () => {
-    it('should return LoadHouseholds on ApplyFilter', () => {
-      const action = new ApplyFilter({ searchText: 'test'});
-      const completion = new LoadHouseholds();
+    it('should return loadHouseholds on applyFilter', () => {
+      const action = HouseholdActions.applyFilter({ request: { searchText: 'test' } });
+      const completion = HouseholdActions.loadHouseholds();
 
       actions$ = hot('-a---', { a: action });
       const expected = cold('-b', { b: completion });
@@ -453,9 +413,9 @@ describe('HouseholdEffects', () => {
       expect(effects.reload$).toBeObservable(expected);
     });
 
-    it('should return LoadHouseholds on RemoveHouseholdSuccess', () => {
-      const action = new RemoveHouseholdSuccess({ householdId: TEST_DATA.household.household.id});
-      const completion = new LoadHouseholds();
+    it('should return loadHouseholds on removeHouseholdSuccess', () => {
+      const action = HouseholdActions.removeHouseholdSuccess({ response: { householdId: TEST_DATA.household.household.id } });
+      const completion = HouseholdActions.loadHouseholds();
 
       actions$ = hot('-a---', { a: action });
       const expected = cold('-b', { b: completion });
@@ -463,9 +423,9 @@ describe('HouseholdEffects', () => {
       expect(effects.reload$).toBeObservable(expected);
     });
 
-    it('should return LoadHouseholds on AddHouseholdSuccess', () => {
-      const action = new AddHouseholdSuccess({ householdId: TEST_DATA.household.household.id});
-      const completion = new LoadHouseholds();
+    it('should return loadHouseholds on addHouseholdSuccess', () => {
+      const action = HouseholdActions.addHouseholdSuccess({ response: { householdId: TEST_DATA.household.household.id } });
+      const completion = HouseholdActions.loadHouseholds();
 
       actions$ = hot('-a---', { a: action });
       const expected = cold('-b', { b: completion });
@@ -473,9 +433,9 @@ describe('HouseholdEffects', () => {
       expect(effects.reload$).toBeObservable(expected);
     });
 
-    it('should return LoadHouseholds on UpdateHouseholdSuccess', () => {
-      const action = new UpdateHouseholdSuccess({ householdId: TEST_DATA.household.household.id});
-      const completion = new LoadHouseholds();
+    it('should return loadHouseholds on updateHouseholdSuccess', () => {
+      const action = HouseholdActions.updateHouseholdSuccess({ response: { householdId: TEST_DATA.household.household.id } });
+      const completion = HouseholdActions.loadHouseholds();
 
       actions$ = hot('-a---', { a: action });
       const expected = cold('-b', { b: completion });
@@ -486,16 +446,57 @@ describe('HouseholdEffects', () => {
 
   describe('isMobile$', () => {
     it('should return InitHouseholds on mobile change', () => {
-      store.setState({
-        layout: {
-          isMobile: true
-        }
-      });
-      const completion = new InitHouseholds();
+      getIsMobile.setResult(true);
+
+      const completion = HouseholdActions.initHouseholds();
 
       const expected = cold('a', { a: completion });
 
       expect(effects.isMobile$).toBeObservable(expected);
+    });
+  });
+
+  describe('reload$', () => {
+    it('should return loadHouseholds on applyFilter', () => {
+      const action = HouseholdActions.applyFilter({ request: {
+        appendData: true
+      }});
+      const completion = HouseholdActions.loadHouseholds();
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.reload$).toBeObservable(expected);
+    });
+
+    it('should return loadHouseholds on removeHouseholdSuccess', () => {
+      const action = HouseholdActions.removeHouseholdSuccess({ response: { householdId: TEST_DATA.household.household.id  }});
+      const completion = HouseholdActions.loadHouseholds();
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.reload$).toBeObservable(expected);
+    });
+
+    it('should return loadHouseholds on addHouseholdSuccess', () => {
+      const action = HouseholdActions.addHouseholdSuccess({ response: { householdId: TEST_DATA.household.household.id  }});
+      const completion = HouseholdActions.loadHouseholds();
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.reload$).toBeObservable(expected);
+    });
+
+    it('should return loadHouseholds on updateHouseholdSuccess', () => {
+      const action = HouseholdActions.updateHouseholdSuccess({ response: { householdId: TEST_DATA.household.household.id  }});
+      const completion = HouseholdActions.loadHouseholds();
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.reload$).toBeObservable(expected);
     });
   });
 });

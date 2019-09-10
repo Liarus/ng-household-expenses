@@ -1,5 +1,8 @@
+import { createReducer, on, Action } from '@ngrx/store';
+
 import { User } from '../../models/user.model';
-import { AuthActionTypes, AuthActionsUnion } from '../actions/auth.actions';
+import * as AuthActions from '../actions/auth.actions';
+
 
 export interface State {
   loggedIn: boolean;
@@ -17,51 +20,36 @@ export const initialState: State = {
   user: null
 };
 
-export function reducer(
-  state = initialState,
-  action: AuthActionsUnion): State {
-  switch (action.type) {
-    case AuthActionTypes.LoginFailure: {
-      return {
-        ...state,
-        loading: false,
-        errorMessage: action.payload.message
-      };
-    }
+export const authReducer = createReducer(
+  initialState,
+  on(AuthActions.login, state => ({
+    ...state,
+    loading: true
+  })),
+  on(AuthActions.loginFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    errorMessage: error.message
+  })),
+  on(AuthActions.loginSuccess, (state, { response }) => ({
+    ...state,
+    loggedIn: true,
+    loading: false,
+    user: response.user,
+    accessToken: response.accessToken
+  })),
+  on(AuthActions.logout , state => ({
+    ...initialState
+  })),
+  on(AuthActions.authHttpError, (state, { error }) => ({
+    ...initialState,
+    errorMessage: error.message
+  })),
 
-    case AuthActionTypes.Login: {
-      return {
-        ...state,
-        loading: true,
-        errorMessage: ''
-      };
-    }
+);
 
-    case AuthActionTypes.LoginSuccess: {
-      return {
-        ...state,
-        loggedIn: true,
-        loading: false,
-        user: action.payload.user,
-        accessToken: action.payload.accessToken
-      };
-    }
-
-    case AuthActionTypes.Logout: {
-      return initialState;
-    }
-
-    case AuthActionTypes.AuthHttpError: {
-      return {
-        ...initialState,
-        errorMessage: action.payload.message
-      };
-    }
-
-    default: {
-      return state;
-    }
-  }
+export function reducer(state: State | undefined, action: Action) {
+  return authReducer(state, action);
 }
 
 export const getLoggedIn = (state: State) => state.loggedIn;

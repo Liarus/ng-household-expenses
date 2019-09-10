@@ -1,4 +1,3 @@
-/// <reference types="jest" />
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ChangeDetectionStrategy } from '@angular/core';
@@ -6,14 +5,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SidebarComponent } from './sidebar.component';
 import { MaterialModule } from '../../../material/material.module';
-import { MenuItem } from '../../models/menuItem.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
   let fixture: ComponentFixture<SidebarComponent>;
 
-  const menuItems = TEST_DATA.layout.menuItems as MenuItem[];
+  const menuItems = TEST_DATA.layout.menuItems;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

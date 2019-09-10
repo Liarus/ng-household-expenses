@@ -1,5 +1,3 @@
-/// <reference types="jest" />
-
 import {
   getHouseholdsLoading,
   getHouseholdErrorMessage,
@@ -8,18 +6,27 @@ import {
   getHouseholdFilter
 } from './household.selectors';
 import { Household } from '../../models/household.model';
-import { HouseholdFilter } from '../../models/householdFilter.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';
+import { State } from '../reducers/household.reducer';
 
 describe('Household Selectors', () => {
+  const householdState: State = {
+    loading: true,
+    errorMessage: 'test Error',
+    count: 10,
+    filter: TEST_DATA.household.filter,
+    ids: [],
+    entities: {}
+  };
+
+  const state = {
+    households: householdState
+  };
+
+
   describe('getHouseholdsLoading', () => {
     it('should return loading', () => {
       const expectedLoading = true;
-      const state = {
-        households: {
-          loading: expectedLoading
-        }
-      };
 
       expect(getHouseholdsLoading(state)).toBe(expectedLoading);
     });
@@ -28,11 +35,6 @@ describe('Household Selectors', () => {
   describe('getErrorMessage', () => {
     it('should return error message', () => {
       const expectedError = 'test Error';
-      const state = {
-        households: {
-          errorMessage: expectedError
-        }
-      };
 
       expect(getHouseholdErrorMessage(state)).toBe(expectedError);
     });
@@ -75,11 +77,6 @@ describe('Household Selectors', () => {
   describe('getCount', () => {
     it('should return count', () => {
       const expectedCount = 10;
-      const state = {
-        households: {
-          count: expectedCount
-        }
-      };
 
       expect(getHouseholdsCount(state)).toBe(expectedCount);
     });
@@ -87,12 +84,7 @@ describe('Household Selectors', () => {
 
   describe('getFilter', () => {
     it('should return filter', () => {
-      const expectedFilter  = TEST_DATA.household.filter as HouseholdFilter;
-      const state = {
-        households: {
-          filter: expectedFilter
-        }
-      };
+      const expectedFilter  = TEST_DATA.household.filter;
 
       expect(getHouseholdFilter(state)).toBe(expectedFilter);
     });

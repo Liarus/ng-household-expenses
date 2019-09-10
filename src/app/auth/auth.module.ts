@@ -10,12 +10,16 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './containers';
 import { LoginFormComponent } from './components';
 import { MaterialModule } from '../material/material.module';
+import { AuthService } from './services/auth.service';
 
 export const COMPONENTS = [
   LoginPageComponent,
   LoginFormComponent
 ];
 
+const PROVIDERS = [
+  AuthService
+];
 @NgModule({
   imports: [
     CommonModule,
@@ -26,5 +30,6 @@ export const COMPONENTS = [
     EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: COMPONENTS,
+  providers: PROVIDERS
 })
 export class AuthModule {}

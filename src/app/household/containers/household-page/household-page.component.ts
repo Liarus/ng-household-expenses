@@ -44,22 +44,22 @@ export class HouseholdPageComponent {
   count$ = this.store.pipe(select(fromHouseholdSelectors.getHouseholdsCount));
 
   constructor(private store: Store<fromRoot.State>) {
-    this.store.dispatch(new HouseholdActions.InitHouseholds());
+    this.store.dispatch(HouseholdActions.initHouseholds());
   }
 
   onCreate() {
-    this.store.dispatch(new HouseholdActions.OpenCreateHouseholdDialog());
+    this.store.dispatch(HouseholdActions.openCreateHouseholdDialog());
   }
 
   onRemove(householdId: string) {
-    this.store.dispatch(new HouseholdActions.RemoveHousehold({ householdId }));
+    this.store.dispatch(HouseholdActions.removeHousehold({ request: { householdId } }));
   }
 
   onEdit(householdId: string) {
-    this.store.dispatch(new HouseholdActions.OpenEditHouseholdDialog({ householdId }));
+    this.store.dispatch(HouseholdActions.openEditHouseholdDialog({ request: { householdId } }));
   }
 
-  onFilterChanged(change: Partial<HouseholdFilter>) {
-    this.store.dispatch(new HouseholdActions.ApplyFilter(change));
+  onFilterChanged(request: Partial<HouseholdFilter>) {
+    this.store.dispatch(HouseholdActions.applyFilter({ request }));
   }
 }

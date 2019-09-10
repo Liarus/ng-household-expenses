@@ -20,6 +20,7 @@ export class MockStore<T> extends Store<T> {
     reducerManager: ReducerManager
   ) {
     super(state$, actionsObserver, reducerManager);
+    // tslint:disable-next-line: deprecation
     this.source = this.stateSubject.asObservable();
   }
 

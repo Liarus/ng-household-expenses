@@ -1,4 +1,4 @@
-/// <reference types="jest" />
+
 
 import {
   getLoggedIn,
@@ -7,95 +7,59 @@ import {
   getLoggedUser,
   getAccessToken
 } from './auth.selectors';
-import { User } from '../../models/user.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';
+import { State } from '../reducers/auth.reducer';
 
 describe('Auth Selectors', () => {
+  const authState: State = {
+    accessToken: TEST_DATA.auth.accessToken,
+    errorMessage: 'test Error',
+    loading: true,
+    loggedIn: true,
+    user: TEST_DATA.auth.user
+  };
+
+  const state = {
+    auth: authState
+  };
+
   describe('getLoggedIn', () => {
     it('should return loggedin', () => {
-      const expectedLoggedIn = true;
-      const state = {
-        auth: {
-          status: {
-            loggedIn: expectedLoggedIn
-          }
-        }
-      };
+      const expected = true;
 
-      expect(getLoggedIn(state)).toBe(expectedLoggedIn);
+      expect(getLoggedIn(state)).toBe(expected);
     });
   });
 
   describe('getLoading', () => {
     it('should return loading', () => {
-      const expectedLoading = true;
-      const state = {
-        auth: {
-          status: {
-            loading: expectedLoading
-          }
-        }
-      };
+      const expected = true;
 
-      expect(getLoading(state)).toBe(expectedLoading);
+      expect(getLoading(state)).toBe(expected);
     });
   });
 
   describe('getErrorMessage', () => {
     it('should return error message', () => {
-      const expectedError = 'test Error';
-      const state = {
-        auth: {
-          status: {
-            errorMessage: expectedError
-          }
-        }
-      };
+      const expected = 'test Error';
 
-      expect(getErrorMessage(state)).toBe(expectedError);
+      expect(getErrorMessage(state)).toBe(expected);
     });
   });
 
   describe('getLoggedUser', () => {
     it('should return logged user', () => {
-      const expectedUser = TEST_DATA.auth.user as User;
-      const state = {
-        auth: {
-          status: {
-            user: expectedUser
-          }
-        }
-      };
+      const expected = TEST_DATA.auth.user;
 
-      expect(getLoggedUser(state)).toBe(expectedUser);
-    });
-
-    it('should not return logged user', () => {
-      const expectedUser = null;
-      const state = {
-        auth: {
-          status: {
-            user: expectedUser
-          }
-        }
-      };
-
-      expect(getLoggedUser(state)).toBe(expectedUser);
+      expect(getLoggedUser(state)).toBe(expected);
     });
   });
 
   describe('getAccessToken', () => {
     it('should return token', () => {
-      const expectedToken = TEST_DATA.auth.accessToken;
-      const state = {
-        auth: {
-          status: {
-            accessToken: expectedToken
-          }
-        }
-      };
+      const expected = TEST_DATA.auth.accessToken;
 
-      expect(getAccessToken(state)).toBe(expectedToken);
+      expect(getAccessToken(state)).toBe(expected);
     });
   });
 });

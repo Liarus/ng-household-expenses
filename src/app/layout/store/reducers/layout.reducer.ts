@@ -1,4 +1,6 @@
-import { LayoutActionTypes, LayoutActionsUnion } from '../actions/layout.actions';
+import { createReducer, on, Action } from '@ngrx/store';
+
+import * as LayoutActions from '../actions/layout.actions';
 import { MenuItem } from '../../models/menuItem.model';
 
 export interface State {
@@ -23,54 +25,39 @@ export const initialState: State = {
   }]
 };
 
-export function reducer(
-  state = initialState,
-  action: LayoutActionsUnion): State {
-  switch (action.type) {
-    case LayoutActionTypes.OpenSidebar: {
-      return {
-        ...state,
-        isSidebarExpanded: true
-      };
-    }
+export const layoutReducer = createReducer(
+  initialState,
+  on(LayoutActions.openSidebar, state => ({
+    ...state,
+    isSidebarExpanded: true
+  })),
+  on(LayoutActions.closeSidebar, state => ({
+    ...state,
+    isSidebarExpanded: false
+  })),
+  on(LayoutActions.toggleSidebar, state => ({
+    ...state,
+    isSidebarExpanded: !state.isSidebarExpanded
+  })),
+  on(LayoutActions.windowResized, (state, { result }) => {
+    const isMobile = result.width < 768;
+    const isExpanded = isMobile ? false : state.isSidebarExpanded;
+    return {
+      ...state,
+      windowHeight: result.height,
+      windowWidth: result.width,
+      isMobile: isMobile,
+      isSidebarExpanded: isExpanded
+    };
+  }),
+  on(LayoutActions.applyMenuItems, (state, { items }) => ({
+    ...state,
+    menuItems: items
+  }))
+);
 
-    case LayoutActionTypes.CloseSidebar: {
-      return {
-        ...state,
-        isSidebarExpanded: false
-      };
-    }
-
-    case LayoutActionTypes.ToggleSidebar: {
-      return {
-        ...state,
-        isSidebarExpanded: !state.isSidebarExpanded
-      };
-    }
-
-    case LayoutActionTypes.ResizeWindow: {
-      const isMobileScreen: boolean = action.payload.width < 768 ? true : false;
-      const expanded: boolean = isMobileScreen ? false : state.isSidebarExpanded;
-      return {
-        ...state,
-        windowHeight: action.payload.height,
-        windowWidth: action.payload.width,
-        isMobile: isMobileScreen,
-        isSidebarExpanded: expanded
-      };
-    }
-
-    case LayoutActionTypes.ApplyMenuItems: {
-      return {
-        ...state,
-        menuItems: action.payload
-      };
-    }
-
-    default: {
-      return state;
-    }
-  }
+export function reducer(state: State | undefined, action: Action) {
+  return layoutReducer(state, action);
 }
 
 export const getIsSidebarExpanded = (state: State) => state.isSidebarExpanded;

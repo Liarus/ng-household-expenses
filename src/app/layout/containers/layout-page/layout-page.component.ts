@@ -30,10 +30,10 @@ export class LayoutPageComponent {
   constructor(private store: Store<fromRoot.State>) { }
 
   onToggleSidebar() {
-    this.store.dispatch(new LayoutActions.ToggleSidebar());
+    this.store.dispatch(LayoutActions.toggleSidebar());
   }
 
   onLogout() {
-    this.store.dispatch(new AuthActions.Logout());
+    this.store.dispatch(AuthActions.logout());
   }
 }

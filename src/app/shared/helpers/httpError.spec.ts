@@ -1,4 +1,3 @@
-/// <reference types="jest" />
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ErrorMessage } from '../models/errorMessage.model';

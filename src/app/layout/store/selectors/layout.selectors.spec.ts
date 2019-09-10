@@ -1,5 +1,3 @@
-/// <reference types="jest" />
-
 import {
   getIsSidebarExpanded,
   getWindowWidth,
@@ -7,72 +5,59 @@ import {
   getMenuItems,
   getIsMobile
 } from './layout.selectors';
-import { MenuItem } from '../../models/menuItem.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';
+import { State } from '../reducers/layout.reducer';
 
 describe('Layout Selectors', () => {
+  const layoutState: State = {
+    isSidebarExpanded: true,
+    windowHeight: 600,
+    windowWidth: 800,
+    isMobile: true,
+    menuItems: TEST_DATA.layout.menuItems
+  };
+
+  const state = {
+    layout: layoutState
+  };
+
   describe('getIsSidebarExpanded', () => {
     it('should return if sidebar expanded', () => {
-      const expectedIsExpanded = true;
-      const state = {
-        layout: {
-          isSidebarExpanded: expectedIsExpanded
-        }
-      };
+      const expected = true;
 
-      expect(getIsSidebarExpanded(state)).toBe(expectedIsExpanded);
+      expect(getIsSidebarExpanded(state)).toBe(expected);
     });
   });
 
   describe('getWindowWidth', () => {
     it('should return windows width', () => {
-      const expectedWidth = 800;
-      const state = {
-        layout: {
-          windowWidth: expectedWidth
-        }
-      };
+      const expected = 800;
 
-      expect(getWindowWidth(state)).toBe(expectedWidth);
+      expect(getWindowWidth(state)).toBe(expected);
     });
   });
 
   describe('getWindow', () => {
     it('should return windows height', () => {
-      const expectedHeight = 600;
-      const state = {
-        layout: {
-          windowHeight: expectedHeight
-        }
-      };
+      const expected = 600;
 
-      expect(getWindowHeight(state)).toBe(expectedHeight);
+      expect(getWindowHeight(state)).toBe(expected);
     });
   });
 
   describe('getIsMobile', () => {
     it('should return if mobile', () => {
-      const expectedIsMobile = true;
-      const state = {
-        layout: {
-          isMobile: expectedIsMobile
-        }
-      };
+      const expected = true;
 
-      expect(getIsMobile(state)).toBe(expectedIsMobile);
+      expect(getIsMobile(state)).toBe(expected);
     });
   });
 
   describe('getMenuItems', () => {
     it('should return menu items', () => {
-      const expectedItems = TEST_DATA.layout.menuItems as MenuItem[];
-      const state = {
-        layout: {
-          menuItems: expectedItems
-        }
-      };
+      const expected = TEST_DATA.layout.menuItems;
 
-      expect(getMenuItems(state)).toBe(expectedItems);
+      expect(getMenuItems(state)).toBe(expected);
     });
   });
 });

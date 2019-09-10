@@ -1,7 +1,8 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { createReducer, on, Action } from '@ngrx/store';
 
 import { Household } from '../../models/household.model';
-import { HouseholdActionsUnion, HouseholdActionTypes } from '../actions/household.actions';
+import * as HouseholdActions from '../actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 
 export interface State extends EntityState<Household> {
@@ -30,68 +31,58 @@ export const initialState: State = adapter.getInitialState({
   } as HouseholdFilter,
 });
 
-export function reducer(
-  state = initialState,
-  action: HouseholdActionsUnion
-): State {
-  switch (action.type) {
-    case HouseholdActionTypes.AddHousehold:
-    case HouseholdActionTypes.UpdateHousehold:
-    case HouseholdActionTypes.RemoveHousehold:
-    case HouseholdActionTypes.LoadHouseholds:
-      return {
+export const householdReducer = createReducer(
+  initialState,
+  on(HouseholdActions.addHousehold,
+    HouseholdActions.removeHousehold,
+    HouseholdActions.updateHousehold,
+    HouseholdActions.loadHouseholds,
+    state => ({
+    ...state,
+    loading: true
+    })
+  ),
+  on(HouseholdActions.addHouseholdFail,
+    HouseholdActions.removeHouseholdFail,
+    HouseholdActions.updateHouseholdFail,
+    HouseholdActions.loadHouseholdsFail,
+    (state, { error }) => ({
+    ...state,
+    loading: false,
+    errorMessage: error.message
+    })
+  ),
+  on(HouseholdActions.addHouseholdSuccess,
+    HouseholdActions.removeHouseholdSuccess,
+    HouseholdActions.updateHouseholdSuccess,
+    state => ({
+    ...state,
+    loading: false
+    })
+  ),
+  on(HouseholdActions.loadHouseholdsSuccess, (state, { response }) => {
+    if (state.filter.appendData) {
+      return adapter.addMany(response.households, {
         ...state,
-        errorMessage: '',
-        loading: true
-      };
-
-    case HouseholdActionTypes.AddHouseholdFail:
-    case HouseholdActionTypes.LoadHouseholdsFail:
-    case HouseholdActionTypes.RemoveHouseholdFail:
-    case HouseholdActionTypes.UpdateHouseholdFail:
-      return {
+        loading: false,
+        count: response.count
+      });
+    } else {
+      return adapter.addAll(response.households, {
         ...state,
-        errorMessage: action.payload.message,
-        loading: false
-      };
-
-    case HouseholdActionTypes.AddHouseholdSuccess:
-    case HouseholdActionTypes.UpdateHouseholdSuccess:
-    case HouseholdActionTypes.RemoveHouseholdSuccess:
-      return {
-        ...state,
-        loading: false
-      };
-
-    case HouseholdActionTypes.LoadHouseholdsSuccess: {
-      if (state && state.filter.appendData) {
-        return adapter.addMany(action.payload.households, {
-          ...state,
-          count: action.payload.count,
-          loading: false
-        });
-      } else {
-        return adapter.addMany(action.payload.households, {
-          ...adapter.removeAll({
-            ...state
-          }),
-          count: action.payload.count,
-          loading: false
-        });
-      }
-   }
-
-    case HouseholdActionTypes.ApplyFilter: {
-      return {
-        ...state,
-        filter: Object.assign({}, state.filter, action.payload)
-      };
+        loading: false,
+        count: response.count
+      });
     }
+  }),
+  on(HouseholdActions.applyFilter, (state, { request }) => ({
+    ...state,
+    filter: Object.assign({}, state.filter, request)
+  }))
+);
 
-    default: {
-      return state;
-    }
-  }
+export function reducer(state: State | undefined, action: Action) {
+  return householdReducer(state, action);
 }
 
 export const getLoading = (state: State) => state.loading;

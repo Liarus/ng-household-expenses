@@ -6,9 +6,7 @@ import { AppConfig } from '../../core/configs/appConfig.model';
 import { SignInResponse } from '../models/responses/signInResponse.model';
 import { LoginRequest } from '../models/requests/loginRequest.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
 
   private authEndpoint = '/api/authorization/login';

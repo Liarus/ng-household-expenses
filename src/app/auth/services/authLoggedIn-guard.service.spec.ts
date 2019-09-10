@@ -1,34 +1,30 @@
-/// <reference types="jest" />
 import { TestBed } from '@angular/core/testing';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import * as AuthActions from '../store/actions/auth.actions';
 import { AuthLoggedInGuard } from './authLoggedIn-guard.service';
-import { MockStore } from '../../shared/tests/mockStore';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 describe('AuthLoggedInGuard', () => {
   let service: AuthLoggedInGuard;
   let store: MockStore<any>;
+  const initialState = {
+    auth: {
+      loggedIn: true
+    }
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({})
       ],
       providers: [
-        { provide: Store, useClass: MockStore }
+        provideMockStore({ initialState })
       ]
     });
 
     store = TestBed.get(Store);
-    store.setState({
-      auth: {
-        status: {
-          loggedIn: true
-        }
-      }
-    });
     service = TestBed.get(AuthLoggedInGuard);
     spyOn(store, 'dispatch');
   });
@@ -47,9 +43,7 @@ describe('AuthLoggedInGuard', () => {
     beforeEach(() => {
       store.setState({
         auth: {
-          status: {
-            loggedIn: false
-          }
+          loggedIn: false
         }
       });
     });
@@ -60,8 +54,8 @@ describe('AuthLoggedInGuard', () => {
       expect(service.canActivate()).toBeObservable(expected);
     });
 
-    it('should dispatch AuthActions.LoginRedirect', () => {
-      const expected = new AuthActions.LoginRedirect();
+    it('should dispatch AuthActions.loginRedirect', () => {
+      const expected = AuthActions.loginRedirect();
 
       service.canActivate().subscribe();
 

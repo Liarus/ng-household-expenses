@@ -1,4 +1,3 @@
-/// <reference types="jest" />
 import { Observable, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -9,16 +8,8 @@ import { cold, hot } from 'jasmine-marbles';
 
 import { AuthEffects } from './auth.effects';
 import { AuthService } from '../../services/auth.service';
-import { SignInResponse } from '../../models/responses/signInResponse.model';
-import { RefreshMenuItems } from '../../../layout/store/actions/layout.actions';
-import {
-  Login,
-  LoginSuccess,
-  LoginFailure,
-  LoginRedirect,
-  Logout,
-  AuthHttpError
-} from '../actions/auth.actions';
+import * as LayoutAction from '../../../layout/store/actions/layout.actions';
+import * as AuthActions from '../actions/auth.actions';
 import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('AuthEffects', () => {
@@ -68,16 +59,16 @@ describe('AuthEffects', () => {
   });
 
   describe('login$', () => {
-    it('should return LoginSuccess with user when succesfull', () => {
-      const signInresponse = TEST_DATA.auth.signInResponse as SignInResponse;
-      const action = new Login(TEST_DATA.auth.loginRequest);
-      const completion = new LoginSuccess({
+    it('should return login with user when succesfull', () => {
+      const signInresponse = TEST_DATA.auth.signInResponse;
+      const action = AuthActions.login({ request: TEST_DATA.auth.loginRequest });
+      const completion = AuthActions.loginSuccess({ response: {
         user: {
           id: signInresponse.userId,
           name: signInresponse.userName
         },
         accessToken: signInresponse.accessToken
-      });
+      }});
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: signInresponse });
@@ -87,12 +78,12 @@ describe('AuthEffects', () => {
       expect(effects.login$).toBeObservable(expected);
     });
 
-    it('should return LoginFailure when error', () => {
-      const error = 'error occured';
-      const action = new Login(TEST_DATA.auth.loginRequest);
-      const completion = new LoginFailure({
-        message: error
-      });
+    it('should return loginFailure when error', () => {
+      const error = {
+        message: 'error occured'
+      };
+      const action = AuthActions.login({ request: TEST_DATA.auth.loginRequest });
+      const completion = AuthActions.loginFailure({ error });
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-#|', {}, error);
@@ -104,12 +95,12 @@ describe('AuthEffects', () => {
   });
 
   describe('loginSuccess$', () => {
-    it('should return RefreshMenuItems', () => {
-      const action = new LoginSuccess({
+    it('should return refreshMenuItems', () => {
+      const action = AuthActions.loginSuccess({ response: {
         user: TEST_DATA.auth.user,
         accessToken: TEST_DATA.auth.accessToken
-      });
-      const completion = new RefreshMenuItems();
+      }});
+      const completion = LayoutAction.refreshMenuItems();
 
       actions$ = hot('-a---', { a: action });
       const expected = cold('-b', { b: completion });
@@ -118,12 +109,13 @@ describe('AuthEffects', () => {
     });
 
     it('should navigate to root', (done) => {
-      const action = new LoginSuccess({
+      const action = AuthActions.loginSuccess({ response: {
         user: TEST_DATA.auth.user,
         accessToken: TEST_DATA.auth.accessToken
-      });
+      }});
 
       actions$ = of(action);
+
       effects.loginSuccess$.subscribe(() => {
         expect(routerService.navigate).toHaveBeenCalledWith(['/']);
         done();
@@ -132,8 +124,8 @@ describe('AuthEffects', () => {
   });
 
   describe('loginRedirect$', () => {
-    it('should navigate to login on LoginRedirect', (done: any) => {
-      const action = new LoginRedirect();
+    it('should navigate to login on loginRedirect', (done) => {
+      const action = AuthActions.loginRedirect();
 
       actions$ = of(action);
 
@@ -143,55 +135,9 @@ describe('AuthEffects', () => {
       });
     });
 
-    it('should return RefreshMenuItems on LoginRedirect', () => {
-      const action = new LoginRedirect();
-      const completion = new RefreshMenuItems();
-
-      actions$ = hot('-a---', { a: action });
-      const expected = cold('-b', { b: completion });
-
-      expect(effects.loginRedirect$).toBeObservable(expected);
-    });
-
-    it('should navigate to login on Logout', (done: any) => {
-      const action = new Logout();
-
-      actions$ = of(action);
-
-      effects.loginRedirect$.subscribe(() => {
-        expect(routerService.navigate).toHaveBeenCalledWith(['/login']);
-        done();
-      });
-    });
-
-    it('should return RefreshMenuItems on Logout', () => {
-      const action = new Logout();
-      const completion = new RefreshMenuItems();
-
-      actions$ = hot('-a---', { a: action });
-      const expected = cold('-b', { b: completion });
-
-      expect(effects.loginRedirect$).toBeObservable(expected);
-    });
-
-    it('should navigate to login on AuthHttpError', (done: any) => {
-      const action = new AuthHttpError({
-        message: 'error occured'
-      });
-
-      actions$ = of(action);
-
-      effects.loginRedirect$.subscribe(() => {
-        expect(routerService.navigate).toHaveBeenCalledWith(['/login']);
-        done();
-      });
-    });
-
-    it('should return RefreshMenuItems on AuthHttpError', () => {
-      const action = new AuthHttpError({
-        message: 'error occured'
-      });
-      const completion = new RefreshMenuItems();
+    it('should return refreshMenuItems on loginRedirect', () => {
+      const action = AuthActions.loginRedirect();
+      const completion = LayoutAction.refreshMenuItems();
 
       actions$ = hot('-a---', { a: action });
       const expected = cold('-b', { b: completion });
@@ -200,24 +146,41 @@ describe('AuthEffects', () => {
     });
   });
 
-  describe('error$', () => {
-    it('should show toast on LoginFailure', (done) => {
-      const action = new LoginFailure({
-        message: 'error occured'
-      });
+  describe('logout$', () => {
+    it('should loginRedirect on logout', () => {
+      const action = AuthActions.logout();
+      const completion = AuthActions.loginRedirect();
 
-      actions$ = of(action);
 
-      effects.error$.subscribe(() => {
-        expect(toastrService.error).toHaveBeenCalled();
-        done();
-      });
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-b', { b: completion });
+
+      expect(effects.logout$).toBeObservable(expected);
     });
+  });
 
-    it('should show toast on AuthHttpError', (done) => {
-      const action = new AuthHttpError({
+  describe('authHttpError$', () => {
+    it('should loginRedirect and show error on authHttpError', () => {
+      const error = {
         message: 'error occured'
-      });
+      };
+      const action = AuthActions.authHttpError({ error });
+      const completion1 = AuthActions.loginFailure({ error} );
+      const completion2 = AuthActions.loginRedirect();
+
+
+      actions$ = hot('-a---', { a: action });
+      const expected = cold('-(bc)', { b: completion1, c: completion2 });
+
+      expect(effects.authHttpError$).toBeObservable(expected);
+    });
+  });
+
+  describe('error$', () => {
+    it('should show toast on loginFailure', (done) => {
+      const action = AuthActions.loginFailure({ error: {
+        message: 'error occured'
+      }});
 
       actions$ = of(action);
 

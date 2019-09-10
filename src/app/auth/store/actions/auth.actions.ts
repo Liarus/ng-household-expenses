@@ -1,57 +1,36 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
 import { LoginRequest } from '../../models/requests/loginRequest.model';
 import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import { User } from '../../models/user.model';
 
-export enum AuthActionTypes {
-  Login = '[Auth] Login',
-  Logout = '[Auth] Logout',
-  LoginSuccess = '[Auth API] Login Success',
-  LoginFailure = '[Auth API] Login Failure',
-  LoginRedirect = '[Auth API] Login Redirect',
-  AuthHttpError = '[Auth API] Authorization Http Error'
-}
+export const login = createAction(
+  '[Auth] Login',
+  props<{ request: LoginRequest }>()
+);
 
-export class Login implements Action {
-  readonly type = AuthActionTypes.Login;
+export const logout = createAction(
+  '[Auth] Logout'
+);
 
-  constructor(public payload: LoginRequest) {}
-}
-
-export class Logout implements Action {
-  readonly type = AuthActionTypes.Logout;
-}
-
-export class LoginSuccess implements Action {
-  readonly type = AuthActionTypes.LoginSuccess;
-
-  constructor(public payload: {
+export const loginSuccess = createAction(
+  '[Auth/API] Login Success',
+  props<{ response: {
     user: User,
     accessToken: string
-  }) {}
-}
+  } }>()
+);
 
-export class LoginFailure implements Action {
-  readonly type = AuthActionTypes.LoginFailure;
+export const loginFailure = createAction(
+  '[Auth/API] Login Failure',
+  props<{ error: ErrorMessage }>()
+);
 
-  constructor(public payload: ErrorMessage) {}
-}
+export const loginRedirect = createAction(
+  '[Auth/API] Login Redirect'
+);
 
-export class LoginRedirect implements Action {
-  readonly type = AuthActionTypes.LoginRedirect;
-}
-
-export class AuthHttpError implements Action {
-  readonly type = AuthActionTypes.AuthHttpError;
-
-  constructor(public payload: ErrorMessage) {}
-}
-
-export type AuthActionsUnion =
-  | Login
-  | Logout
-  | LoginSuccess
-  | LoginFailure
-  | LoginRedirect
-  | AuthHttpError;
+export const authHttpError = createAction(
+  '[Auth/API] Authorization Http Error',
+  props<{ error: ErrorMessage }>()
+);

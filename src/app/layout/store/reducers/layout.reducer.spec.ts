@@ -1,30 +1,24 @@
-/// <reference types="jest" />
-
 import { reducer, initialState } from './layout.reducer';
 import { WindowSize } from '../../models/windowSize.model';
 import { MenuItem } from '../../models/menuItem.model';
-import {
-  OpenSidebar,
-  CloseSidebar,
-  ToggleSidebar,
-  ResizeWindow,
-  ApplyMenuItems
-} from '../actions/layout.actions';
+import * as LayoutActions from '../actions/layout.actions';
 import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('LayoutReducer', () => {
   describe('undefined action', () => {
    it('should retun defult state', () => {
-      const action = {type: 'NOOP'} as any;
+      const action = { type: 'NOOP' } as any;
+
       const result = reducer(undefined, action);
 
       expect(result).toBe(initialState);
     });
   });
 
-  describe('LayoutActionTypes.OpenSidebar', () => {
+  describe('LayoutAction.openSidebar', () => {
     it('should set sidebar as opened', () => {
-      const action = new OpenSidebar();
+      const action = LayoutActions.openSidebar();
+
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
@@ -34,9 +28,10 @@ describe('LayoutReducer', () => {
     });
   });
 
-  describe('LayoutActionTypes.CloseSidebar', () => {
+  describe('LayoutActions.closeSidebar', () => {
     it('should set sidebar as closed', () => {
-      const action = new CloseSidebar();
+      const action = LayoutActions.closeSidebar();
+
       const result = reducer({
         ...initialState,
         isSidebarExpanded: true
@@ -49,9 +44,10 @@ describe('LayoutReducer', () => {
     });
   });
 
-  describe('LayoutActionTypes.ToggleSidebar', () => {
+  describe('LayoutActions.toggleSidebar', () => {
     it('should set sidebar as closed', () => {
-      const action = new ToggleSidebar();
+      const action = LayoutActions.toggleSidebar();
+
       const result = reducer({
         ...initialState,
         isSidebarExpanded: true
@@ -64,13 +60,14 @@ describe('LayoutReducer', () => {
     });
   });
 
-  describe('LayoutActionTypes.ResizeWindow', () => {
+  describe('LayoutActions.windowResized', () => {
     it('should set mobile and close sidebar', () => {
       const request: WindowSize = {
         height: 400,
         width: 200
       };
-      const action = new ResizeWindow(request);
+      const action = LayoutActions.windowResized({ result: request});
+
       const result = reducer({
         ...initialState,
         isSidebarExpanded: true
@@ -90,7 +87,8 @@ describe('LayoutReducer', () => {
         height: 600,
         width: 800
       };
-      const action = new ResizeWindow(request);
+      const action = LayoutActions.windowResized({ result: request});
+
       const result = reducer({
         ...initialState,
         isSidebarExpanded: false,
@@ -107,15 +105,15 @@ describe('LayoutReducer', () => {
     });
   });
 
-  describe('LayoutActionTypes.ApplyMenuItems', () => {
+  describe('LayoutActions.applyMenuItems', () => {
     it('should set menu items', () => {
-      const request = TEST_DATA.layout.menuItems as MenuItem[];
-      const action = new ApplyMenuItems(request);
+      const items = TEST_DATA.layout.menuItems as MenuItem[];
+      const action = LayoutActions.applyMenuItems({ items });
       const result = reducer(initialState, action);
 
        expect(result).toEqual({
         ...initialState,
-        menuItems: request
+        menuItems: items
       });
     });
   });

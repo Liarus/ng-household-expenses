@@ -1,49 +1,30 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
 import { WindowSize } from '../../models/windowSize.model';
 import { MenuItem } from '../../models/menuItem.model';
 
-export enum LayoutActionTypes {
-  OpenSidebar = '[Layout] Open Sidebar',
-  CloseSidebar = '[Layout] Close Sidebar',
-  ToggleSidebar = '[Layout] Toggle Sidebar',
-  ResizeWindow = '[Layout API] Resize window',
-  ApplyMenuItems = '[Layout API] Set Menu Items',
-  RefreshMenuItems = '[Layout API] Refresh Menu Items'
-}
+export const openSidebar = createAction(
+  '[Layout] Open Sidebar',
+);
 
-export class OpenSidebar implements Action {
-  readonly type = LayoutActionTypes.OpenSidebar;
-}
+export const closeSidebar = createAction(
+  '[Layout] Close Sidebar',
+);
 
-export class CloseSidebar implements Action {
-  readonly type = LayoutActionTypes.CloseSidebar;
-}
+export const toggleSidebar = createAction(
+  '[Layout] Toggle Sidebar',
+);
 
-export class ToggleSidebar implements Action {
-  readonly type = LayoutActionTypes.ToggleSidebar;
-}
+export const windowResized = createAction(
+  '[Layout/API] Window Resized',
+  props<{ result: WindowSize }>()
+);
 
-export class ResizeWindow implements Action {
-  readonly type = LayoutActionTypes.ResizeWindow;
+export const applyMenuItems = createAction(
+  '[Layout/API] Apply Menu Items',
+  props<{ items: MenuItem[] }>()
+);
 
-  constructor(public payload: WindowSize) {}
-}
-
-export class ApplyMenuItems implements Action {
-  readonly type = LayoutActionTypes.ApplyMenuItems;
-
-  constructor(public payload: MenuItem[]) {}
-}
-
-export class RefreshMenuItems implements Action {
-  readonly type = LayoutActionTypes.RefreshMenuItems;
-}
-
-export type LayoutActionsUnion =
-  | OpenSidebar
-  | CloseSidebar
-  | ToggleSidebar
-  | ResizeWindow
-  | ApplyMenuItems
-  | RefreshMenuItems;
+export const refreshMenuItems = createAction(
+  '[Layout/API] Refresh Menu Items',
+);

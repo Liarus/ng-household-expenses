@@ -1,33 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Effect, Actions, ofType } from '@ngrx/effects';
-import { mergeMap, map, switchMap, debounceTime } from 'rxjs/operators';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+import { map, switchMap, debounceTime } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
 
 import { MenuService } from '../../services/menu.service';
-import { LayoutActionTypes, ApplyMenuItems } from '../actions/layout.actions';
-import { MenuItem } from '../../models/menuItem.model';
-import { fromEvent } from 'rxjs';
-import { ResizeWindow } from '../actions/layout.actions';
+import * as LayoutActions from '../actions/layout.actions';
 
 @Injectable()
 export class LayoutEffects {
-  @Effect()
-  menuItem$ = this.actions$.pipe(
-    ofType(LayoutActionTypes.RefreshMenuItems),
-    switchMap(() => {
-      return this.menuService.getMenuItems()
-      .pipe(
-        map((menu: MenuItem[]) => new ApplyMenuItems(menu))
-      );
-    })
+
+  menuItems$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(LayoutActions.refreshMenuItems),
+      switchMap(() =>
+        this.menuService.getMenuItems().pipe(
+          map(items => LayoutActions.applyMenuItems({ items }))
+        )
+      )
+    )
   );
 
-  @Effect()
-  resize$ = fromEvent(window, 'resize').pipe(
-    debounceTime(300),
-    map((event: any) => new ResizeWindow({
-      width: event.target.innerWidth,
-      height: event.target.innerHeight
-    }))
+  resize$ = createEffect(() =>
+    fromEvent(window, 'resize').pipe(
+      debounceTime(300),
+      map((event: any) => LayoutActions.windowResized({ result: {
+        width: event.target.innerWidth,
+        height: event.target.innerHeight
+      }}))
+    )
   );
 
   constructor(

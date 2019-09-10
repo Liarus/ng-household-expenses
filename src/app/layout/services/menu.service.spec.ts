@@ -1,34 +1,30 @@
-/// <reference types="jest" />
 import { TestBed } from '@angular/core/testing';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { MenuService } from './menu.service';
-import { MockStore } from '../../shared/tests/mockStore';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 describe('HouseholdService', () => {
   let service: MenuService;
   let store: MockStore<any>;
+  const initialState = {
+    auth: {
+      loggedIn: true
+    }
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({})
       ],
       providers: [
         MenuService,
-        { provide: Store, useClass: MockStore }
+        provideMockStore({ initialState })
       ]
     });
 
     service = TestBed.get(MenuService);
     store = TestBed.get(Store);
-    store.setState({
-      auth: {
-        status: {
-          loggedIn: true
-        }
-      }
-    });
   });
 
   it('should be created', () => {
@@ -44,9 +40,7 @@ describe('HouseholdService', () => {
   it('should match snaphot when user not logged in', () => {
     store.setState({
       auth: {
-        status: {
-          loggedIn: false
-        }
+        loggedIn: false
       }
     });
 

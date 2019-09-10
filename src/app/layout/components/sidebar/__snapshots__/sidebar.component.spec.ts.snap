@@ -15,6 +15,7 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
       class="mat-drawer-backdrop ng-star-inserted"
     />
     <div
+      aria-hidden="true"
       class="cdk-visually-hidden cdk-focus-trap-anchor"
     />
     <mat-sidenav
@@ -53,7 +54,7 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
               />
               <mat-icon
                 aria-hidden="true"
-                class="mat-list-icon mat-icon material-icons"
+                class="mat-list-icon mat-icon notranslate material-icons mat-icon-no-color"
                 mat-list-icon=""
                 role="img"
               >
@@ -88,7 +89,7 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
               />
               <mat-icon
                 aria-hidden="true"
-                class="mat-list-icon mat-icon material-icons"
+                class="mat-list-icon mat-icon notranslate material-icons mat-icon-no-color"
                 mat-list-icon=""
                 role="img"
               >
@@ -123,7 +124,7 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
               />
               <mat-icon
                 aria-hidden="true"
-                class="mat-list-icon mat-icon material-icons"
+                class="mat-list-icon mat-icon notranslate material-icons mat-icon-no-color"
                 mat-list-icon=""
                 role="img"
               >
@@ -145,6 +146,7 @@ exports[`SidebarComponent should match snapshot with menu items if collapsed 1`]
       </div>
     </mat-sidenav>
     <div
+      aria-hidden="true"
       class="cdk-visually-hidden cdk-focus-trap-anchor"
     />
     <mat-sidenav-content
@@ -172,6 +174,7 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
       class="mat-drawer-backdrop ng-star-inserted"
     />
     <div
+      aria-hidden="true"
       class="cdk-visually-hidden cdk-focus-trap-anchor"
     />
     <mat-sidenav
@@ -210,7 +213,7 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
               />
               <mat-icon
                 aria-hidden="true"
-                class="mat-list-icon mat-icon material-icons"
+                class="mat-list-icon mat-icon notranslate material-icons mat-icon-no-color"
                 mat-list-icon=""
                 role="img"
               >
@@ -245,7 +248,7 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
               />
               <mat-icon
                 aria-hidden="true"
-                class="mat-list-icon mat-icon material-icons"
+                class="mat-list-icon mat-icon notranslate material-icons mat-icon-no-color"
                 mat-list-icon=""
                 role="img"
               >
@@ -280,7 +283,7 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
               />
               <mat-icon
                 aria-hidden="true"
-                class="mat-list-icon mat-icon material-icons"
+                class="mat-list-icon mat-icon notranslate material-icons mat-icon-no-color"
                 mat-list-icon=""
                 role="img"
               >
@@ -302,6 +305,7 @@ exports[`SidebarComponent should match snapshot with menu items if expanded 1`] 
       </div>
     </mat-sidenav>
     <div
+      aria-hidden="true"
       class="cdk-visually-hidden cdk-focus-trap-anchor"
     />
     <mat-sidenav-content

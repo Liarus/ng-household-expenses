@@ -1,6 +1,7 @@
 
-import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
+import { ActionReducerMap, ActionReducer, MetaReducer, Action } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
+import { InjectionToken } from '@angular/core';
 
 import { environment } from '../../../environments/environment';
 import { RouterStateUrl } from './router.reducer';
@@ -12,6 +13,14 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
   router: fromRouter.routerReducer
 };
+
+export const ROOT_REDUCERS = new InjectionToken<
+  ActionReducerMap<State, Action>>
+  ('Root reducers token', {
+  factory: () => ({
+    router: fromRouter.routerReducer
+  }),
+});
 
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   return (state: State, action: any): any => {

@@ -19,7 +19,7 @@ export class AuthLoggedInGuard implements CanActivate {
       select(fromAuthSelectors.getLoggedIn),
       map(logged => {
         if (!logged) {
-          this.store.dispatch(new AuthActions.LoginRedirect());
+          this.store.dispatch(AuthActions.loginRedirect());
           return false;
         }
 

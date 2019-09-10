@@ -1,4 +1,3 @@
-/// <reference types="jest" />
 import { TestBed, async } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';

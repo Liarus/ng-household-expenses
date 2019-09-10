@@ -1,11 +1,10 @@
-/// <reference types="jest" />
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestBed, async } from '@angular/core/testing';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { HttpTokenInterceptor } from './httpToken.interceptor';
-import { MockStore } from '../../shared/tests/mockStore';
 
 describe('HttpTokenInterceptor', () => {
   let httpClient: HttpClient;
@@ -17,12 +16,11 @@ describe('HttpTokenInterceptor', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule,
-        StoreModule.forRoot({})
+        HttpClientTestingModule
       ],
       providers: [
         { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
-        { provide: Store, useClass: MockStore }
+        provideMockStore()
       ]
     })
     .compileComponents();
@@ -32,9 +30,7 @@ describe('HttpTokenInterceptor', () => {
     store = TestBed.get(Store);
     store.setState({
       auth: {
-        status: {
-          accessToken: testToken
-        }
+        accessToken: testToken
       }
     });
     httpClient = TestBed.get(HttpClient);
@@ -57,9 +53,7 @@ describe('HttpTokenInterceptor', () => {
   it('should not have access token in header if no provided', () => {
     store.setState({
       auth: {
-        status: {
-          accessToken: ''
-        }
+        accessToken: ''
       }
     });
 

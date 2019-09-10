@@ -1,12 +1,11 @@
-/// <reference types="jest" />
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, TestBed } from '@angular/core/testing';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { HttpAuthErrorInterceptor } from './httpAuthError.interceptor';
 import * as AuthActions from '../store/actions/auth.actions';
-import { MockStore } from '../../shared/tests/mockStore';
 
 describe('HttpAuthErrorInterceptor', () => {
   let httpClient: HttpClient;
@@ -18,11 +17,10 @@ describe('HttpAuthErrorInterceptor', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        StoreModule.forRoot({})
       ],
       providers: [
         { provide: HTTP_INTERCEPTORS, useClass: HttpAuthErrorInterceptor, multi: true },
-        { provide: Store, useClass: MockStore }
+        provideMockStore()
       ]
     })
     .compileComponents();
@@ -30,13 +28,12 @@ describe('HttpAuthErrorInterceptor', () => {
 
   beforeEach(() => {
     store = TestBed.get(Store);
-    store.setState({});
     httpClient = TestBed.get(HttpClient);
     httpMock = TestBed.get(HttpTestingController);
     spyOn(store, 'dispatch');
   });
 
-  it('should not dispatch AuthActions.AuthHttpError when auth error occured from login url', () => {
+  it('should not dispatch AuthActions.authHttpError when auth error occured from login url', () => {
     const testUrl = 'http://test/login';
     httpClient.get(testUrl).subscribe(
       response => expect(response).toBeUndefined(),
@@ -52,11 +49,12 @@ describe('HttpAuthErrorInterceptor', () => {
     httpMock.verify();
   });
 
-  it('should dispatch AuthActions.AuthHttpError when auth error occured from standard url', () => {
+  it('should dispatch AuthActions.authHttpError when auth error occured from standard url', () => {
     const testUrl = 'http://test/api';
-    const expected = new AuthActions.AuthHttpError({
+    const error = {
       message: `Http failure response for ${testUrl}: 401 Server Error`
-    });
+    };
+    const expected = AuthActions.authHttpError({ error });
     httpClient.get(testUrl).subscribe();
     const req = httpMock.expectOne(testUrl);
 

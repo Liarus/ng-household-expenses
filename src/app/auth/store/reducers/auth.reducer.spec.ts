@@ -1,45 +1,41 @@
-/// <reference types="jest" />
 import { reducer, initialState } from './auth.reducer';
 import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import { LoginRequest } from '../../models/requests/loginRequest.model';
-import {
-  LoginFailure,
-  Login,
-  LoginSuccess,
-  Logout,
-  AuthHttpError
-} from '../actions/auth.actions';
+import * as AuthActions from '../actions/auth.actions';
 import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('AuthReducer', () => {
   describe('undefined action', () => {
     it('should retun defult state', () => {
-      const action = {type: 'NOOP'} as any;
+      const action = { type: 'NOOP' } as any;
+
       const result = reducer(undefined, action);
 
       expect(result).toBe(initialState);
     });
   });
 
-  describe('AuthActionTypes.LoginFailure', () => {
+  describe('AuthActions.loginFailure', () => {
     it('should update errorMessage', () => {
-      const request: ErrorMessage = {
+      const error: ErrorMessage = {
         message: 'TestErrorMessage'
       };
-      const action = new LoginFailure(request);
+      const action = AuthActions.loginFailure({ error });
+
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
         ...initialState,
-        errorMessage: request.message
+        errorMessage: error.message
       });
     });
   });
 
-  describe('AuthActionTypes.Login', () => {
+  describe('AuthActions.login', () => {
     it('should update loading state', () => {
       const request = TEST_DATA.auth.loginRequest as LoginRequest;
-      const action = new Login(request);
+      const action = AuthActions.login({ request });
+
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
@@ -49,27 +45,29 @@ describe('AuthReducer', () => {
     });
   });
 
-  describe('AuthActionTypes.LoginSuccess', () => {
+  describe('AuthActions.loginSuccess', () => {
     it('should update user and token', () => {
-      const request = {
+      const response = {
         user: TEST_DATA.auth.user,
         accessToken: TEST_DATA.auth.accessToken
       };
-      const action = new LoginSuccess(request);
+      const action = AuthActions.loginSuccess({ response });
+
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
         ...initialState,
         loggedIn: true,
-        user: request.user,
-        accessToken: request.accessToken
+        user: response.user,
+        accessToken: response.accessToken
       });
     });
   });
 
-  describe('AuthActionTypes.Logout', () => {
+  describe('AuthActions.logout', () => {
     it('should retun defult state', () => {
-      const action = new Logout();
+      const action = AuthActions.logout();
+
       const result = reducer({
         ...initialState,
         loggedIn: true
@@ -79,17 +77,17 @@ describe('AuthReducer', () => {
     });
   });
 
-  describe('AuthActionTypes.AuthHttpError', () => {
+  describe('AuthActions.authHttpError', () => {
     it('should update errorMessage', () => {
-      const request: ErrorMessage = {
+      const error: ErrorMessage = {
         message: 'TestErrorMessage'
       };
-      const action = new AuthHttpError(request);
+      const action = AuthActions.authHttpError({ error });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
         ...initialState,
-        errorMessage: request.message
+        errorMessage: error.message
       });
     });
   });

@@ -1,22 +1,19 @@
-/// <reference types="jest" />
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Actions } from '@ngrx/effects';
 import { hot, cold } from 'jasmine-marbles';
 
 import { LayoutEffects } from './layout.effects';
 import { MenuService } from '../../services/menu.service';
 import { MenuItem } from '../../models/menuItem.model';
-import { RefreshMenuItems, ApplyMenuItems, ResizeWindow } from '../actions/layout.actions';
+import * as LayoutActions from '../actions/layout.actions';
 import { TEST_DATA } from '../../../shared/tests/test-data';
 
 describe('LayoutEffects', () => {
   let effects: LayoutEffects;
   let actions$: Observable<any>;
   let menuService: MenuService;
-
-  const menuItems = TEST_DATA.layout.menuItems as MenuItem[];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,27 +39,27 @@ describe('LayoutEffects', () => {
   });
 
   describe('menuItem$', () => {
-    it('should return ApplyMenuItems on RefreshMenuItems', () => {
-      const action = new RefreshMenuItems();
-      const completion = new ApplyMenuItems(menuItems);
+    it('should return applyMenuItems on refreshMenuItems', () => {
+      const menuItems = TEST_DATA.layout.menuItems as MenuItem[];
+      const action = LayoutActions.refreshMenuItems();
+      const completion = LayoutActions.applyMenuItems({ items: TEST_DATA.layout.menuItems });
 
       actions$ = hot('-a---', { a: action });
       const response = cold('-a|', { a: menuItems });
       const expected = cold('--b', { b: completion });
       menuService.getMenuItems = jest.fn(() => response);
 
-      expect(effects.menuItem$).toBeObservable(expected);
+      expect(effects.menuItems$).toBeObservable(expected);
     });
   });
 
-  // describe('', () => {
-  //   it('should dispatch ResizeWindow action', () => {
-  //     const width = window.innerWidth;
-  //     const height = window.innerHeight;
-  //     const completion = new ResizeWindow({
-  //       width: width,
-  //       height: height
-  //     });
+  // describe('resize$', () => {
+  //   it('should dispatch windowResized action', () => {
+  //     const result = {
+  //       width: window.innerWidth,
+  //       height: window.innerHeight
+  //     };
+  //     const completion = LayoutActions.windowResized({ result });
   //     const action = new Event('resize');
 
   //     actions$ = hot('-a---', { a: action });

@@ -1,4 +1,3 @@
-/// <reference types="jest" />
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -13,7 +12,7 @@ describe('PageNotFoundComponent', () => {
       imports: [MaterialModule],
       declarations: [PageNotFoundComponent]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {

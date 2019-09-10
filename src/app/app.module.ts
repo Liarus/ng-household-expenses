@@ -10,7 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-import { reducers, metaReducers } from './store/reducers';
+import { ROOT_REDUCERS, metaReducers } from './store/reducers';
 import { environment } from '../environments/environment';
 import { AuthModule } from './auth/auth.module';
 import { HttpTokenInterceptor } from './auth/services/httpToken.interceptor';
@@ -37,8 +37,16 @@ const PROVIDERS = [
     LayoutModule,
     AppRoutingModule,
     MaterialModule,
-    StoreModule.forRoot(reducers, { metaReducers, runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
-    StoreRouterConnectingModule.forRoot(),
+    StoreModule.forRoot(ROOT_REDUCERS, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomRouterStateSerializer
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       name: 'ng-household-expenses',
@@ -48,7 +56,6 @@ const PROVIDERS = [
   ],
   providers: [
     PROVIDERS,
-    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestHeaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpAuthErrorInterceptor, multi: true },

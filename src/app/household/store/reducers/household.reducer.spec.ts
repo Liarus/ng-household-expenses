@@ -1,24 +1,7 @@
-/// <reference types="jest" />
 import { reducer, initialState } from './household.reducer';
-import { CreateHousehold } from '../../models/requests/createHousehold.model';
-import { ModifyHousehold } from '../../models/requests/modifyHousehold.model';
 import { ErrorMessage } from '../../../shared/models/errorMessage.model';
 import { Household } from '../../models/household.model';
-import {
-  AddHousehold,
-  UpdateHousehold,
-  RemoveHousehold,
-  LoadHouseholds,
-  AddHouseholdFail,
-  LoadHouseholdsFail,
-  RemoveHouseholdFail,
-  UpdateHouseholdFail,
-  AddHouseholdSuccess,
-  UpdateHouseholdSuccess,
-  RemoveHouseholdSuccess,
-  LoadHouseholdsSuccess,
-  ApplyFilter
-} from '../actions/household.actions';
+import * as HouseholdActions from '../actions/household.actions';
 import { HouseholdFilter } from '../../models/householdFilter.model';
 import { TEST_DATA } from '../../../shared/tests/test-data';
 
@@ -32,10 +15,10 @@ describe('HouseholdReducer', () => {
     });
   });
 
-  describe('HouseholdActionTypes.AddHousehold', () => {
+  describe('HouseholdActions.addHousehold', () => {
     it('should update state as loading', () => {
-      const request = TEST_DATA.household.createHousehold as CreateHousehold;
-      const action = new AddHousehold(request);
+      const request = TEST_DATA.household.createHousehold;
+      const action = HouseholdActions.addHousehold({ request });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
@@ -45,10 +28,10 @@ describe('HouseholdReducer', () => {
     });
   });
 
-  describe('HouseholdActionTypes.UpdateHousehold', () => {
+  describe('HouseholdActions.updateHousehold', () => {
     it('should update state as loading', () => {
-      const request = TEST_DATA.household.modifyHousehold as ModifyHousehold;
-      const action = new UpdateHousehold(request);
+      const request = TEST_DATA.household.modifyHousehold;
+      const action = HouseholdActions.updateHousehold({ request });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
@@ -58,12 +41,12 @@ describe('HouseholdReducer', () => {
     });
   });
 
-  describe('HouseholdActionTypes.RemoveHousehold', () => {
+  describe('HouseholdActions.removeHousehold', () => {
     it('should update state as loading', () => {
       const request = {
         householdId: TEST_DATA.household.household.id
       };
-      const action = new RemoveHousehold(request);
+      const action = HouseholdActions.removeHousehold({ request });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
@@ -73,9 +56,9 @@ describe('HouseholdReducer', () => {
     });
   });
 
-  describe('HouseholdActionTypes.LoadHouseholds', () => {
+  describe('HouseholdActions.loadHouseholds', () => {
     it('should update state as loading', () => {
-      const action = new LoadHouseholds();
+      const action = HouseholdActions.loadHouseholds();
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
@@ -85,70 +68,72 @@ describe('HouseholdReducer', () => {
     });
   });
 
-  describe('AuthActionTypes.AddHouseholdFail', () => {
+  describe('HouseholdActions.addHouseholdFail', () => {
     it('should update errorMessage', () => {
-      const request: ErrorMessage = {
+      const error: ErrorMessage = {
         message: 'TestErrorMessage'
       };
-      const action = new AddHouseholdFail(request);
+      const action = HouseholdActions.addHouseholdFail({ error });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
         ...initialState,
-        errorMessage: request.message
+        errorMessage: error.message
       });
     });
   });
 
-  describe('AuthActionTypes.LoadHouseholdsFail', () => {
+  describe('HouseholdActions.loadHouseholdsFail', () => {
     it('should update errorMessage', () => {
-      const request: ErrorMessage = {
+      const error: ErrorMessage = {
         message: 'TestErrorMessage'
       };
-      const action = new LoadHouseholdsFail(request);
+      const action = HouseholdActions.loadHouseholdsFail({ error });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
         ...initialState,
-        errorMessage: request.message
+        errorMessage: error.message
       });
     });
   });
 
-  describe('AuthActionTypes.RemoveHouseholdFail', () => {
+  describe('HouseholdActions.removeHouseholdFail', () => {
     it('should update errorMessage', () => {
-      const request: ErrorMessage = {
+      const error: ErrorMessage = {
         message: 'TestErrorMessage'
       };
-      const action = new RemoveHouseholdFail(request);
+      const action = HouseholdActions.removeHouseholdFail({ error });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
         ...initialState,
-        errorMessage: request.message
+        errorMessage: error.message
       });
     });
   });
 
-  describe('AuthActionTypes.UpdateHouseholdFail', () => {
+  describe('HouseholdActions.updateHouseholdFail', () => {
     it('should update errorMessage', () => {
-      const request: ErrorMessage = {
+      const error: ErrorMessage = {
         message: 'TestErrorMessage'
       };
-      const action = new UpdateHouseholdFail(request);
+      const action = HouseholdActions.updateHouseholdFail({ error });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
         ...initialState,
-        errorMessage: request.message
+        errorMessage: error.message
       });
     });
   });
 
-  describe('HouseholdActionTypes.AddHouseholdSuccess', () => {
+  describe('HouseholdActions.addHouseholdSuccess', () => {
     it('should set loading to false', () => {
-      const request = TEST_DATA.household.household.id;
-      const action = new AddHouseholdSuccess({ householdId: request });
+      const response = {
+        householdId: TEST_DATA.household.household.id
+      };
+      const action = HouseholdActions.addHouseholdSuccess({ response });
       const result = reducer({
         ...initialState,
         loading: true
@@ -158,10 +143,12 @@ describe('HouseholdReducer', () => {
     });
   });
 
-  describe('HouseholdActionTypes.UpdateHouseholdSuccess', () => {
+  describe('HouseholdActions.updateHouseholdSuccess', () => {
     it('should set loading to false', () => {
-      const request = TEST_DATA.household.household.id;
-      const action = new UpdateHouseholdSuccess({ householdId: request });
+      const response = {
+        householdId: TEST_DATA.household.household.id
+      };
+      const action = HouseholdActions.updateHouseholdSuccess({ response });
       const result = reducer({
         ...initialState,
         loading: true
@@ -171,10 +158,12 @@ describe('HouseholdReducer', () => {
     });
   });
 
-  describe('HouseholdActionTypes.RemoveHouseholdSuccess', () => {
+  describe('HouseholdActions.removeHouseholdSuccess', () => {
     it('should set loading to false', () => {
-      const request = TEST_DATA.household.household.id;
-      const action = new RemoveHouseholdSuccess({ householdId: request });
+      const response = {
+        householdId: TEST_DATA.household.household.id
+      };
+      const action = HouseholdActions.removeHouseholdSuccess({ response });
       const result = reducer({
         ...initialState,
         loading: true
@@ -184,9 +173,9 @@ describe('HouseholdReducer', () => {
     });
   });
 
-  describe('HouseholdActionTypes.LoadHouseholdsSuccess', () => {
+  describe('HouseholdActions.loadHouseholdsSuccess', () => {
     it('should add household entities', () => {
-      const request = {
+      const response = {
         count: 2,
         households: [
           {
@@ -213,20 +202,20 @@ describe('HouseholdReducer', () => {
           }
         ] as Household[]
       };
-      const action = new LoadHouseholdsSuccess(request);
+      const action = HouseholdActions.loadHouseholdsSuccess({ response });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
         ...initialState,
-        count: request.count,
-        entities: request.households.reduce(
+        count: response.count,
+        entities: response.households.reduce(
           (entityMap, item) => ({
             ...entityMap,
             [item.id]: item
           }),
           {}
         ),
-        ids: request.households.map(user => user.id),
+        ids: response.households.map(user => user.id),
         loading: false
       });
     });
@@ -272,7 +261,7 @@ describe('HouseholdReducer', () => {
         ),
         ids: households.map(user => user.id),
       };
-      const request = {
+      const response = {
         count: 4,
         households: [
           {
@@ -299,8 +288,8 @@ describe('HouseholdReducer', () => {
           }
         ] as Household[]
       };
-      const expected = households.concat(request.households);
-      const action = new LoadHouseholdsSuccess(request);
+      const expected = households.concat(response.households);
+      const action = HouseholdActions.loadHouseholdsSuccess({ response });
       const result = reducer(currentState, action);
 
       expect(result).toEqual({
@@ -322,10 +311,10 @@ describe('HouseholdReducer', () => {
     });
   });
 
-  describe('HouseholdActionTypes.ApplyFilter', () => {
+  describe('HouseholdActions.ApplyFilter', () => {
     it('should apply filter', () => {
-      const request = TEST_DATA.household.filter as HouseholdFilter;
-      const action = new ApplyFilter(request);
+      const request = TEST_DATA.household.filter;
+      const action = HouseholdActions.applyFilter({ request });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
@@ -338,7 +327,7 @@ describe('HouseholdReducer', () => {
       const request = {
         searchText: 'test',
       } as Partial<HouseholdFilter>;
-      const action = new ApplyFilter(request);
+      const action = HouseholdActions.applyFilter({ request });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
